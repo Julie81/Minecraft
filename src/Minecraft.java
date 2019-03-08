@@ -1,12 +1,16 @@
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 
 
-public class Minecraft {
+public class Minecraft extends Frame implements WindowListener {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+		
 		Item i1 = new Item("i1");
 		Item i2 = new Item("i2");
 		Item[][] item1 = {{null,null,null},{i1,i1,null},{i2,null,null}};
@@ -45,7 +49,63 @@ public class Minecraft {
 				System.out.println();
 			}
 		}*/
+		
+		new Minecraft();
 
+	}
+	
+	public Minecraft() {
+		this.setLayout(new BorderLayout());
+		
+		Inventaire inv = new Inventaire();
+		this.add(inv, BorderLayout.SOUTH);
+		
+		this.addWindowListener(this);
+		this.setTitle ("Table de craft Minecraft");
+		this.pack();
+		this.setVisible(true);
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		//System.exit(0);
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
