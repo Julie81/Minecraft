@@ -11,6 +11,8 @@ public class Minecraft extends Frame implements WindowListener {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
+		/* Test pour la partie de Nathan
+		 
 		Item i1 = new Item("i1");
 		Item i2 = new Item("i2");
 		Item[][] item1 = {{null,null,null},{i1,i1,null},{i2,null,null}};
@@ -22,8 +24,31 @@ public class Minecraft extends Frame implements WindowListener {
 		Craft c2 = new Craft(item2);
 		Craft c3 = new Craft(item3);
 		Craft c4 = new Craft(item4);
-
-		//test de la emthode upperleft
+		 */
+		
+		Item g1 = new Item("miniatures/pierre.jpg" ,"Pierre");
+		Item g2 = new Item("miniatures/bloc_de_pierre.png" ,"Bloc de Pierre");
+		Item g3 = new Item("miniatures/pierre.jpg" ,"Poutre de Pierre");
+		Item g4 = new Item("miniatures/pierre.jpg", "Mur de Pierre");
+		
+		Item[][] BP = {{g1,g1,null},{g1,g1,null},{null,null,null}};
+		Item[][] P = {{g2,null,null},{g2,null,null},{g2,null,null}}; 
+		Item[][] MP = {{g3,g3,g3},{null,null,null},{null,null,null}}; 
+		
+		Craft c1 = new Craft(g2,BP); // craft d'un bloc de pierre
+		Craft c2 = new Craft(g3,P); // craft d'une poutre de pierre
+		Craft c3 = new Craft(g4,MP); // craft d'un mur de pierre
+		
+		System.out.println("Nos crafts possibles à partir de la pierre :");
+		System.out.println("");
+		c1.afficher();
+		System.out.println("-----");
+		c2.afficher();
+		System.out.println("-----");
+		c3.afficher();
+		
+		
+		//test de la methode upperleft
 		/*
 		System.out.println(c1.compareTo(c2));
 		c1.UpperLeft();
@@ -75,7 +100,7 @@ public class Minecraft extends Frame implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		//System.exit(0);
+		System.exit(0);
 	}
 
 	@Override

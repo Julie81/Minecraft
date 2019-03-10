@@ -1,14 +1,28 @@
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Craft {
 	
 	Item[] emptyLine= {null,null,null};
 	Item[][] items;
+	Item res;
 	
-	public Craft(Item[][] items){
+	public Craft(Item i, Item[][] items){
 		this.items = items;
+		this.res = i;
 	}
 	
-	public void UpperLeft(){
+	public void UpperLeft(){ 
+		
+		/*
+		Methode de transposition des items vers le coin en haut a gauche.
+		Permet de réunir sous un même item des configurations differentes de ce même item.
+		Ex : Une poutre de pierre est définie comme 3 pierres alignées verticalement.
+		 -> Cette méthode permet de définir les 3 positions possibles de cet item ( à gauche, au milieu ou à droite )
+		 de sorte que l'utilisateur n'est pas à se soucier du positionnement lorsque le craft est correct.
+		*/
 		
 		int cptUpper = 0;
 		
@@ -53,5 +67,22 @@ public class Craft {
 			}
 		}
 		return true;
+	}
+	
+	public void afficher() {  // affiche toutes les informations concernant le craft ( matrice de craft, nom de l'item et bientot son image )
+		for(int i=0;i<3;i++){
+			String lign = "";
+			for(int j=0;j<3;j++){
+				if(this.items[i][j]!=null){
+					lign += this.items[i][j].name + "|";
+				}
+				else {
+					lign += "None" +"|";
+				}
+			}
+			System.out.println(lign);
+		}
+		System.out.println("---------------------");
+		System.out.println(this.res.name);
 	}
 }
