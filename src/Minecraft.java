@@ -3,6 +3,7 @@ import java.awt.Frame;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ public class Minecraft extends Frame implements WindowListener {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		/* Test pour la partie de Nathan
+		//* Test pour la partie de Nathan
 		 
 		Item i1 = new Item("i1");
 		Item i2 = new Item("i2");
@@ -20,12 +21,13 @@ public class Minecraft extends Frame implements WindowListener {
 		Item[][] item3 = {{null,i1,i1},{null,i2,null},{null,null,null}};
 		Item[][] item4 = {{null,null,null},{null,i1,i1},{null,i2,null}};
 		
-		Craft c1 = new Craft(item1);
-		Craft c2 = new Craft(item2);
-		Craft c3 = new Craft(item3);
-		Craft c4 = new Craft(item4);
-		 */
+		Craft c1 = new Craft(i1,item1);
+		Craft c2 = new Craft(i1,item2);
+		Craft c3 = new Craft(i1,item3);
+		Craft c4 = new Craft(i1,item4);
+		//*/
 		
+		/*
 		Item g1 = new Item("miniatures/pierre.jpg" ,"Pierre");
 		Item g2 = new Item("miniatures/bloc_de_pierre.png" ,"Bloc de Pierre");
 		Item g3 = new Item("miniatures/pierre.jpg" ,"Poutre de Pierre");
@@ -39,13 +41,13 @@ public class Minecraft extends Frame implements WindowListener {
 		Craft c2 = new Craft(g3,P); // craft d'une poutre de pierre
 		Craft c3 = new Craft(g4,MP); // craft d'un mur de pierre
 		
-		System.out.println("Nos crafts possibles à partir de la pierre :");
+		System.out.println("Nos crafts possibles ï¿½ partir de la pierre :");
 		System.out.println("");
 		c1.afficher();
 		System.out.println("-----");
 		c2.afficher();
 		System.out.println("-----");
-		c3.afficher();
+		c3.afficher();*/
 		
 		
 		//test de la methode upperleft
@@ -60,20 +62,22 @@ public class Minecraft extends Frame implements WindowListener {
 		System.out.println();
 		System.out.println(c4.compareTo(c2));
 		c4.UpperLeft();
-		System.out.println(c4.compareTo(c2));*/
+		System.out.println(c4.compareTo(c2));
+		//*/
 		
 		//test de structure de donne Ã  utiliser
-		/*
+		//*
 		c1.UpperLeft();
 		HashMap<Craft, Item> ht = new HashMap<Craft,Item>();
 		ht.put(c2,i1);
 		Set<Craft> crafts = ht.keySet();
 		for(Craft craft : crafts){
-			if(c1.compareTo(craft)){
+			if(c1.compareTo(craft.items)){
 				System.out.println("here");
-				System.out.println();
+				System.out.println(ht.get(craft).image);
 			}
-		}*/
+		}//*/
+
 		
 		new Minecraft();
 

@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 
 
 public class Item {
-	Image image;
+	public Image image;
 	int quantity;
 	String name;
 	

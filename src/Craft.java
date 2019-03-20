@@ -7,21 +7,38 @@ public class Craft {
 	
 	Item[] emptyLine= {null,null,null};
 	Item[][] items;
-	Item res;
+	Item item;
 	
 	public Craft(Item i, Item[][] items){
 		this.items = items;
-		this.res = i;
+		this.item = i;
+	}
+	
+	public int minQuantity() {
+		int min = -1;
+		for(Item[] itemLine : this.items) {
+			for(Item item : itemLine) {
+				if(item != null) {
+					if(min<0) {
+						min = item.quantity;
+					}
+					else {
+						min = Math.min(min,item.quantity);
+					}
+				}
+			}
+		}
+		return min;
 	}
 	
 	public void UpperLeft(){ 
 		
 		/*
 		Methode de transposition des items vers le coin en haut a gauche.
-		Permet de réunir sous un même item des configurations differentes de ce même item.
-		Ex : Une poutre de pierre est définie comme 3 pierres alignées verticalement.
-		 -> Cette méthode permet de définir les 3 positions possibles de cet item ( à gauche, au milieu ou à droite )
-		 de sorte que l'utilisateur n'est pas à se soucier du positionnement lorsque le craft est correct.
+		Permet de rï¿½unir sous un mï¿½me item des configurations differentes de ce mï¿½me item.
+		Ex : Une poutre de pierre est dï¿½finie comme 3 pierres alignï¿½es verticalement.
+		 -> Cette mï¿½thode permet de dï¿½finir les 3 positions possibles de cet item ( ï¿½ gauche, au milieu ou ï¿½ droite )
+		 de sorte que l'utilisateur n'est pas ï¿½ se soucier du positionnement lorsque le craft est correct.
 		*/
 		
 		int cptUpper = 0;
@@ -48,19 +65,19 @@ public class Craft {
 		}
 	}
 	
-	public boolean compareTo(Craft craft){
+	public boolean compareTo(Item[][] craft){
 		
 		for(int i=0;i<3;i++){
 			for(int j=0;j<3;j++){
 				
-				if(this.items[i][j] == null && craft.items[i][j] != null){
+				if(this.items[i][j] == null && craft[i][j] != null){
 					return false;
 				}
-				if(this.items[i][j] != null && craft.items[i][j] == null){
+				if(this.items[i][j] != null && craft[i][j] == null){
 					return false;
 				}
 				
-				if(!((this.items[i][j] == null && craft.items[i][j] == null) || this.items[i][j].compareTo(craft.items[i][j]))){
+				if(!((this.items[i][j] == null && craft[i][j] == null) || this.items[i][j].compareTo(craft[i][j]))){
 						return false;
 				}
 
@@ -83,6 +100,6 @@ public class Craft {
 			System.out.println(lign);
 		}
 		System.out.println("---------------------");
-		System.out.println(this.res.name);
+		System.out.println(this.item.name);
 	}
 }
