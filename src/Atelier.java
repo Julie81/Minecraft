@@ -27,7 +27,17 @@ public class Atelier extends Canvas{
 	}
 	
 	
-	public void changeQuantity(int newQuantity) {
+	public void SetQuantity(int newQuantity) {
 		quantity = newQuantity;
+	}
+	
+	public void Craft(Craft[] EnsembleDesCrafts) {
+		Item item = ExistingCraft(this.CraftTable, EnsembleDesCrafts);
+		if(item != null) {
+			item.quantity += quantity;
+		}
+		else {
+			System.out.println("Craft invalide");
+		}
 	}
 }
