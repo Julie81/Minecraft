@@ -89,6 +89,9 @@ public class Minecraft extends Frame implements WindowListener {
 		Inventaire inv = new Inventaire();
 		this.add(inv, BorderLayout.SOUTH);
 		
+		Recolte rec = new Recolte();
+		this.add(rec,BorderLayout.EAST);
+		
 		this.addWindowListener(this);
 		this.setTitle ("Table de craft Minecraft");
 		this.pack();
