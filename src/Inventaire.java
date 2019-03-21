@@ -2,10 +2,13 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Panel;
 
-public class Inventaire extends Canvas{
+import javax.swing.JButton;
+
+public class Inventaire extends Panel {
 	
-	public Item[][] inventaire;
+	public JButton[][] inventaire;
 	
 	public Inventaire() {
 		super();
@@ -15,8 +18,18 @@ public class Inventaire extends Canvas{
 
 		int ligne = 5;
 		int colonne = 12;
-		this.inventaire = new Item[ligne][colonne];
 		int quota = 64;
+		int width = 5;
+		int car = 50;
+		
+		this.inventaire = new JButton [ligne][colonne];
+		for (int i=0; i<this.inventaire.length; i++){
+			for (int j=0; j<this.inventaire[0].length;j++){
+				inventaire [i][j]=new JButton();
+				inventaire[i][j].setPreferredSize(new Dimension(car,car));
+				this.add(inventaire[i][j]);
+			}
+		}
 		
 		this.setPreferredSize(new Dimension(colonne*50,ligne*50));
 	}
@@ -25,7 +38,7 @@ public class Inventaire extends Canvas{
 		quantite+=5;
 	}
 	
-	public void paint(Graphics g) {
+	/*public void paint(Graphics g) {
 
 		int width = 5;
 		int car = 50;
@@ -38,7 +51,7 @@ public class Inventaire extends Canvas{
 
 			}
 		}
-	}
+	}*/
 	
 	public Craft GetCraft(Item item, Craft[] EnsembleDesCrafts) {
 		for(Craft craft : EnsembleDesCrafts) {
