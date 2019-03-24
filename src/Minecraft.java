@@ -1,5 +1,9 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.LayoutManager;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
@@ -87,7 +91,7 @@ public class Minecraft extends Frame implements WindowListener {
 		this.setLayout(new BorderLayout());
 		
 		Inventaire inv = new Inventaire();
-		this.add(inv, BorderLayout.SOUTH);
+		this.add(inv, BorderLayout.WEST);
 		
 		Recolte rec = new Recolte();
 		this.add(rec,BorderLayout.EAST);
