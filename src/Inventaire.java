@@ -6,10 +6,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class Inventaire extends Panel {
+public class Inventaire extends Panel implements ActionListener {
 	
 	public JButton[][] inventaire;
 	
@@ -34,14 +36,20 @@ public class Inventaire extends Panel {
 			for (int j=0; j<colonne;j++){
 
 				gbc.gridx = j*larg;
-				inventaire[i][j] = new JButton();
-				inventaire[i][j].setPreferredSize(new Dimension(larg,larg));
-				inventaire[i][j].setBackground(Color.GRAY);
-				this.add(inventaire[i][j],gbc);
+				String sobriquet = i*12+j+"";
+				JButton b = new JButton();
+				inventaire[i][j] = b;
+				b.setPreferredSize(new Dimension(larg,larg));
+				b.setText(sobriquet);
+				b.setActionCommand("Item sélectionné : "+sobriquet);  // Il y aura ici en fait un string caractérisant l'item sur lequel on a cliqué
+				b.setBackground(Color.lightGray);
+				b.addActionListener(this);
+				this.add(b,gbc);
 			}
 		}
 		
 		this.setPreferredSize(new Dimension(colonne*55,ligne*55));
+
 	}
 	
 	
@@ -53,4 +61,11 @@ public class Inventaire extends Panel {
 		}
 		return null;
 	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.println(arg0.getActionCommand());
+	}
+
 }
