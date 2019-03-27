@@ -1,6 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Image;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Set;
 
 public class Atelier extends Canvas{
@@ -17,11 +18,11 @@ public class Atelier extends Canvas{
 		
 	}
 	
-	public Item ExistingCraft(Item[][] user, Craft[] EnsembleDesCrafts) {
-		for(Craft craft : EnsembleDesCrafts) {
-			if(craft.compareTo(user)) {
-				return craft.item;
-			}
+	public Item ExistingCraft(Item[][] user, Hashtable<String,Craft> EnsembleDesCrafts) {
+		Craft userTry = new Craft(null,user);
+		String UID = userTry.getCraftUID();
+		if(EnsembleDesCrafts.containsKey(UID)){
+				return EnsembleDesCrafts.get(UID).item;
 		}
 		return null;
 	}
@@ -30,14 +31,5 @@ public class Atelier extends Canvas{
 	public void SetQuantity(int newQuantity) {
 		quantity = newQuantity;
 	}
-	
-	public void Craft(Craft[] EnsembleDesCrafts) {
-		Item item = ExistingCraft(this.CraftTable, EnsembleDesCrafts);
-		if(item != null) {
-			item.quantity += quantity;
-		}
-		else {
-			System.out.println("Craft invalide");
-		}
-	}
+
 }

@@ -31,6 +31,33 @@ public class Craft {
 		return min;
 	}
 	
+	public int getMaxGeneration() {
+		int maxGen = 0;
+		for(int i=0;i<3;i++){
+			for(int j=1;j<3;j++){
+				if(this.items[i][j] != null) {
+					maxGen = Math.max(maxGen,this.items[i][j].generation);
+				}
+			}
+		}
+		return maxGen;
+	}
+	
+	public String getCraftUID() {
+		String UID = "";
+		for(int i=0;i<3;i++){
+			for(int j=1;j<3;j++){
+				if(this.items[i][j] != null) {
+					UID += this.items[i][j].UID;
+				}
+				else {
+					UID += "00";
+				}
+			}
+		}
+		return UID;
+	}
+	
 	public void UpperLeft(){ 
 		
 		/*
