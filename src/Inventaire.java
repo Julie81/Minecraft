@@ -50,7 +50,8 @@ public class Inventaire extends Panel implements ActionListener {
 				b.setIcon(icon);
 				
 				b.setPreferredSize(new Dimension(larg,larg));
-				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caract�risant l'item sur lequel on a cliqu�
+				//b.setText(sobriquet);
+				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a cliqu�
 				b.addActionListener(this);
 				this.add(b,gbc);
 			}
@@ -60,7 +61,7 @@ public class Inventaire extends Panel implements ActionListener {
 
 	}
 	
-	
+	/*
 	public Craft GetCraft(Item item, Craft[] EnsembleDesCrafts) {
 		for(Craft craft : EnsembleDesCrafts) {
 			if(item.compareTo(craft.item)) {
@@ -68,7 +69,7 @@ public class Inventaire extends Panel implements ActionListener {
 			}
 		}
 		return null;
-	}
+	}*/
 
 
 	@Override
