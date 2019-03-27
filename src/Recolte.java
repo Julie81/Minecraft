@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -21,10 +22,11 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class Recolte extends Panel {
+	ArrayList<Item> L;
+	int larg = 30; // dimension du carrï¿½ bouton
 	
-	int larg = 30; // dimension du carré bouton
-	
-	public Recolte() {
+	public Recolte(ArrayList<Item> r) {
+		this.L = r;
 		String[] rn_names = {"pierre","bois","eau","plume"};  // rn pour ressources naturelles
 		Color[] rn_cl = {Color.gray, Color.orange,Color.blue,Color.white}; 
 		String[] rc_names = {"Viande","Orange","Pomme","Noix de coco","Fer","Diamant"}; // rc pour ressources recoltables
@@ -32,7 +34,7 @@ public class Recolte extends Panel {
 		
 		for(int i=0; i<rn_names.length; i++) {  // Creation de tout les boutons en parcourant les listes
 			
-			JButton b = Init_Icon_Recolte(rn_names[i]);
+			JitmButton b = Init_Icon_Recolte(r.get(i));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton
 			ImageIcon icon = new ImageIcon("miniatures/RN/"+rn_names[i]+".png");
@@ -52,17 +54,22 @@ public class Recolte extends Panel {
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS)); // alignement en vertical
 	}
 	
-	private JButton Init_Icon_Recolte(String name) {
+	private JitmButton Init_Icon_Recolte(Item obj) {
 		// Creer un bouton avec l'image icon
-		JButton b = new JButton();
+		JitmButton b = new JitmButton(obj);
 		b.setPreferredSize(new Dimension(larg,larg));
-		b.setActionCommand(name);
+		b.setActionCommand(obj.name);
+		b.putClientProperty("id", obj.name);
 		b.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Je suis un/une "+e.getActionCommand()+".");
-				// Ici on aura l'incrémentation de la quantité de la ressource 
+				String n = e.getActionCommand(); 
+				if (e.getSource() instanceof JitmButton ) {
+					JitmButton t = (JitmButton) e.getSource();
+					System.out.println(t.getClientProperty("id"));
+					t.it.quantity++;
+				}
 				} });
 		return b;
 		}
