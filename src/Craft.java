@@ -92,27 +92,6 @@ public class Craft {
 		}
 	}
 	
-	public boolean compareTo(Item[][] craft){
-		
-		for(int i=0;i<3;i++){
-			for(int j=0;j<3;j++){
-				
-				if(this.items[i][j] == null && craft[i][j] != null){
-					return false;
-				}
-				if(this.items[i][j] != null && craft[i][j] == null){
-					return false;
-				}
-				
-				if(!((this.items[i][j] == null && craft[i][j] == null) || this.items[i][j].compareTo(craft[i][j]))){
-						return false;
-				}
-
-			}
-		}
-		return true;
-	}
-	
 	public void afficher() {  // affiche toutes les informations concernant le craft ( matrice de craft, nom de l'item et bientot son image )
 		for(int i=0;i<3;i++){
 			String lign = "";

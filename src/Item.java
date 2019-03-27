@@ -47,9 +47,4 @@ public class Item {
 	public void delete_Ressources(){
 		quantity = 0;
 	}
-	
-	public boolean compareTo(Item item){
-		return this.name.equals(item.name);
-				
-	}
 }

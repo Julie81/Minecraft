@@ -41,7 +41,7 @@ public class Inventaire extends Panel implements ActionListener {
 				inventaire[i][j] = b;
 				b.setPreferredSize(new Dimension(larg,larg));
 				b.setText(sobriquet);
-				b.setActionCommand("Item sélectionné : "+sobriquet);  // Il y aura ici en fait un string caractérisant l'item sur lequel on a cliqué
+				b.setActionCommand("Item sï¿½lectionnï¿½ : "+sobriquet);  // Il y aura ici en fait un string caractï¿½risant l'item sur lequel on a cliquï¿½
 				b.setBackground(Color.lightGray);
 				b.addActionListener(this);
 				this.add(b,gbc);
@@ -52,7 +52,7 @@ public class Inventaire extends Panel implements ActionListener {
 
 	}
 	
-	
+	/*
 	public Craft GetCraft(Item item, Craft[] EnsembleDesCrafts) {
 		for(Craft craft : EnsembleDesCrafts) {
 			if(item.compareTo(craft.item)) {
@@ -60,7 +60,7 @@ public class Inventaire extends Panel implements ActionListener {
 			}
 		}
 		return null;
-	}
+	}*/
 
 
 	@Override
