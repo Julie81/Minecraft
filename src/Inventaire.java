@@ -15,14 +15,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Inventaire extends Panel implements ActionListener {
-	
+	public Item tampon;
 	public JitmButton[][] inventaire;
 	
 	public Inventaire(ArrayList<Item> r) {
 		super();
-		int ligne = 1;
-		int colonne = r.size();
-		int larg = 50; // largeur d'une cellule pour les cases de l'inventaire
+		int dim = 10;
+		int ligne = 2;
+		int colonne = 10;
+		int s_icon = 40;
+		int larg = 70; // largeur d'une cellule pour les cases de l'inventaire
 		
 		this.inventaire = new JitmButton [ligne][colonne];
 		this.setLayout(new GridBagLayout());
@@ -39,43 +41,34 @@ public class Inventaire extends Panel implements ActionListener {
 			for (int j=0; j<colonne;j++){
 
 				gbc.gridx = j*larg;
-				String sobriquet = j+"";
-				JitmButton b = new JitmButton(r.get(j));
+				String sobriquet = i+""+j+"";
+				JitmButton b = new JitmButton(r.get(i*dim+j));
 				inventaire[i][j] = b;
 				
-				ImageIcon icon = new ImageIcon("miniatures/RC/"+r.get(j).name+".png");
+				ImageIcon icon = new ImageIcon("miniatures/RC/"+r.get(i*dim+j).name+".png");
 				Image img = icon.getImage() ;
-				Image newimg = img.getScaledInstance( larg, larg,  java.awt.Image.SCALE_SMOOTH ) ;
+				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 				icon = new ImageIcon(newimg);
 				b.setIcon(icon);
 				
 				b.setPreferredSize(new Dimension(larg,larg));
-				//b.setText(sobriquet);
+				b.setText(""+r.get(i*dim+j).quantity);
 				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a cliqu�
 				b.addActionListener(this);
 				this.add(b,gbc);
 			}
 		}
 		
-		this.setPreferredSize(new Dimension(colonne*55,ligne*55));
+		this.setPreferredSize(new Dimension(colonne*65,ligne*65));
 
 	}
-	
-	/*
-	public Craft GetCraft(Item item, Craft[] EnsembleDesCrafts) {
-		for(Craft craft : EnsembleDesCrafts) {
-			if(item.compareTo(craft.item)) {
-				return craft;
-			}
-		}
-		return null;
-	}*/
 
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String n = arg0.getActionCommand();
-		System.out.println(this.inventaire[0][n.charAt(0)-'0'].it.quantity);
+		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'].it;
 	}
+	
 
 }

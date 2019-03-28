@@ -33,7 +33,7 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 	}
 	
 	public Minecraft() throws IOException {
-		this.setLayout(new GridBagLayout());
+		//this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx=0;
 		gbc.gridy=0;
@@ -96,22 +96,38 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		Item bateau = new Item("miniatures/RC/bateau.png","bateau");
 		Item echelle = new Item("miniatures/RC/echelle.png","echelle");
 		Item fer = new Item("miniatures/RC/fer.png","fer");
-		Item Rails = new Item("miniatures/RC/Rails.png","Rails");
-		Item Wagonnet = new Item("miniatures/RC/Wagonnet.png","Wagonnet");
+		Item rails = new Item("miniatures/RC/rails.png","rails");
+		Item wagon = new Item("miniatures/RC/wagon.png","wagon");
+		Item pomme = new Item("miniatures/RC/pomme.png","pomme");
 		Item viande = new Item("miniatures/RC/viande.png","viande");
 		Item orange = new Item("miniatures/RC/orange.png","orange");
+		Item pioche_en_fer = new Item("miniatures/RC/pioche_en_fer.png","pioche_en_fer");
+		Item or = new Item("miniatures/RC/or.png","or");
+		Item lianes = new Item("miniatures/RC/lianes.png","lianes");
+		Item hache_en_fer = new Item("miniatures/RC/hache_en_fer.png","hache_en_fer");
+		Item ficelle = new Item("miniatures/RC/ficelle.png","ficelle");
+		Item lait = new Item("miniatures/RC/lait.png","lait");
+		Item fleche = new Item("miniatures/RC/fleche.png","fleche");
 		l.add(pierre);
 		l.add(bois);
 		l.add(eau);
 		l.add(plume);
+		l.add(or);
+		l.add(fer);
 		l.add(diamant);
+		l.add(pomme);
+		l.add(orange);
+		l.add(lait);
+		l.add(lianes);
+		l.add(pioche_en_fer);
+		l.add(ficelle);
+		l.add(hache_en_fer);
+		l.add(fleche);
 		l.add(bateau);
 		l.add(echelle);
-		l.add(fer);
-		l.add(Rails);
-		l.add(Wagonnet);
+		l.add(rails);
+		l.add(wagon);
 		l.add(viande);
-		l.add(orange);
 		return l;
 	}
 
@@ -159,7 +175,6 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
