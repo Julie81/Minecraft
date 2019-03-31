@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.Panel;
@@ -25,12 +27,28 @@ public class Recolte extends Panel {
 	ArrayList<Item> L;
 	int larg = 30; // dimension du carre bouton
 	
+	
 	public Recolte(ArrayList<Item> r) {
 		this.L = r;
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes"};  // rn pour ressources naturelles
 		
+		this.setLayout(new GridBagLayout());
+		int moitie=rn_names.length/2;
+		GridBagConstraints gbc = new GridBagConstraints();
+		this.setPreferredSize(new Dimension(2*larg+10,moitie*larg+10));
+		gbc.gridx=0;
+		gbc.gridy=0;
+		gbc.gridheight = moitie;
+		gbc.gridwidth = moitie;
+		
+		int j=0;
 		for(int i=0; i<rn_names.length; i++) {  // Creation de tout les boutons en parcourant les listes
-			
+			if (i==moitie){
+				//System.out.println(i);
+				j=1;
+				gbc.gridx=1*larg;
+			}
+			gbc.gridy=(i-j*moitie)*larg;
 			JitmButton b = Init_Icon_Recolte(r.get(i));
 			
 			if (i>3) { // seules les ressources de bases sont recoltables à l'init
@@ -44,10 +62,8 @@ public class Recolte extends Panel {
 			icon = new ImageIcon(newimg);
 			
 			b.setIcon(icon);
-			this.add(b);
+			this.add(b,gbc);
 		}
-		
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS)); // alignement en vertical
 	}
 	
 	private JitmButton Init_Icon_Recolte(Item obj) {

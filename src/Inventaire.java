@@ -24,7 +24,7 @@ public class Inventaire extends Panel implements ActionListener {
 		int ligne = 2;
 		int colonne = 10;
 		int s_icon = 40;
-		int larg = 70; // largeur d'une cellule pour les cases de l'inventaire
+		int larg = 90; // largeur d'une cellule pour les cases de l'inventaire
 		
 		this.inventaire = new JitmButton [ligne][colonne];
 		this.setLayout(new GridBagLayout());
@@ -38,7 +38,7 @@ public class Inventaire extends Panel implements ActionListener {
 		for (int i=0; i<ligne; i++){
 			gbc.gridy = i*larg;
 			
-			for (int j=0; j<colonne;j++){
+			for (int j=0; j<colonne-5;j++){
 
 				gbc.gridx = j*larg;
 				String sobriquet = i+""+j+"";
@@ -59,7 +59,7 @@ public class Inventaire extends Panel implements ActionListener {
 			}
 		}
 		
-		this.setPreferredSize(new Dimension(colonne*65,ligne*65));
+		this.setPreferredSize(new Dimension(5*larg+10,2*larg+10));
 
 	}
 

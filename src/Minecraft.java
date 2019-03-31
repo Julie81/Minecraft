@@ -23,8 +23,8 @@ import javax.swing.JPanel;
 
 public class Minecraft extends Frame implements WindowListener,ActionListener {
 	
-	JPanel content = new JPanel();
-	CardLayout cl = new CardLayout();
+	/*JPanel content = new JPanel();
+	CardLayout cl = new CardLayout();*/
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -43,13 +43,13 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 
 		
 		Inventaire inv = new Inventaire(L);
-	//	this.add(inv, BorderLayout.WEST);
+		this.add(inv, BorderLayout.WEST);
 		
-		Recettes menu = new Recettes ();
+		/*Recettes menu = new Recettes ();
 		//this.add(menu, BorderLayout.WEST);
 		
 		
-		content.setLayout(cl);
+		/*content.setLayout(cl);
 		content.add(inv,"inventaire");
 		content.add(menu,"Menu");
 		
@@ -73,7 +73,7 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		inv_rec.add(recette);
 		
 		this.add(inv_rec,BorderLayout.WEST);
-		this.add(content,BorderLayout.SOUTH);
+		this.add(content,BorderLayout.SOUTH);*/
 		
 		
 		
@@ -97,32 +97,32 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		Item echelle = new Item("miniatures/RC/echelle.png","echelle");
 		Item fer = new Item("miniatures/RC/fer.png","fer");
 		Item rails = new Item("miniatures/RC/rails.png","rails");
-		Item wagon = new Item("miniatures/RC/wagon.png","wagon");
+		Item wagon = new Item("miniatures/RC/Wagonnet.png","wagon");
 		Item pomme = new Item("miniatures/RC/pomme.png","pomme");
 		Item viande = new Item("miniatures/RC/viande.png","viande");
 		Item orange = new Item("miniatures/RC/orange.png","orange");
 		Item pioche_en_fer = new Item("miniatures/RC/pioche_en_fer.png","pioche_en_fer");
-		Item or = new Item("miniatures/RC/or.png","or");
-		Item lianes = new Item("miniatures/RC/lianes.png","lianes");
+		//Item or = new Item("miniatures/RC/or.png","or");
+		//Item lianes = new Item("miniatures/RC/lianes.png","lianes");
 		Item hache_en_fer = new Item("miniatures/RC/hache_en_fer.png","hache_en_fer");
-		Item ficelle = new Item("miniatures/RC/ficelle.png","ficelle");
-		Item lait = new Item("miniatures/RC/lait.png","lait");
-		Item fleche = new Item("miniatures/RC/fleche.png","fleche");
+		//Item ficelle = new Item("miniatures/RC/ficelle.png","ficelle");
+		//Item lait = new Item("miniatures/RC/lait.png","lait");
+		//Item fleche = new Item("miniatures/RC/fleche.png","fleche");
 		l.add(pierre);
 		l.add(bois);
 		l.add(eau);
 		l.add(plume);
-		l.add(or);
+		//l.add(or);
 		l.add(fer);
 		l.add(diamant);
 		l.add(pomme);
 		l.add(orange);
-		l.add(lait);
-		l.add(lianes);
+		//l.add(lait);
+		//l.add(lianes);
 		l.add(pioche_en_fer);
-		l.add(ficelle);
+		//l.add(ficelle);
 		l.add(hache_en_fer);
-		l.add(fleche);
+		//l.add(fleche);
 		l.add(bateau);
 		l.add(echelle);
 		l.add(rails);
