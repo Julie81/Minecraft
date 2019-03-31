@@ -80,6 +80,9 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		Recolte rec = new Recolte(L);
 		this.add(rec,BorderLayout.EAST);
 		
+		Memoire mem = new Memoire ();
+		this.add(mem,BorderLayout.NORTH);
+		
 		this.addWindowListener(this);
 		this.setTitle ("Table de craft Minecraft");
 		this.pack();
@@ -97,7 +100,7 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		Item echelle = new Item("miniatures/RC/echelle.png","echelle");
 		Item fer = new Item("miniatures/RC/fer.png","fer");
 		Item rails = new Item("miniatures/RC/rails.png","rails");
-		Item wagon = new Item("miniatures/RC/Wagonnet.png","wagon");
+		Item wagon = new Item("miniatures/RC/wagon.png","wagon");
 		Item pomme = new Item("miniatures/RC/pomme.png","pomme");
 		Item viande = new Item("miniatures/RC/viande.png","viande");
 		Item orange = new Item("miniatures/RC/orange.png","orange");
