@@ -33,7 +33,7 @@ public class Recolte extends Panel {
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes"};  // rn pour ressources naturelles
 		
 		this.setLayout(new GridBagLayout());
-		int moitie=rn_names.length/2;
+		int moitie=rn_names.length/2+rn_names.length%2;
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setPreferredSize(new Dimension(2*larg+10,moitie*larg+10));
 		gbc.gridx=0;

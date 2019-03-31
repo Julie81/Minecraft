@@ -35,15 +35,16 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 	public Minecraft() throws IOException {
 		//this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setLayout(new GridBagLayout());
 		gbc.gridx=0;
 		gbc.gridy=0;
 		
 		ArrayList<Item> L = new ArrayList<>();
 		L = BDD();
 
-		
+		gbc.gridy=1;
 		Inventaire inv = new Inventaire(L);
-		this.add(inv, BorderLayout.WEST);
+		this.add(inv, gbc);
 		
 		/*Recettes menu = new Recettes ();
 		//this.add(menu, BorderLayout.WEST);
@@ -76,12 +77,18 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		this.add(content,BorderLayout.SOUTH);*/
 		
 		
-		
+		gbc.gridx=1;
 		Recolte rec = new Recolte(L);
-		this.add(rec,BorderLayout.EAST);
+		this.add(rec,gbc);
 		
+		gbc.gridy=0;
 		Memoire mem = new Memoire ();
-		this.add(mem,BorderLayout.NORTH);
+		this.add(mem,gbc);
+		
+		gbc.gridx=0;
+		gbc.gridy=0;
+		Craft_Zone cz = new Craft_Zone ();
+		this.add(cz,gbc);
 		
 		this.addWindowListener(this);
 		this.setTitle ("Table de craft Minecraft");
