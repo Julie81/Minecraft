@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -26,7 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class Minecraft extends Frame implements WindowListener,ActionListener {
+public class Minecraft extends Frame implements WindowListener {
 	
 	/*JPanel content = new JPanel();
 	CardLayout cl = new CardLayout();*/
@@ -41,6 +42,7 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		//this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.WHITE);
 		gbc.gridx=0;
 		gbc.gridy=0;
 		
@@ -51,6 +53,7 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		Inventaire inv = new Inventaire(L);
 		this.add(inv, gbc);
 		
+		Controleur c = new Controleur();
 		/*Recettes menu = new Recettes ();
 		//this.add(menu, BorderLayout.WEST);
 		
@@ -191,7 +194,7 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
-		Memoire mem = new Memoire ();
+		Memoire mem = new Memoire (null);
 		this.add(mem,gbc);
 		
 		gbc.gridx=0;
@@ -199,6 +202,8 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		Craft_Zone cz = new Craft_Zone ();
 		this.add(cz,gbc);
 		
+		c.addObserver(rec);
+		c.addObserver(inv);
 		this.addWindowListener(this);
 		this.setTitle ("Table de craft Minecraft");
 		this.pack();
@@ -292,9 +297,5 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-	}
 
 }
