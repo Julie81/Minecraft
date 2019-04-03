@@ -10,7 +10,7 @@ public class Item {
 	int quantity;
 	String name;
 	int generation;
-	String UID; //"nombre" entre 01 et 99 , 00 étant le manque d'item
+	String ID; //"nombre" entre 01 et 99 , 00 étant le manque d'item
 	
 	public Item(String n){ //test rapide sans image
 		name = n;
@@ -23,20 +23,20 @@ public class Item {
 		generation = 0;
 	}
 	
-	public Item(String imagePath,String name,int UID) throws IOException{
+	public Item(String imagePath,String name,String ID) throws IOException{
 		this.name = name;
 		quantity = 0;
 		image = ImageIO.read(new File(imagePath));
 		generation = 0;
-		this.UID = UID+"";
+		this.ID = ID;
 	}
 	
-	public Item(String imagePath,String name,int generation,int UID) throws IOException{
+	public Item(String imagePath,String name,int generation,String ID) throws IOException{
 		this.name = name;
 		quantity = 0;
 		image = ImageIO.read(new File(imagePath));
 		this.generation = generation;
-		this.UID = UID+"";
+		this.ID = ID;
 	}
 	
 	

@@ -44,18 +44,18 @@ public class Craft {
 	}
 	
 	public String getCraftUID() {
-		String UID = "";
+		String ID = "";
 		for(int i=0;i<3;i++){
 			for(int j=1;j<3;j++){
 				if(this.items[i][j] != null) {
-					UID += this.items[i][j].UID;
+					ID += this.items[i][j].ID;
 				}
 				else {
-					UID += "00";
+					ID += "00";
 				}
 			}
 		}
-		return UID;
+		return ID;
 	}
 	
 	public void UpperLeft(){ 

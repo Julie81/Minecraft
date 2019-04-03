@@ -11,6 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -75,6 +80,110 @@ public class Minecraft extends Frame implements WindowListener,ActionListener {
 		
 		this.add(inv_rec,BorderLayout.WEST);
 		this.add(content,BorderLayout.SOUTH);*/
+		
+		
+		//item.txt obtenu a partir de ls RC/ > item.txt
+		//Creation du fichier itemID.txt a partir du fichier item.txt
+		//future modification facile a implementer
+		BufferedReader reader = new BufferedReader(new FileReader("miniatures/item.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("miniatures/itemID.txt"));
+		
+		try {
+		    String line = reader.readLine();
+
+		    int cpt = 1;
+		    String ID= "";
+		    
+		    while (line != null) {
+		    	if(cpt<10) {
+		    		ID = "0"+cpt;
+		    	}
+		    	else {
+		    		ID = ""+cpt;
+		    	}
+		    	writer.write(ID+";"+line+"\n");
+		        line = reader.readLine();
+		        cpt++;
+		    }
+		} finally {
+		    reader.close();
+		    writer.close();
+		}
+		
+		
+
+
+		//initalisation de la BDD d'item
+		
+		HashMap<String,Item> itemList = new HashMap<String,Item>();
+		HashMap<String,String> itemNametoID = new HashMap<String,String>();
+		
+		reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
+		try {
+		    String line = reader.readLine();
+
+		    while (line != null) {
+		    	String[] split = line.split(";");
+		    	String ID = split[0];
+		    	String itemPath = split[1];
+		    	String itemName = itemPath.replace("_"," ").replace(".png","");
+		    	//System.out.println(ID+" "+itemPath+ " "+itemName);
+		    	
+		    	itemList.put(ID, new Item("miniatures/RC/"+itemPath, itemName, ID));
+		    	itemNametoID.put(itemName, ID);
+		    	
+		        line = reader.readLine();
+		    }
+		} finally {
+		    reader.close();
+		}
+		
+		//initialisation de la BDD de craft
+		
+		HashMap<String,Craft> craftList = new HashMap<String,Craft>();
+		
+		reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
+		try {
+		    String line = reader.readLine();
+
+		    while (line != null) {
+		    	String[] split = line.split(";");
+		    	
+		    	String itemCrafted = split[0];
+		    	String itemID = itemNametoID.get(itemCrafted);
+		    	
+		    	
+		    	String[] itemsName = split[1].split(":");
+		    	String[][] itemsNameList = {itemsName[0].split(","),itemsName[1].split(","),itemsName[2].split(",")}; 
+		    	
+		    	Item[][] items = new Item[3][3];
+		    	String craftID = "";
+		    	
+		    	for(int i=0;i<3;i++) {
+		    		for(int j=0;j<3;j++) {
+		    			if(itemsNameList[i][j].equals("null")) {
+		    				items[i][j] = null;
+		    				craftID+= "00";
+		    			}
+		    			else {
+			    			String ID = itemNametoID.get(itemsNameList[i][j]);
+				    		items[i][j] = itemList.get(itemID);
+				    		craftID += ID;
+		    			}
+
+		    		}
+		    	}
+		    	craftList.put(craftID, new Craft(itemList.get(itemID), items));
+		        line = reader.readLine();
+		    }
+		} finally {
+		    reader.close();
+		}
+		
+		
+		//la base de doonne dois etre completer pour pouvoir faire des tests
+		System.out.println(craftList.get("080200000000000000").item.name);
+		
 		
 		
 		gbc.gridx=1;

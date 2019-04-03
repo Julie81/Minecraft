@@ -1,0 +1,5 @@
+bateau;null,null,null:bois,pelle,bois:bois,bois,bois
+pelle;bois,null,null:baton,null,null:baton,null,null
+echelle;baton,null,baton:baton,baton,baton:baton,null,baton
+rail;fer,null,fer:fer,baton,fer:fer,null,fer
+viande;fer,bois,null:null,null,null:null,null,null
