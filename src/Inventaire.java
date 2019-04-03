@@ -10,12 +10,15 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
-public class Inventaire extends Panel implements ActionListener {
-	public Item tampon;
+public class Inventaire extends Panel implements ActionListener,Observer {
+	public JitmButton tampon;
 	public JitmButton[][] inventaire;
 	
 	public Inventaire(ArrayList<Item> r) {
@@ -23,8 +26,8 @@ public class Inventaire extends Panel implements ActionListener {
 		int dim = 10;
 		int ligne = 2;
 		int colonne = 10;
-		int s_icon = 40;
-		int larg = 90; // largeur d'une cellule pour les cases de l'inventaire
+		int s_icon = 30;
+		int larg = 80;// largeur d'une cellule pour les cases de l'inventaire
 		
 		this.inventaire = new JitmButton [ligne][colonne];
 		this.setLayout(new GridBagLayout());
@@ -44,6 +47,7 @@ public class Inventaire extends Panel implements ActionListener {
 				String sobriquet = i+""+j+"";
 				JitmButton b = new JitmButton(r.get(i*dim+j));
 				inventaire[i][j] = b;
+				b.setPreferredSize(new Dimension(larg,larg));
 				
 				ImageIcon icon = new ImageIcon("miniatures/RC/"+r.get(i*dim+j).name+".png");
 				Image img = icon.getImage() ;
@@ -51,8 +55,9 @@ public class Inventaire extends Panel implements ActionListener {
 				icon = new ImageIcon(newimg);
 				b.setIcon(icon);
 				
-				b.setPreferredSize(new Dimension(larg,larg));
 				b.setText(""+r.get(i*dim+j).quantity);
+				b.setHorizontalTextPosition(SwingConstants.RIGHT);
+				b.setVerticalTextPosition(SwingConstants.BOTTOM);
 				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a cliqu�
 				b.addActionListener(this);
 				this.add(b,gbc);
@@ -67,7 +72,20 @@ public class Inventaire extends Panel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String n = arg0.getActionCommand();
-		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'].it;
+		if (tampon != null){
+			tampon.setBackground(new JButton().getBackground());
+			tampon.repaint();
+		}
+		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'];
+		tampon.setBackground(Color.white);
+		tampon.repaint();
+
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
 	}
 	
 
