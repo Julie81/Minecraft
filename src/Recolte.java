@@ -51,7 +51,7 @@ public class Recolte extends Panel {
 			gbc.gridy=(i-j*moitie)*larg;
 			JitmButton b = Init_Icon_Recolte(r.get(i));
 			
-			if (i>3) { // seules les ressources de bases sont recoltables à l'init
+			if (i>3) { // seules les ressources de bases sont recoltables ï¿½ l'init
 				b.setEnabled(false);
 			}
 			
