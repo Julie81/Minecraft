@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -36,6 +37,7 @@ public class Minecraft extends Frame implements WindowListener {
 		//this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.WHITE);
 		gbc.gridx=0;
 		gbc.gridy=0;
 		
@@ -83,7 +85,7 @@ public class Minecraft extends Frame implements WindowListener {
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
-		Memoire mem = new Memoire();
+		Memoire mem = new Memoire (null);
 		this.add(mem,gbc);
 		
 		gbc.gridx=0;
