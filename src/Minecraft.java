@@ -67,7 +67,7 @@ public class Minecraft extends Frame implements WindowListener {
 		try {
 		    String line = reader.readLine();
 
-		    int cpt = 1;
+		    int cpt = 0;
 		    String ID= "";
 		    
 		    while (line != null) {
@@ -119,13 +119,12 @@ public class Minecraft extends Frame implements WindowListener {
 		reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
 		try {
 		    String line = reader.readLine();
+		    Craft craft;
 
 		    while (line != null) {
 		    	String[] split = line.split(";");
 		    	
 		    	String itemCrafted = split[0];
-		    	System.out.println(itemCrafted+"here");
-		    	System.out.println(itemNametoItem.get(itemCrafted));
 		    	String itemID = itemNametoItem.get(itemCrafted).ID;
 		    	
 		    	
@@ -139,27 +138,26 @@ public class Minecraft extends Frame implements WindowListener {
 		    		for(int j=0;j<3;j++) {
 		    			if(itemsNameList[i][j].equals("null")) {
 		    				items[i][j] = null;
-		    				craftID+= "00";
+		    				craftID+= "99";
 		    			}
 		    			else {
 			    			String ID = itemNametoItem.get(itemsNameList[i][j]).ID;
-				    		items[i][j] = itemList.get(itemID);
+				    		items[i][j] = itemNametoItem.get(itemsNameList[i][j]);
 				    		craftID += ID;
 		    			}
 
 		    		}
 		    	}
-		    	craftList.put(craftID, new Craft(itemList.get(itemID), items));
+		    	craft = new Craft(itemList.get(itemID), items);
+		    	craft.UpperLeft();
+		    	itemList.get(itemID).setCraft(craft);
+		    	craftList.put(craftID, craft);
 		        line = reader.readLine();
 		    }
 		} finally {
 		    reader.close();
 		}
-		
-		
-		//la base de doonne dois etre completer pour pouvoir faire des tests
-		//System.out.println(craftList.get("080200000000000000").item.name);
-		
+				
 		gbc.gridy=1;
 		Inventaire inv = new Inventaire(itemList);
 		this.add(inv, gbc);

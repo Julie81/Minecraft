@@ -29,7 +29,10 @@ public class Atelier extends Canvas{
 		return null;
 	}
 	
-	public void Crafting(Craft craft) {
+	public void Crafting(Item[][] items) {
+		
+		Craft craft = new Craft(null,items);
+		craft.UpperLeft();
 		
 		Item item = ExistingCraft(craft);
 		
