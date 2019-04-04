@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -83,17 +84,15 @@ public class Minecraft extends Frame implements WindowListener {
 		    reader.close();
 		    writer.close();
 		}
-		
-		
-
 
 		//initalisation de la BDD d'item
 		
 		HashMap<String,Item> itemList = new HashMap<String,Item>();
-		HashMap<String,String> itemNametoID = new HashMap<String,String>();
+		HashMap<String,Item> itemNametoItem = new HashMap<String,Item>();
 		
 		reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
 		try {
+			Item item;
 		    String line = reader.readLine();
 
 		    while (line != null) {
@@ -101,10 +100,10 @@ public class Minecraft extends Frame implements WindowListener {
 		    	String ID = split[0];
 		    	String itemPath = split[1];
 		    	String itemName = itemPath.replace("_"," ").replace(".png","");
-		    	//System.out.println(ID+" "+itemPath+ " "+itemName);
 		    	
-		    	itemList.put(ID, new Item("miniatures/RC/"+itemPath, itemName, ID));
-		    	itemNametoID.put(itemName, ID);
+		    	item = new Item("miniatures/RC/"+itemPath, itemName, ID);
+		    	itemList.put(ID, item);
+		    	itemNametoItem.put(itemName, item);
 		    	
 		        line = reader.readLine();
 		    }
@@ -124,10 +123,11 @@ public class Minecraft extends Frame implements WindowListener {
 		    	String[] split = line.split(";");
 		    	
 		    	String itemCrafted = split[0];
-		    	String itemID = itemNametoID.get(itemCrafted);
+		    	String itemID = itemNametoItem.get(itemCrafted).ID;
 		    	
 		    	
 		    	String[] itemsName = split[1].split(":");
+		    	System.out.println(itemCrafted);
 		    	String[][] itemsNameList = {itemsName[0].split(","),itemsName[1].split(","),itemsName[2].split(",")}; 
 		    	
 		    	Item[][] items = new Item[3][3];
@@ -140,7 +140,7 @@ public class Minecraft extends Frame implements WindowListener {
 		    				craftID+= "00";
 		    			}
 		    			else {
-			    			String ID = itemNametoID.get(itemsNameList[i][j]);
+			    			String ID = itemNametoItem.get(itemsNameList[i][j]).ID;
 				    		items[i][j] = itemList.get(itemID);
 				    		craftID += ID;
 		    			}

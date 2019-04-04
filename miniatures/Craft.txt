@@ -1,5 +1,22 @@
+arc;ficelle,baton,null:ficelle,null,baton:ficelle,baton,null
 bateau;null,null,null:bois,pelle,bois:bois,bois,bois
-pelle;bois,null,null:baton,null,null:baton,null,null
+baton;null,null,null:null,bois,null:null,bois,null
+casque en fer;fer,fer,fer:fer,null,fer:null,null,null
 echelle;baton,null,baton:baton,baton,baton:baton,null,baton
+ficelle;null,lianes,null:null,lianes,null:null,lianes,null
+fleche;null,pierre,null:null,baton,null:null,plume,null
+fromage;lait,lait,null:lait,lait,null:null,null,null
+hache en diamant;diamant,diamant,null:diamant,baton,null:null,baton,null
+hache en fer;fer,fer,null:fer,baton,null:null,baton,null
+houe en diamant;diamant,diamant,null:null,baton,null:null,baton,null
+houe en fer;fer,fer,null:null,baton,null:null,baton,null
+ordinateur;null,null,null:null,pomme en or,null:orange,ficelle,souris
+pelle en bois;bois,null,null:baton,null,null:baton,null,null
+piege a souris;null,null,null:null,fromage,fer:bois,bois,bois
+pioche en diamant;diamant,diamant,diamant:null,baton,null:null,baton,null
+pioche en pierre;pierre,pierre,pierre:null,baton,null:null,baton,null
+pomme en or;or,or,or:or,pomme,or:or,or,or
 rail;fer,null,fer:fer,baton,fer:fer,null,fer
-viande;fer,bois,null:null,null,null:null,null,null
+sucre;null,null,null:null,canne a sucre,null:null,null,null
+torche;null,null,null:null,charbon,null:null,baton,null
+wagon;null,null,null:fer,null,fer:fer,fer,fer
