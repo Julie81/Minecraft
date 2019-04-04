@@ -48,42 +48,13 @@ public class Minecraft extends Frame implements WindowListener {
 		
 		ArrayList<Item> L = new ArrayList<>();
 		L = BDD();
-
+		/*
 		gbc.gridy=1;
 		Inventaire inv = new Inventaire(L);
 		this.add(inv, gbc);
+		*/
 		
-		Controleur c = new Controleur();
-		/*Recettes menu = new Recettes ();
-		//this.add(menu, BorderLayout.WEST);
-		
-		
-		/*content.setLayout(cl);
-		content.add(inv,"inventaire");
-		content.add(menu,"Menu");
-		
-		JPanel inv_rec = new JPanel();
-		
-		JButton inventaire = new JButton("inventaire");
-		inventaire.addActionListener(new ActionListener() {
-			public void actionPerformed (ActionEvent event) {
-				cl.show(content, "inventaire");
-			}
-		});
-		
-		JButton recette = new JButton("recettes");
-		recette.addActionListener(new ActionListener() {
-			public void actionPerformed (ActionEvent event) {
-				cl.show(content, "Menu");
-			}
-		});
-		
-		inv_rec.add(inventaire);
-		inv_rec.add(recette);
-		
-		this.add(inv_rec,BorderLayout.WEST);
-		this.add(content,BorderLayout.SOUTH);*/
-		
+		Controleur c = new Controleur();		
 		
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
@@ -185,9 +156,11 @@ public class Minecraft extends Frame implements WindowListener {
 		
 		
 		//la base de doonne dois etre completer pour pouvoir faire des tests
-		System.out.println(craftList.get("080200000000000000").item.name);
+		//System.out.println(craftList.get("080200000000000000").item.name);
 		
-		
+		gbc.gridy=1;
+		Inventaire inv = new Inventaire(itemList);
+		this.add(inv, gbc);
 		
 		gbc.gridx=1;
 		Recolte rec = new Recolte(L);
@@ -225,7 +198,7 @@ public class Minecraft extends Frame implements WindowListener {
 		Item pomme = new Item("miniatures/RC/pomme.png","pomme");
 		Item viande = new Item("miniatures/RC/viande.png","viande");
 		Item orange = new Item("miniatures/RC/orange.png","orange");
-		Item pioche_en_fer = new Item("miniatures/RC/pioche_en_fer.png","pioche_en_fer");
+		Item pioche_en_pierre = new Item("miniatures/RC/pioche_en_pierre.png","pioche_en_pierre");
 		//Item or = new Item("miniatures/RC/or.png","or");
 		//Item lianes = new Item("miniatures/RC/lianes.png","lianes");
 		Item hache_en_fer = new Item("miniatures/RC/hache_en_fer.png","hache_en_fer");
@@ -243,7 +216,7 @@ public class Minecraft extends Frame implements WindowListener {
 		l.add(orange);
 		//l.add(lait);
 		//l.add(lianes);
-		l.add(pioche_en_fer);
+		l.add(pioche_en_pierre);
 		//l.add(ficelle);
 		l.add(hache_en_fer);
 		//l.add(fleche);

@@ -32,7 +32,7 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class Recolte extends Panel implements Observer,MouseListener{
 	ArrayList<Item> L;
-	int larg = 30; // dimension du carre bouton
+	int larg = 60; // dimension du carre bouton
 	
 	
 	public Recolte(ArrayList<Item> r) {

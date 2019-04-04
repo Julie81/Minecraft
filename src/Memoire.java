@@ -9,15 +9,16 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class Memoire extends Panel{
-	int larg=30;
+	int larg=80;
 	String n = null;
 	Item it= new Item(n);
+	
 	public Memoire (String name) {
 		super();
 		this.n=name;
 		this.setPreferredSize(new Dimension(6*larg,4*larg));
 		Panel p = new Panel();
-		p.setBackground(Color.BLUE);
+		p.setBackground(Color.darkGray);
 		p.setPreferredSize(new Dimension(larg,larg));
 		p.getInsets();
 		this.add(p);
@@ -35,7 +36,6 @@ public class Memoire extends Panel{
 				g.drawRect(i*larg+10, j*larg+10, larg, larg);
 			}
 		}
-		//g.drawRect(4*larg+10, larg+10, larg, larg);
 	}
 	
 }

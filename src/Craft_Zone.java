@@ -10,7 +10,7 @@ import java.awt.Panel;
 import javax.swing.ImageIcon;
 
 public class Craft_Zone extends Panel{
-	int larg=30;
+	int larg=80;
 	int quantite=1;
 	
 	public Craft_Zone() {
