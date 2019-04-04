@@ -8,7 +8,7 @@ public class Controleur extends Observable implements ItemListener{
 	Memoire mm;
 	Recolte rc;
 	
-	public Controleur(Inventaire i,Memoire m, Craft_Zone a, Recolte c ) {
+	public Controleur(Inventaire i,Memoire m, Craft_Zone a, Recolte c ) { //Toutes les parties de la vue
 		this.ivt = i;
 		this.atl = a;
 		this.mm = m;

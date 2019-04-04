@@ -6,16 +6,23 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 
-public class Craft_Zone extends Panel{
+public class Craft_Zone extends Panel implements MouseListener{
 	int larg=80;
 	int quantite=1;
+	Inventaire inv;
 	
-	public Craft_Zone() {
+	public Craft_Zone(Inventaire Ivn) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.inv = Ivn;
+		//this.addMouseListener(this);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -29,8 +36,28 @@ public class Craft_Zone extends Panel{
 
 				gbc.gridx = (j+1)*larg;
 				JitmButton b = new JitmButton(null);
+				b.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (e.getSource() instanceof JitmButton) {
+							JitmButton temp = (JitmButton) e.getSource();
+							try {
+								ImageIcon icon = new ImageIcon(inv.tampon.it.path);
+								Image img = icon.getImage();
+								Image newimg = img.getScaledInstance( larg-10, larg-10,  java.awt.Image.SCALE_SMOOTH ) ;
+								icon = new ImageIcon(newimg);
+								temp.setIcon(icon);
+							}
+							catch(Exception ex){
+							}
+							
+						}
+						
+					}
+				});
 				b.setPreferredSize(new Dimension(larg,larg));
-				b.setBackground(Color.WHITE);
+				b.addMouseListener(this);
 				b.setText("");
 				this.add(b,gbc);
 			}
@@ -68,6 +95,41 @@ public class Craft_Zone extends Panel{
 		craft.setPreferredSize(new Dimension(50,30));
 		craft.setBackground(Color.lightGray);
 		this.add(craft,gbc);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getButton()== MouseEvent.BUTTON3) {
+			 if (e.getSource() instanceof JitmButton) {
+				 JitmButton b = (JitmButton) e.getSource();
+				 b.setIcon(null);
+			 }
+		}
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

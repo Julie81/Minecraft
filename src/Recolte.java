@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -31,41 +32,37 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class Recolte extends Panel implements Observer,MouseListener{
-	ArrayList<Item> L;
 	int larg = 60; // dimension du carre bouton
 	
 	
-	public Recolte(ArrayList<Item> r) {
-		this.L = r;
-		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes"};  // rn pour ressources naturelles
+	public Recolte(HashMap<String, Item> hm) {
+		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
 
 		this.setLayout(new GridBagLayout());
-		int moitie=rn_names.length/2+rn_names.length%2;
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setPreferredSize(new Dimension(2*larg+10,moitie*larg+10));
+		
+		int moitie = 8;
+		int dim_icon = larg - 10;
+		//this.setPreferredSize(new Dimension(2*larg+10,moitie*larg+10));
+		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		gbc.gridheight = moitie;
 		gbc.gridwidth = moitie;
 		
-		int j=0;
+		int j=0;  // numero de colonne 
 		for(int i=0; i<rn_names.length; i++) {  // Creation de tout les boutons en parcourant les listes
-			if (i==moitie){
-				//System.out.println(i);
-				j=1;
-				gbc.gridx=1*larg;
+			if (i==moitie){  // quand on a parcouru la moitie des items
+				j=1;  // on passe a la colonne suivante
+				gbc.gridx = larg;
 			}
 			gbc.gridy=(i-j*moitie)*larg;
-			JitmButton b = Init_Icon_Recolte(r.get(i));
-			
-			if (i>3) { // seules les ressources de bases sont recoltables � l'init
-				b.setEnabled(false);
-			}
+			JitmButton b = Init_Icon_Recolte(hm.get(rn_names[i]));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton
-			ImageIcon icon = new ImageIcon("miniatures/RC/"+rn_names[i]+".png");
+			ImageIcon icon = new ImageIcon(hm.get(rn_names[i]).path);
 			Image img = icon.getImage() ;
-			Image newimg = img.getScaledInstance( larg, larg,  java.awt.Image.SCALE_SMOOTH ) ;
+			Image newimg = img.getScaledInstance( dim_icon, dim_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
 			
 			b.setIcon(icon);
@@ -87,15 +84,14 @@ public class Recolte extends Panel implements Observer,MouseListener{
 				if (e.getSource() instanceof JitmButton ) {
 					JitmButton t = (JitmButton) e.getSource();
 					t.it.quantity++;
-					repaint();
+						}
 				}
-				} });
+			});
 		return b;
 		}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		this.repaint();
 	}
 
 	@Override

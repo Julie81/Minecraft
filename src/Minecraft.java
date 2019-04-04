@@ -46,16 +46,7 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		this.f.setLayout(new GridBagLayout());
 		this.f.setBackground(Color.WHITE);
 		gbc.gridx=0;
-		gbc.gridy=0;
-		
-		ArrayList<Item> L = new ArrayList<>();
-		L = BDD();
-		/*
-		gbc.gridy=1;
-		Inventaire inv = new Inventaire(L);
-		this.add(inv, gbc);
-		*/
-				
+		gbc.gridy=0;			
 		
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
@@ -123,8 +114,6 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		    	String[] split = line.split(";");
 		    	
 		    	String itemCrafted = split[0];
-		    	System.out.println(itemCrafted+"here");
-		    	System.out.println(itemNametoItem.get(itemCrafted));
 		    	String itemID = itemNametoItem.get(itemCrafted).ID;
 		    	
 		    	
@@ -164,7 +153,7 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		this.f.add(inv, gbc);
 		
 		gbc.gridx=1;
-		Recolte rec = new Recolte(L);
+		Recolte rec = new Recolte(itemNametoItem);
 		this.f.add(rec,gbc);
 		
 		gbc.gridy=0;
@@ -173,7 +162,7 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		Craft_Zone cz = new Craft_Zone ();
+		Craft_Zone cz = new Craft_Zone(inv);
 		this.f.add(cz,gbc);
 		
 		Controleur c = new Controleur(inv, mem, cz, rec);
@@ -184,51 +173,6 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		this.f.setTitle ("Table de craft Minecraft");
 		this.f.pack();
 		this.f.setVisible(true);
-	}
-
-	private ArrayList<Item> BDD() throws IOException {
-		ArrayList<Item> l = new ArrayList<>();
-		Item pierre = new Item("miniatures/RC/pierre.png","pierre");
-		Item  plume = new Item("miniatures/RC/plume.png","plume");
-		Item eau = new Item("miniatures/RC/eau.png","eau");
-		Item bois = new Item("miniatures/RC/bois.png","bois");
-		Item diamant = new Item("miniatures/RC/diamant.png","diamant");
-		Item bateau = new Item("miniatures/RC/bateau.png","bateau");
-		Item echelle = new Item("miniatures/RC/echelle.png","echelle");
-		Item fer = new Item("miniatures/RC/fer.png","fer");
-		Item rails = new Item("miniatures/RC/rails.png","rails");
-		Item wagon = new Item("miniatures/RC/wagon.png","wagon");
-		Item pomme = new Item("miniatures/RC/pomme.png","pomme");
-		Item viande = new Item("miniatures/RC/viande.png","viande");
-		Item orange = new Item("miniatures/RC/orange.png","orange");
-		Item pioche_en_pierre = new Item("miniatures/RC/pioche_en_pierre.png","pioche_en_pierre");
-		//Item or = new Item("miniatures/RC/or.png","or");
-		//Item lianes = new Item("miniatures/RC/lianes.png","lianes");
-		Item hache_en_fer = new Item("miniatures/RC/hache_en_fer.png","hache_en_fer");
-		//Item ficelle = new Item("miniatures/RC/ficelle.png","ficelle");
-		//Item lait = new Item("miniatures/RC/lait.png","lait");
-		//Item fleche = new Item("miniatures/RC/fleche.png","fleche");
-		l.add(pierre);
-		l.add(bois);
-		l.add(eau);
-		l.add(plume);
-		//l.add(or);
-		l.add(fer);
-		l.add(diamant);
-		l.add(pomme);
-		l.add(orange);
-		//l.add(lait);
-		//l.add(lianes);
-		l.add(pioche_en_pierre);
-		//l.add(ficelle);
-		l.add(hache_en_fer);
-		//l.add(fleche);
-		l.add(bateau);
-		l.add(echelle);
-		l.add(rails);
-		l.add(wagon);
-		l.add(viande);
-		return l;
 	}
 
 	@Override
