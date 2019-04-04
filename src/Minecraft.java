@@ -57,7 +57,7 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		try {
 		    String line = reader.readLine();
 
-		    int cpt = 1;
+		    int cpt = 0;
 		    String ID= "";
 		    
 		    while (line != null) {
@@ -109,6 +109,7 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
 		try {
 		    String line = reader.readLine();
+		    Craft craft;
 
 		    while (line != null) {
 		    	String[] split = line.split(";");
@@ -127,27 +128,26 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		    		for(int j=0;j<3;j++) {
 		    			if(itemsNameList[i][j].equals("null")) {
 		    				items[i][j] = null;
-		    				craftID+= "00";
+		    				craftID+= "99";
 		    			}
 		    			else {
 			    			String ID = itemNametoItem.get(itemsNameList[i][j]).ID;
-				    		items[i][j] = itemList.get(itemID);
+				    		items[i][j] = itemNametoItem.get(itemsNameList[i][j]);
 				    		craftID += ID;
 		    			}
 
 		    		}
 		    	}
-		    	craftList.put(craftID, new Craft(itemList.get(itemID), items));
+		    	craft = new Craft(itemList.get(itemID), items);
+		    	craft.UpperLeft();
+		    	itemList.get(itemID).setCraft(craft);
+		    	craftList.put(craftID, craft);
 		        line = reader.readLine();
 		    }
 		} finally {
 		    reader.close();
 		}
-		
-		
-		//la base de doonne dois etre completer pour pouvoir faire des tests
-		//System.out.println(craftList.get("080200000000000000").item.name);
-		
+				
 		gbc.gridy=1;
 		Inventaire inv = new Inventaire(itemList);
 		this.f.add(inv, gbc);

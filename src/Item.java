@@ -10,7 +10,8 @@ public class Item {
 	String path;
 	String name;
 	int generation;
-	String ID; //"nombre" entre 01 et 99 , 00 étant le manque d'item
+	String ID; //"nombre" entre 00 et 98 , 99 etant le manque d'item
+	Craft craft;
 	
 	public Item(String n){ //test rapide sans image
 		name = n;
@@ -44,7 +45,7 @@ public class Item {
 		quantity++;
 	}
 	
-	public void delete_Ressources(){
-		quantity = 0;
+	public void setCraft(Craft craft) {
+		this.craft = craft;
 	}
 }

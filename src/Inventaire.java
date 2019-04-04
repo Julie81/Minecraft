@@ -47,8 +47,8 @@ public class Inventaire extends Panel implements ActionListener,Observer,MouseLi
 
 				gbc.gridx = j*larg;
 				String sobriquet = i+""+j+"";
-				String key = ""+(i*colonne+j+1);
-				if ((i*colonne)+(j+1)<10){
+				String key = ""+(i*colonne+j);
+				if ((i*colonne+j)<10){
 					key="0"+key;
 				}
 				JitmButton b = new JitmButton(r.get(key));
