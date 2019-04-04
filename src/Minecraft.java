@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Observable;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -123,11 +124,12 @@ public class Minecraft extends Frame implements WindowListener {
 		    	String[] split = line.split(";");
 		    	
 		    	String itemCrafted = split[0];
+		    	System.out.println(itemCrafted+"here");
+		    	System.out.println(itemNametoItem.get(itemCrafted));
 		    	String itemID = itemNametoItem.get(itemCrafted).ID;
 		    	
 		    	
 		    	String[] itemsName = split[1].split(":");
-		    	System.out.println(itemCrafted);
 		    	String[][] itemsNameList = {itemsName[0].split(","),itemsName[1].split(","),itemsName[2].split(",")}; 
 		    	
 		    	Item[][] items = new Item[3][3];
