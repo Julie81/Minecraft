@@ -3,17 +3,24 @@ import java.awt.event.ItemListener;
 import java.util.Observable;
 
 public class Controleur extends Observable implements ItemListener{
-
-	public void Controleur() {
-		// TODO Auto-generated constructor stub
+	Inventaire ivt;
+	Craft_Zone atl;
+	Memoire mm;
+	Recolte rc;
+	
+	public Controleur(Inventaire i,Memoire m, Craft_Zone a, Recolte c ) {
+		this.ivt = i;
+		this.atl = a;
+		this.mm = m;
+		this.rc = c;
 	}
 	
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
-		System.out.println(arg0.getItem().getClass());
+		System.out.println("xx");
 		if (arg0.getSource() instanceof JitmButton) {
 			JitmButton b = (JitmButton) arg0.getSource();
-			b.repaint();
+			System.out.println(b.it.name);
 		}
 		this.setChanged();
 		this.notifyObservers();

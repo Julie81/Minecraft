@@ -4,20 +4,25 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Panel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class Memoire extends Panel{
+public class Memoire extends Panel implements MouseListener,Observer{
 	int larg=80;
 	String n = null;
-	Item it= new Item(n);
+	Item it = new Item(n);
 	
 	public Memoire (String name) {
 		super();
-		this.n=name;
+		this.n = name;
 		this.setPreferredSize(new Dimension(6*larg,4*larg));
 		Panel p = new Panel();
+		p.addMouseListener(this);
 		p.setBackground(Color.darkGray);
 		p.setPreferredSize(new Dimension(larg,larg));
 		p.getInsets();
@@ -36,6 +41,38 @@ public class Memoire extends Panel{
 				g.drawRect(i*larg+10, j*larg+10, larg, larg);
 			}
 		}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() instanceof Panel) {
+			//appel controleur
+		}
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		
+		
 	}
 	
 }

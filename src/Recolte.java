@@ -86,8 +86,8 @@ public class Recolte extends Panel implements Observer,MouseListener{
 			public void actionPerformed(ActionEvent e) { 
 				if (e.getSource() instanceof JitmButton ) {
 					JitmButton t = (JitmButton) e.getSource();
-					System.out.println(t.getClientProperty("id"));
 					t.it.quantity++;
+					repaint();
 				}
 				} });
 		return b;
@@ -95,7 +95,7 @@ public class Recolte extends Panel implements Observer,MouseListener{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		this.repaint();
 	}
 
 	@Override
@@ -109,9 +109,7 @@ public class Recolte extends Panel implements Observer,MouseListener{
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
 			t.setToolTipText(t.it.name);
-			
 		}
-		
 	}
 
 	@Override

@@ -66,6 +66,7 @@ public class Inventaire extends Panel implements ActionListener,Observer,MouseLi
 				b.setVerticalTextPosition(SwingConstants.BOTTOM);
 				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a cliqu�
 				b.addActionListener(this);
+				b.addMouseListener(this);
 				this.add(b,gbc);
 			}
 		}
@@ -89,22 +90,19 @@ public class Inventaire extends Panel implements ActionListener,Observer,MouseLi
 
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("changement");
 		this.repaint();
 	}
 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
-
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
-			System.out.println(t.it.name);
 			t.setToolTipText(t.it.name);	
 		}
 	}

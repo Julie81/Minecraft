@@ -10,6 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.BufferedReader;
@@ -21,28 +23,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Observable;
 import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class Minecraft extends Frame implements WindowListener {
-	
-	/*JPanel content = new JPanel();
-	CardLayout cl = new CardLayout();*/
+public class Minecraft extends Observable implements WindowListener,ItemListener {
+	Frame f;
 	
 	public static void main(String[] args) throws IOException {
-		
 		new Minecraft();
 
 	}
 	
 	public Minecraft() throws IOException {
-		//this.setLayout(new GridBagLayout());
+
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
+		this.f = new Frame();
+		this.f.setLayout(new GridBagLayout());
+		this.f.setBackground(Color.WHITE);
 		gbc.gridx=0;
 		gbc.gridy=0;
 		
@@ -53,8 +54,7 @@ public class Minecraft extends Frame implements WindowListener {
 		Inventaire inv = new Inventaire(L);
 		this.add(inv, gbc);
 		*/
-		
-		Controleur c = new Controleur();		
+				
 		
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
@@ -160,27 +160,29 @@ public class Minecraft extends Frame implements WindowListener {
 		
 		gbc.gridy=1;
 		Inventaire inv = new Inventaire(itemList);
-		this.add(inv, gbc);
+		this.f.add(inv, gbc);
 		
 		gbc.gridx=1;
 		Recolte rec = new Recolte(L);
-		this.add(rec,gbc);
+		this.f.add(rec,gbc);
 		
 		gbc.gridy=0;
 		Memoire mem = new Memoire (null);
-		this.add(mem,gbc);
+		this.f.add(mem,gbc);
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		Craft_Zone cz = new Craft_Zone ();
-		this.add(cz,gbc);
+		this.f.add(cz,gbc);
+		
+		Controleur c = new Controleur(inv, mem, cz, rec);
 		
 		c.addObserver(rec);
 		c.addObserver(inv);
-		this.addWindowListener(this);
-		this.setTitle ("Table de craft Minecraft");
-		this.pack();
-		this.setVisible(true);
+		this.f.addWindowListener(this);
+		this.f.setTitle ("Table de craft Minecraft");
+		this.f.pack();
+		this.f.setVisible(true);
 	}
 
 	private ArrayList<Item> BDD() throws IOException {
@@ -267,6 +269,16 @@ public class Minecraft extends Frame implements WindowListener {
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		System.out.println(e.getItem());
+		if (e.getSource() instanceof JitmButton) {
+			JitmButton b = (JitmButton) e.getSource();
+			System.out.println(b.it.name);
+		}
 		
 	}
 
