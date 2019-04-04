@@ -51,7 +51,7 @@ public class Craft {
 					ID += this.items[i][j].ID;
 				}
 				else {
-					ID += "00";
+					ID += "99";
 				}
 			}
 		}
