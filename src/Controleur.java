@@ -1,30 +1,22 @@
+import java.awt.Panel;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Observable;
 
-public class Controleur extends Observable implements ItemListener{
-	Inventaire_Vue ivt;
-	Atelier_Vue atl;
-	Memoire_Vue mm;
-	Recolte_Vue rc;
+public class Controleur implements ItemListener{
+	Modele modl;
 	
-	public Controleur(Inventaire_Vue i,Memoire_Vue m, Atelier_Vue a, Recolte_Vue c ) { //Toutes les parties de la vue
-		this.ivt = i;
-		this.atl = a;
-		this.mm = m;
-		this.rc = c;
+	public Controleur(Modele m) { //Toutes les parties de la vue
+		this.modl = m;
 	}
 	
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
-		System.out.println("xx");
-		if (arg0.getSource() instanceof JitmButton) {
+		System.out.println("ctrl");
+		if (arg0.getSource() instanceof Panel) {
 			JitmButton b = (JitmButton) arg0.getSource();
 			System.out.println(b.it.name);
-		}
-		this.setChanged();
-		this.notifyObservers();
-		
+		}		
 	}
 
 }

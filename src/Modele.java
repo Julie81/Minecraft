@@ -31,17 +31,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class Modele extends Observable implements ItemListener {
+public class Modele extends Observable{
 	HashMap<String,Item> itemList;
 	HashMap<String,Item> itemNametoItem;
 	HashMap<String,Craft> craftList;
-	
-	public static void main(String[] args) throws IOException {
-		Modele m = new Modele();
-		Vue v = new Vue(m.itemList,m.itemNametoItem);
-		//Controleur c = new Controleur(i, m, a, c);
-		
-	}
 	
 	public Modele() throws IOException {
 
@@ -145,16 +138,4 @@ public class Modele extends Observable implements ItemListener {
 		    reader.close();
 		}
 	}
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		System.out.println(e.getItem());
-		if (e.getSource() instanceof JitmButton) {
-			JitmButton b = (JitmButton) e.getSource();
-			System.out.println(b.it.name);
-		}
-		
-	}
-
-
 }

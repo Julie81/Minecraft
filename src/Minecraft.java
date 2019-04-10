@@ -4,13 +4,22 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Vue extends Frame implements WindowListener{
+public class Minecraft extends Frame implements WindowListener,Observer{
 	
-	public Vue(HashMap<String, Item> itemList, HashMap<String, Item> itemNametoItem) {
-		
+	public static void main(String[] args) throws IOException {
+		new Minecraft();
+	}
+	
+	public Minecraft() throws IOException {
 		super();
+		Modele modl = new Modele();
+		Controleur ctrl = new Controleur(modl);
+		
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
@@ -18,26 +27,22 @@ public class Vue extends Frame implements WindowListener{
 		gbc.gridy=0;
 		
 		gbc.gridy=1;
-		Inventaire_Vue inv = new Inventaire_Vue(itemList);
+		Inventaire_Vue inv = new Inventaire_Vue(ctrl,modl);
 		this.add(inv, gbc);
 		
 		gbc.gridx=1;
-		Recolte_Vue rec = new Recolte_Vue(itemNametoItem);
+		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
-		Memoire_Vue mem = new Memoire_Vue (null);
+		Memoire_Vue mem = new Memoire_Vue(null);
 		this.add(mem,gbc);
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		Atelier_Vue Av = new Atelier_Vue(inv);
+		Atelier_Vue Av = new Atelier_Vue(ctrl,modl,inv);
 		this.add(Av,gbc);
 		
-		Controleur c = new Controleur(inv, mem, Av, rec);
-		
-		c.addObserver(rec);
-		c.addObserver(inv);
 		this.addWindowListener(this);
 		this.setTitle ("Table de craft Minecraft");
 		this.pack();
@@ -82,6 +87,12 @@ public class Vue extends Frame implements WindowListener{
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -10,19 +10,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 
-public class Atelier_Vue extends Panel implements MouseListener{
+public class Atelier_Vue extends Panel implements MouseListener,Observer{
 	int larg=80;
 	int quantite=1;
 	Inventaire_Vue inv;
 	
-	public Atelier_Vue(Inventaire_Vue Ivn) {
+	public Atelier_Vue(Controleur c, Modele m,Inventaire_Vue iv) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.inv = Ivn;
-		//this.addMouseListener(this);
+		this.inv = iv;
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -128,6 +129,12 @@ public class Atelier_Vue extends Panel implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}

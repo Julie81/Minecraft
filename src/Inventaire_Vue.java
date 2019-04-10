@@ -23,9 +23,11 @@ import javax.swing.SwingConstants;
 public class Inventaire_Vue extends Panel implements ActionListener,Observer,MouseListener {
 	public JitmButton tampon;
 	public JitmButton[][] inventaire;
+	//Modele modl;
 	
-	public Inventaire_Vue(HashMap<String, Item> r) {
+	public Inventaire_Vue(Controleur c,Modele m) {
 		super();
+		//this.modl = m;
 		int ligne = 4;
 		int colonne = 10;
 		int s_icon = 30;
@@ -51,23 +53,26 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				if ((i*colonne+j)<10){
 					key="0"+key;
 				}
-				JitmButton b = new JitmButton(r.get(key));
+				JitmButton b = new JitmButton(m.itemList.get(key));
 				inventaire[i][j] = b;
 				b.setPreferredSize(new Dimension(larg,larg));
 
-				ImageIcon icon = new ImageIcon(r.get(key).path);
+				ImageIcon icon = new ImageIcon(m.itemList.get(key).path);
 				Image img = icon.getImage() ;
 				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 				icon = new ImageIcon(newimg);
 				b.setIcon(icon);
 				
-				b.setText(""+r.get(key).quantity);
+				b.setText(""+m.itemList.get(key).quantity);
 				b.setHorizontalTextPosition(SwingConstants.RIGHT);
 				b.setVerticalTextPosition(SwingConstants.BOTTOM);
 				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a cliqu�
 				b.addActionListener(this);
+				b.addItemListener(c);
 				b.addMouseListener(this);
+				m.addObserver(this);
 				this.add(b,gbc);
+				
 			}
 		}
 
@@ -84,14 +89,23 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'];
 		tampon.setBackground(Color.white);
 		tampon.repaint();
+		this.repaint();
 
 	}
 
-
+	@Override
+	public void repaint() {
+		super.repaint();
+		for (int i=0; i<4; i++){
+			for (int j=0; j<10;j++){
+				this.inventaire[i][j].setText(""+this.inventaire[i][j].it.quantity);
+			}
+		}
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("changement");
-		this.repaint();
+		System.out.println("update Inventaire");
 	}
 
 

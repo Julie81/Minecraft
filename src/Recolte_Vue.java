@@ -33,11 +33,12 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class Recolte_Vue extends Panel implements Observer,MouseListener{
 	int larg = 60; // dimension du carre bouton
+	Controleur ctrl;
 	
-	
-	public Recolte_Vue(HashMap<String, Item> hm) {
+	public Recolte_Vue(Controleur c, Modele m) {
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
-
+		this.ctrl =c;
+		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -57,16 +58,17 @@ public class Recolte_Vue extends Panel implements Observer,MouseListener{
 				gbc.gridx = larg;
 			}
 			gbc.gridy=(i-j*moitie)*larg;
-			JitmButton b = Init_Icon_Recolte(hm.get(rn_names[i]));
+			JitmButton b = Init_Icon_Recolte(m.itemNametoItem.get(rn_names[i]));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton
-			ImageIcon icon = new ImageIcon(hm.get(rn_names[i]).path);
+			ImageIcon icon = new ImageIcon(m.itemNametoItem.get(rn_names[i]).path);
 			Image img = icon.getImage() ;
 			Image newimg = img.getScaledInstance( dim_icon, dim_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
 			
 			b.setIcon(icon);
 			this.add(b,gbc);
+			m.addObserver(this);
 		}
 	}
 	
@@ -76,6 +78,7 @@ public class Recolte_Vue extends Panel implements Observer,MouseListener{
 		b.setPreferredSize(new Dimension(larg,larg));
 		b.setActionCommand(obj.name);
 		b.putClientProperty("id", obj.name);
+		b.addItemListener(this.ctrl);
 		b.addMouseListener(this);
 		b.addActionListener(new ActionListener() {
 			
@@ -92,6 +95,7 @@ public class Recolte_Vue extends Panel implements Observer,MouseListener{
 
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("salut");
 	}
 
 	@Override

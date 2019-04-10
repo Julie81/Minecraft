@@ -1,3 +1,6 @@
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JButton;
 
 public class JitmButton extends JButton{
@@ -8,4 +11,5 @@ public class JitmButton extends JButton{
 			this.it = i;
 			
 		}
+
 }
