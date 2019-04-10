@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -13,9 +14,11 @@ public class Craft {
 		this.items = items;
 		this.item = i;
 	}
+
 	
-	public int minQuantity() {
+	public HashMap<Item,Integer> quantityNeeded() {
 		int min = -1;
+		HashMap<Item,Integer> quantityNeeded = new HashMap<Item,Integer>();
 		for(Item[] itemLine : this.items) {
 			for(Item item : itemLine) {
 				if(item != null) {
@@ -25,10 +28,14 @@ public class Craft {
 					else {
 						min = Math.min(min,item.quantity);
 					}
+					if(quantityNeeded.containsKey(item)) {
+						quantityNeeded.put(item, quantityNeeded.get(item)+1);
+					}
+					quantityNeeded.putIfAbsent(item,1);
 				}
 			}
 		}
-		return min;
+		return quantityNeeded;
 	}
 	
 	public int getMaxGeneration() {

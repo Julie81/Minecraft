@@ -15,7 +15,7 @@ public class Atelier_Modele extends Canvas{
 	public Atelier_Modele(Hashtable<String,Craft> EnsembleDesCrafts) {
 		super();
 		this.CraftTable = new Item[3][3];
-		int quantite = 0;
+		int quantite = 1;
 		this.EnsembleDesCrafts = EnsembleDesCrafts;
 	}
 	
@@ -39,23 +39,36 @@ public class Atelier_Modele extends Canvas{
 		if(item == null) {
 			// renvoyer à l'utilisateur que son craft est incorrect
 		}
-		else if(this.quantity > craft.minQuantity()) {
-			//renvoyer à l'utilisateur qu'il manque des item pour creer le bon nombre de craft
-		}
 		else {
-			item.quantity += this.quantity;
-			for(Item[] itemLine : craft.items) {
-				for(Item i : itemLine) {
-					i.quantity -= this.quantity;
+			HashMap<Item,Integer> quantityNeeded = craft.quantityNeeded();
+			Boolean enoughQuantity = true;
+			for (Item key : quantityNeeded.keySet()) {
+				if(quantityNeeded.get(key)*this.quantity > key.quantity) {
+					enoughQuantity = false;
+					// renvoyer au fur et a mesure les quantite manquante
 				}
 			}
+			if(enoughQuantity) {
+				for (Item key : quantityNeeded.keySet()) {
+					key.quantity -= quantityNeeded.get(key)*this.quantity;
+					// renvoyer au fur et a mesure les quantite manquante
+					}
+				item.quantity += quantity;
+			}
 		}
+		
 		
 	}
 	
 	
-	public void SetQuantity(int newQuantity) {
-		quantity = newQuantity;
+	public void addQuantity() {
+		this.quantity++;
+	}
+	
+	public void reduceQuantity() {
+		if(this.quantity>=0) {
+			this.quantity--;
+		}
 	}
 
 }
