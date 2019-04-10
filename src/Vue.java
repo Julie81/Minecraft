@@ -1,16 +1,27 @@
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
-public class Vue extends Frame implements WindowListener{
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Vue extends JFrame implements WindowListener{
 	
-	public Vue(HashMap<String, Item> itemList, HashMap<String, Item> itemNametoItem) {
-		
+	public Vue(HashMap<String, Item> itemList, HashMap<String, Item> itemNametoItem) throws IOException {
 		super();
+		this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
+		
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
@@ -34,6 +45,8 @@ public class Vue extends Frame implements WindowListener{
 		Atelier_Vue Av = new Atelier_Vue(inv);
 		this.add(Av,gbc);
 		
+		
+		
 		Controleur c = new Controleur(inv, mem, Av, rec);
 		
 		c.addObserver(rec);
@@ -42,6 +55,14 @@ public class Vue extends Frame implements WindowListener{
 		this.setTitle ("Table de craft Minecraft");
 		this.pack();
 		this.setVisible(true);
+	}
+
+	@Override 
+	protected void paintComponent(Graphics g) { 
+		
+		super.paintComponents(g); 
+		BufferedImage backroundImage = ImageIO.read(this.getClass() .getResourceAsStream("machinarium.jpg"));
+		g.drawImage(backroundImage, 0,0, null); } 
 	}
 
 	@Override
