@@ -32,9 +32,15 @@ import javax.swing.JPanel;
 
 
 public class Modele extends Observable implements ItemListener {
+	HashMap<String,Item> itemList;
+	HashMap<String,Item> itemNametoItem;
+	HashMap<String,Craft> craftList;
 	
 	public static void main(String[] args) throws IOException {
 		Modele m = new Modele();
+		Vue v = new Vue(m.itemList,m.itemNametoItem);
+		//Controleur c = new Controleur(i, m, a, c);
+		
 	}
 	
 	public Modele() throws IOException {
@@ -69,8 +75,8 @@ public class Modele extends Observable implements ItemListener {
 
 		//initalisation de la BDD d'item
 		
-		HashMap<String,Item> itemList = new HashMap<String,Item>();
-		HashMap<String,Item> itemNametoItem = new HashMap<String,Item>();
+		this.itemList = new HashMap<String,Item>();
+		this.itemNametoItem = new HashMap<String,Item>();
 		
 		reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
 		try {
@@ -95,7 +101,7 @@ public class Modele extends Observable implements ItemListener {
 		
 		//initialisation de la BDD de craft
 		
-		HashMap<String,Craft> craftList = new HashMap<String,Craft>();
+		this.craftList = new HashMap<String,Craft>();
 		
 		reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
 		try {
@@ -138,8 +144,6 @@ public class Modele extends Observable implements ItemListener {
 		} finally {
 		    reader.close();
 		}
-
-		Vue v = new Vue(itemList,itemNametoItem);
 	}
 
 	@Override
