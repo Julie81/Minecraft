@@ -57,7 +57,7 @@ public class Modele extends Observable{
 		    	else {
 		    		ID = ""+cpt;
 		    	}
-		    	writer.write(ID+";"+line+"\n");
+		    	writer.write(ID+";"+line+";"+"0\n");
 		        line = reader.readLine();
 		        cpt++;
 		    }
@@ -67,11 +67,38 @@ public class Modele extends Observable{
 		}
 
 		//initalisation de la BDD d'item
+		String loadgame = "";
+		initItemMap(loadgame);
+		
+		//initialisation de la BDD de craft
+		initCraftMap();
+		
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		System.out.println(e.getItem());
+		if (e.getSource() instanceof JitmButton) {
+			JitmButton b = (JitmButton) e.getSource();
+			System.out.println(b.it.name);
+		}
+		
+	}
+	
+	public void initItemMap(String loadgame) throws IOException {
 		
 		this.itemList = new HashMap<String,Item>();
 		this.itemNametoItem = new HashMap<String,Item>();
 		
-		reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
+		BufferedReader reader;
+		
+		try {
+			reader = new BufferedReader(new FileReader(loadgame));
+		}catch(Exception e) {
+			reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
+		}
+		
+		//BufferedReader reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
+
 		try {
 			Item item;
 		    String line = reader.readLine();
@@ -83,6 +110,7 @@ public class Modele extends Observable{
 		    	String itemName = itemPath.replace("_"," ").replace(".png","");
 		    	
 		    	item = new Item("miniatures/RC/"+itemPath, itemName, ID);
+		    	item.quantity = Integer.parseInt(split[2]);
 		    	itemList.put(ID, item);
 		    	itemNametoItem.put(itemName, item);
 		    	
@@ -91,12 +119,13 @@ public class Modele extends Observable{
 		} finally {
 		    reader.close();
 		}
-		
-		//initialisation de la BDD de craft
-		
+	}
+	
+	public void initCraftMap() throws IOException {
 		this.craftList = new HashMap<String,Craft>();
 		
-		reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
+		
 		try {
 		    String line = reader.readLine();
 		    Craft craft;

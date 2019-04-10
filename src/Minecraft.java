@@ -1,13 +1,22 @@
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 
 public class Minecraft extends Frame implements WindowListener,Observer{
 	
@@ -19,6 +28,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		super();
 		Modele modl = new Modele();
 		Controleur ctrl = new Controleur(modl);
+		this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
@@ -48,6 +58,13 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		this.pack();
 		this.setVisible(true);
 	}
+
+	protected void paintComponent(Graphics g) throws IOException { 
+		
+		super.paintComponents(g); 
+		BufferedImage backroundImage = ImageIO.read(this.getClass() .getResourceAsStream("machinarium.jpg"));
+		g.drawImage(backroundImage, 0,0, null); 
+		} 
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -91,10 +108,9 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
+
