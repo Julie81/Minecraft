@@ -3,12 +3,12 @@ import java.awt.event.ItemListener;
 import java.util.Observable;
 
 public class Controleur extends Observable implements ItemListener{
-	Inventaire ivt;
-	Craft_Zone atl;
-	Memoire mm;
-	Recolte rc;
+	Inventaire_Vue ivt;
+	Atelier_Vue atl;
+	Memoire_Vue mm;
+	Recolte_Vue rc;
 	
-	public Controleur(Inventaire i,Memoire m, Craft_Zone a, Recolte c ) { //Toutes les parties de la vue
+	public Controleur(Inventaire_Vue i,Memoire_Vue m, Atelier_Vue a, Recolte_Vue c ) { //Toutes les parties de la vue
 		this.ivt = i;
 		this.atl = a;
 		this.mm = m;

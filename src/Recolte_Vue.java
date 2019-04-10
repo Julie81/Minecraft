@@ -31,11 +31,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class Recolte extends Panel implements Observer,MouseListener{
+public class Recolte_Vue extends Panel implements Observer,MouseListener{
 	int larg = 60; // dimension du carre bouton
 	
 	
-	public Recolte(HashMap<String, Item> hm) {
+	public Recolte_Vue(HashMap<String, Item> hm) {
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
 
 		this.setLayout(new GridBagLayout());

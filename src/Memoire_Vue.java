@@ -12,12 +12,12 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class Memoire extends Panel implements MouseListener,Observer{
+public class Memoire_Vue extends Panel implements MouseListener,Observer{
 	int larg=80;
 	String n = null;
 	Item it = new Item(n);
 	
-	public Memoire (String name) {
+	public Memoire_Vue (String name) {
 		super();
 		this.n = name;
 		this.setPreferredSize(new Dimension(6*larg,4*larg));

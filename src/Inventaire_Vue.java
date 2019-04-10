@@ -20,11 +20,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class Inventaire extends Panel implements ActionListener,Observer,MouseListener {
+public class Inventaire_Vue extends Panel implements ActionListener,Observer,MouseListener {
 	public JitmButton tampon;
 	public JitmButton[][] inventaire;
 	
-	public Inventaire(HashMap<String, Item> r) {
+	public Inventaire_Vue(HashMap<String, Item> r) {
 		super();
 		int ligne = 4;
 		int colonne = 10;

@@ -31,15 +31,15 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class Minecraft extends Observable implements WindowListener,ItemListener {
+public class Modele extends Observable implements WindowListener,ItemListener {
 	Frame f;
 	
 	public static void main(String[] args) throws IOException {
-		new Minecraft();
+		new Modele();
 
 	}
 	
-	public Minecraft() throws IOException {
+	public Modele() throws IOException {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.f = new Frame();
@@ -149,20 +149,20 @@ public class Minecraft extends Observable implements WindowListener,ItemListener
 		}
 				
 		gbc.gridy=1;
-		Inventaire inv = new Inventaire(itemList);
+		Inventaire_Vue inv = new Inventaire_Vue(itemList);
 		this.f.add(inv, gbc);
 		
 		gbc.gridx=1;
-		Recolte rec = new Recolte(itemNametoItem);
+		Recolte_Vue rec = new Recolte_Vue(itemNametoItem);
 		this.f.add(rec,gbc);
 		
 		gbc.gridy=0;
-		Memoire mem = new Memoire (null);
+		Memoire_Vue mem = new Memoire_Vue (null);
 		this.f.add(mem,gbc);
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		Craft_Zone cz = new Craft_Zone(inv);
+		Atelier_Vue cz = new Atelier_Vue(inv);
 		this.f.add(cz,gbc);
 		
 		Controleur c = new Controleur(inv, mem, cz, rec);

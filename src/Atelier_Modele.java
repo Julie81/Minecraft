@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Set;
 
-public class Atelier extends Canvas{
+public class Atelier_Modele extends Canvas{
 	
 	public Item[][] CraftTable;
 	public Image craft;
@@ -12,7 +12,7 @@ public class Atelier extends Canvas{
 	public Hashtable<String,Craft> EnsembleDesCrafts;
 	
 	
-	public Atelier(Hashtable<String,Craft> EnsembleDesCrafts) {
+	public Atelier_Modele(Hashtable<String,Craft> EnsembleDesCrafts) {
 		super();
 		this.CraftTable = new Item[3][3];
 		int quantite = 0;

@@ -13,12 +13,12 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 
-public class Craft_Zone extends Panel implements MouseListener{
+public class Atelier_Vue extends Panel implements MouseListener{
 	int larg=80;
 	int quantite=1;
-	Inventaire inv;
+	Inventaire_Vue inv;
 	
-	public Craft_Zone(Inventaire Ivn) {
+	public Atelier_Vue(Inventaire_Vue Ivn) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.inv = Ivn;
