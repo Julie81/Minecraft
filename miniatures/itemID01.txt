@@ -5,21 +5,21 @@
 02;baton.png;0
 24;or.png;0
 03;ble.png;0
-25;pelle en bois.png;0
+25;pelle_en_bois.png;0
 04;bois.png;0
-26;piege a souris.png;0
-05;canne a sucre.png;0
+26;piege_a_souris.png;0
+05;canne_a_sucre.png;0
 27;pierre.png;0
-06;casque en fer.png;0
-28;pioche en diamant.png;0
+06;casque_en_fer.png;0
+28;pioche_en_diamant.png;0
 07;charbon.png;0
-29;pioche en or.png;0
+29;pioche_en_or.png;0
 08;diamant.png;0
 09;eau.png;0
-30;pioche en pierre.png;0
+30;pioche_en_pierre.png;0
 31;plume.png;0
 10;echelle.png;0
-32;pomme en or.png;0
+32;pomme_en_or.png;0
 11;fer.png;0
 33;pomme.png;0
 12;ficelle.png;0
@@ -28,13 +28,13 @@
 35;souris.png;0
 14;fromage.png;0
 36;sucre.png;0
-15;hache en diamant.png;0
+15;hache_en_diamant.png;0
 37;torche.png;0
-16;hache en fer.png;0
+16;hache_en_fer.png;0
 38;viande.png;0
-17;houe en diamant.png;0
+17;houe_en_diamant.png;0
 39;wagon.png;0
-18;houe en fer.png;0
+18;houe_en_fer.png;0
 19;lait.png;0
 20;lianes.png;0
-21;noix de coco.png;0
+21;noix_de_coco.png;0
