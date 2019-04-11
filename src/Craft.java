@@ -41,9 +41,10 @@ public class Craft {
 	public int getMaxGeneration() {
 		int maxGen = 0;
 		for(int i=0;i<3;i++){
-			for(int j=1;j<3;j++){
+			for(int j=0;j<3;j++){
 				if(this.items[i][j] != null) {
-					maxGen = Math.max(maxGen,this.items[i][j].generation);
+					//System.out.println(this.items[i][j].name);
+					maxGen = Math.max(maxGen,this.items[i][j].generation());
 				}
 			}
 		}

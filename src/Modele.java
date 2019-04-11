@@ -54,8 +54,13 @@ public class Modele extends Observable{
 		//initalisation de la BDD d'item
 		initItemMap();
 		
+		
+		//initialisation des lock d'item
+		initItemLock();
+		
 		//initialisation de la BDD de craft
 		initCraftMap();
+		
 				
 	}
 
@@ -126,6 +131,29 @@ public class Modele extends Observable{
 		    	item.quantity = Integer.parseInt(split[2]);
 		    	itemList.put(ID, item);
 		    	itemNametoItem.put(itemName, item);
+		    	
+		        line = reader.readLine();
+		    }
+		} finally {
+		    reader.close();
+		}
+	}
+	
+public void initItemLock() throws IOException {
+		
+		BufferedReader reader = new BufferedReader(new FileReader("miniatures/itemLock.txt"));
+		
+		try {
+			Item item;
+		    String line = reader.readLine();
+
+		    while (line != null) {
+		    	String[] split = line.split(";");
+		    	item = itemNametoItem.get(split[0]);
+		    	String[] lock = split[1].split(",");
+		    	for(String itemName : lock) {
+		    		item.lock.add(itemNametoItem.get(itemName));
+		    	}
 		    	
 		        line = reader.readLine();
 		    }

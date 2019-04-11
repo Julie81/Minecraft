@@ -1,0 +1,8 @@
+orange;echelle
+or;pioche en diamant
+charbon;pioche en pierre
+diamant;pioche en fer,wagon,rails,torche
+pomme;echelle
+fer;pioche en pierre
+viande;arc,fleche
+noix de coco;bateau,echelle
