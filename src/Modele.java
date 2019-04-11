@@ -187,7 +187,7 @@ public class Modele extends Observable{
 		try {
 			for (String ID : itemList.keySet()) {
 				Item item = itemList.get(ID);
-				String line = "ID"+";"+item.name+".png"+";"+item.quantity+"\n";
+				String line = ID+";"+item.name+".png"+";"+item.quantity+"\n";
 				
 				writer.write(line);
 				}
