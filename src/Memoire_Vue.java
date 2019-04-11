@@ -20,7 +20,6 @@ public class Memoire_Vue extends Panel implements MouseListener,Observer{
 	public Memoire_Vue (String name) {
 		super();
 		this.n = name;
-		this.setPreferredSize(new Dimension(6*larg,4*larg));
 		Panel p = new Panel();
 		p.addMouseListener(this);
 		p.setBackground(Color.darkGray);

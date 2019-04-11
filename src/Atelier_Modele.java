@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Observable;
@@ -12,6 +13,7 @@ public class Atelier_Modele extends Observable{
 	public Item CurrItm;
 	public int quantity;
 	public HashMap<String,Craft> EnsembleDesCrafts;
+	ArrayList<Item> itemManquant;
 	
 	
 	public Atelier_Modele(HashMap<String,Craft> EnsembleDesCrafts) {
@@ -38,9 +40,11 @@ public class Atelier_Modele extends Observable{
 		craft.UpperLeft();
 		
 		Item item = ExistingCraft(craft);
+		this.itemManquant = new ArrayList<Item>();
 		
 		if(item == null) {
-			// renvoyer à l'utilisateur que son craft est incorrect
+			// Il ne manque pas d'item, le craft est inexistant
+			this.itemManquant.add(null);
 		}
 		else {
 			HashMap<Item,Integer> quantityNeeded = craft.quantityNeeded();
@@ -48,7 +52,8 @@ public class Atelier_Modele extends Observable{
 			for (Item key : quantityNeeded.keySet()) {
 				if(quantityNeeded.get(key)*this.quantity > key.quantity) {
 					enoughQuantity = false;
-					// renvoyer au fur et a mesure les quantite manquante
+					// ajout des items manquants a la liste itemManquant
+					this.itemManquant.add(key);
 				}
 			}
 			if(enoughQuantity) {
@@ -56,9 +61,9 @@ public class Atelier_Modele extends Observable{
 					key.quantity -= quantityNeeded.get(key)*this.quantity;
 					}
 				item.quantity += quantity;
+				//pas de probleme pour faire le craft, la liste itemManquant reste vide
 			}
 		}
-		
 		
 	}
 	
