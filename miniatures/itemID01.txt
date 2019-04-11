@@ -1,0 +1,40 @@
+ID;arc.png;1
+ID;orange.png;0
+ID;bateau.png;0
+ID;ordinateur.png;0
+ID;baton.png;0
+ID;or.png;0
+ID;ble.png;0
+ID;pelle en bois.png;0
+ID;bois.png;0
+ID;piege a souris.png;0
+ID;canne a sucre.png;0
+ID;pierre.png;0
+ID;casque en fer.png;0
+ID;pioche en diamant.png;0
+ID;charbon.png;0
+ID;pioche en or.png;0
+ID;diamant.png;0
+ID;eau.png;0
+ID;pioche en pierre.png;0
+ID;plume.png;0
+ID;echelle.png;0
+ID;pomme en or.png;0
+ID;fer.png;0
+ID;pomme.png;0
+ID;ficelle.png;0
+ID;rails.png;0
+ID;fleche.png;0
+ID;souris.png;0
+ID;fromage.png;0
+ID;sucre.png;0
+ID;hache en diamant.png;0
+ID;torche.png;0
+ID;hache en fer.png;0
+ID;viande.png;0
+ID;houe en diamant.png;0
+ID;wagon.png;0
+ID;houe en fer.png;0
+ID;lait.png;0
+ID;lianes.png;0
+ID;noix de coco.png;0

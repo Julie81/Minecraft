@@ -17,6 +17,7 @@ import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,17 +33,47 @@ import javax.swing.JPanel;
 
 
 public class Modele extends Observable{
+	
 	HashMap<String,Item> itemList;
 	HashMap<String,Item> itemNametoItem;
 	HashMap<String,Craft> craftList;
+	String gamePath;
 	
-	public Modele() throws IOException {
-
+	public Modele(char fileNumber,Boolean New) throws IOException {
+		
+		this.gamePath = "miniatures/itemID0"+fileNumber+".txt";
+		
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer
+		
+		if(New) {
+			newGame();
+		}
+
+		//initalisation de la BDD d'item
+		initItemMap();
+		
+		//initialisation de la BDD de craft
+		initCraftMap();
+		
+		itemList.get("00").add_Resources();
+		
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		System.out.println(e.getItem());
+		if (e.getSource() instanceof JitmButton) {
+			JitmButton b = (JitmButton) e.getSource();
+			System.out.println(b.it.name);
+		}
+		
+	}
+	
+	
+	public void newGame() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("miniatures/item.txt"));
-		BufferedWriter writer = new BufferedWriter(new FileWriter("miniatures/itemID.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(gamePath));
 		
 		try {
 		    String line = reader.readLine();
@@ -65,26 +96,11 @@ public class Modele extends Observable{
 		    reader.close();
 		    writer.close();
 		}
-
-		//initalisation de la BDD d'item
-		String loadgame = "";
-		initItemMap(loadgame);
-		
-		//initialisation de la BDD de craft
-		initCraftMap();
-		
-	}
-
-	public void itemStateChanged(ItemEvent e) {
-		System.out.println(e.getItem());
-		if (e.getSource() instanceof JitmButton) {
-			JitmButton b = (JitmButton) e.getSource();
-			System.out.println(b.it.name);
-		}
-		
 	}
 	
-	public void initItemMap(String loadgame) throws IOException {
+	
+	
+	public void initItemMap() throws IOException {
 		
 		this.itemList = new HashMap<String,Item>();
 		this.itemNametoItem = new HashMap<String,Item>();
@@ -92,13 +108,12 @@ public class Modele extends Observable{
 		BufferedReader reader;
 		
 		try {
-			reader = new BufferedReader(new FileReader(loadgame));
+			reader = new BufferedReader(new FileReader(gamePath));
 		}catch(Exception e) {
-			reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
+			newGame();
+			reader = new BufferedReader(new FileReader(gamePath));
 		}
 		
-		//BufferedReader reader = new BufferedReader(new FileReader("miniatures/itemID.txt"));
-
 		try {
 			Item item;
 		    String line = reader.readLine();
@@ -165,6 +180,23 @@ public class Modele extends Observable{
 		    }
 		} finally {
 		    reader.close();
+		}
+	}
+	
+	public void saveGame() throws IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(gamePath));
+		
+		try {
+			for (String ID : itemList.keySet()) {
+				Item item = itemList.get(ID);
+				String line = "ID"+";"+item.name+".png"+";"+item.quantity+"\n";
+				
+				writer.write(line);
+				}
+			
+		} finally {
+
+		    writer.close();
 		}
 	}
 }
