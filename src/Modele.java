@@ -56,9 +56,7 @@ public class Modele extends Observable{
 		
 		//initialisation de la BDD de craft
 		initCraftMap();
-		
-		itemList.get("00").add_Resources();
-		
+				
 	}
 
 	public void itemStateChanged(ItemEvent e) {
