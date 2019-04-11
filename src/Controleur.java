@@ -10,7 +10,6 @@ public class Controleur implements ActionListener{
 	
 	public Controleur(Modele m) { //Toutes les parties de la vue
 		this.modl = m;
-		System.out.println("Init Controleur");
 	}
 
 	@Override

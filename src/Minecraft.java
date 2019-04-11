@@ -15,10 +15,13 @@ import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 
 public class Minecraft extends Frame implements WindowListener,Observer{
+	
+	Modele modl;
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
@@ -26,7 +29,18 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 	
 	public Minecraft() throws IOException {
 		super();
-		Modele modl = new Modele();
+		
+		NewLoadGame nlg = new NewLoadGame();
+		while(!nlg.choice) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		nlg.dispose();
+		this.modl = new Modele(nlg.fileNumber,nlg.New);
 		Controleur ctrl = new Controleur(modl);
 		this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
 		
@@ -85,7 +99,13 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 	}
 
 	@Override
-	public void windowClosing(WindowEvent arg0) {
+	public void windowClosing(WindowEvent arg0){
+		try {
+			modl.saveGame();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.exit(0);
 		
 	}
