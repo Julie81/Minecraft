@@ -54,11 +54,12 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		
 		int j=0;  // numero de colonne 
 		for(int i=0; i<rn_names.length; i++) {  // Creation de tout les boutons en parcourant les listes
-			if (i==moitie){  // quand on a parcouru la moitie des items
+			/*if (i==moitie){  // quand on a parcouru la moitie des items
 				j=1;  // on passe a la colonne suivante
 				gbc.gridx = larg;
-			}
-			gbc.gridy=(i-j*moitie)*larg;
+			}*/
+			//gbc.gridy=(i-j*moitie)*larg;
+			gbc.gridy=i*larg;
 			JitmButton b = Init_Icon_Recolte(m.itemNametoItem.get(rn_names[i]));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton

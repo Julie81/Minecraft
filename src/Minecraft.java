@@ -1,4 +1,7 @@
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -14,12 +17,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
-public class Minecraft extends Frame implements WindowListener,Observer{
+public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	Modele modl;
 	
@@ -27,9 +33,19 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		new Minecraft();
 	}
 	
+	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
+		JPanel panel = new JPanel() { 
+			private static final long serialVersionUID = 1;
+			private BufferedImage buf = ImageIO.read(img);
+			@Override protected void paintComponent(Graphics g)
+			{ super.paintComponent(g); g.drawImage(buf, 0,0, null); }
+		};
+		frame.setContentPane(panel); 
+		return panel; }
+	
 	public Minecraft() throws IOException {
 		super();
-		
+		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		NewLoadGame nlg = new NewLoadGame();
 		while(!nlg.choice) {
 			try {
@@ -42,7 +58,6 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		nlg.dispose();
 		this.modl = new Modele(nlg.fileNumber,nlg.New);
 		Controleur ctrl = new Controleur(modl);
-		this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
@@ -51,19 +66,48 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		gbc.gridy=0;
 		
 		gbc.gridy=1;
+		gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=2;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,modl);
 		modl.addObserver(inv);
 		this.add(inv, gbc);
 		
-		gbc.gridx=1;
+		gbc.gridx=2;
+		gbc.gridy=0;
+		gbc.fill=GridBagConstraints.VERTICAL;
+		gbc.gridheight=2;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
 		//modl.addObserver(rec);
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
-		Memoire_Vue mem = new Memoire_Vue(null);
-		modl.addObserver(mem);
-		this.add(mem,gbc);
+		gbc.gridx=1;
+		gbc.gridwidth=1;
+		gbc.gridheight=1;
+		CardLayout cl = new CardLayout();
+		JPanel memoire= new JPanel();
+		String[] listContent = {"Messsage","Matrice"};
+		int indice = 0;
+		JPanel card1= new JPanel();
+		Font f = new Font("Serif", Font.PLAIN, 36); 
+		JLabel message = new JLabel("Choisissez un item ");
+		JLabel message2 = new JLabel("parmi les recettes");
+		JLabel message3 = new JLabel("pour connaître son craft...");
+		message.setFont(f);
+		message2.setFont(f);
+		message3.setFont(f);
+		Box Mess = Box.createVerticalBox();
+		Mess.add(message);
+		Mess.add(message2);
+		Mess.add(message3);
+		card1.add(Mess);
+		JPanel card2 = new JPanel();
+		Memoire_Vue memvue = new Memoire_Vue(null);
+		modl.addObserver(memvue);
+		this.add(memoire,gbc);
+		memoire.setLayout(cl);
+		memoire.add(card1, listContent[0]);
+	    memoire.add(card2, listContent[1]);
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
