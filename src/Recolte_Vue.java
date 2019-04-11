@@ -31,13 +31,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class Recolte_Vue extends Panel implements Observer,MouseListener{
+public class Recolte_Vue extends Panel implements MouseListener{
 	int larg = 60; // dimension du carre bouton
 	Controleur ctrl;
+	ArrayList<JitmButton> Ress_Rec;
 	
 	public Recolte_Vue(Controleur c, Modele m) {
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
-		this.ctrl =c;
+		this.ctrl = c;
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -65,10 +66,9 @@ public class Recolte_Vue extends Panel implements Observer,MouseListener{
 			Image img = icon.getImage() ;
 			Image newimg = img.getScaledInstance( dim_icon, dim_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
-			
 			b.setIcon(icon);
+			
 			this.add(b,gbc);
-			m.addObserver(this);
 		}
 	}
 	
@@ -76,28 +76,19 @@ public class Recolte_Vue extends Panel implements Observer,MouseListener{
 		// Creer un bouton avec l'image icon
 		JitmButton b = new JitmButton(obj);
 		b.setPreferredSize(new Dimension(larg,larg));
-		b.setActionCommand(obj.name);
+		b.setActionCommand("R");
 		b.putClientProperty("id", obj.name);
-		b.addItemListener(this.ctrl);
+		b.addActionListener(this.ctrl);
 		b.addMouseListener(this);
-		b.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) { 
-				if (e.getSource() instanceof JitmButton ) {
-					JitmButton t = (JitmButton) e.getSource();
-					t.it.quantity++;
-						}
-				}
-			});
 		return b;
-		}
-
+	}
+/*
 	@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("salut");
 	}
-
+*/
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

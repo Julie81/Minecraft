@@ -1,11 +1,12 @@
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
 
 import javax.imageio.ImageIO;
 
 
-public class Item {
+public class Item extends Observable{
 	int quantity;
 	String path;
 	String name;
@@ -40,9 +41,10 @@ public class Item {
 		this.ID = ID;
 	}
 	
-	
 	public void add_Resources(){
-		quantity++;
+		quantity ++;
+		this.setChanged();
+		this.notifyObservers(this.name);
 	}
 	
 	public void setCraft(Craft craft) {

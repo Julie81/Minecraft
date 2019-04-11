@@ -74,15 +74,6 @@ public class Modele extends Observable{
 		initCraftMap();
 		
 	}
-
-	public void itemStateChanged(ItemEvent e) {
-		System.out.println(e.getItem());
-		if (e.getSource() instanceof JitmButton) {
-			JitmButton b = (JitmButton) e.getSource();
-			System.out.println(b.it.name);
-		}
-		
-	}
 	
 	public void initItemMap(String loadgame) throws IOException {
 		
@@ -167,4 +158,15 @@ public class Modele extends Observable{
 		    reader.close();
 		}
 	}
+
+	
+	
+	public void addItemResource(Item i) {
+		this.itemList.get(i.ID).add_Resources();
+		this.setChanged();
+		this.notifyObservers(i);
+		
+	}
+
+
 }

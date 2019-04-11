@@ -1,22 +1,24 @@
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Observable;
 
-public class Controleur implements ItemListener{
+public class Controleur implements ActionListener{
 	Modele modl;
 	
 	public Controleur(Modele m) { //Toutes les parties de la vue
 		this.modl = m;
+		System.out.println("Init Controleur");
 	}
-	
+
 	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		System.out.println("ctrl");
-		if (arg0.getSource() instanceof Panel) {
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() instanceof JitmButton && arg0.getActionCommand()=="R"){
 			JitmButton b = (JitmButton) arg0.getSource();
-			System.out.println(b.it.name);
-		}		
+			this.modl.addItemResource(b.it);
+		}
 	}
 
 }

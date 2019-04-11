@@ -38,24 +38,30 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		
 		gbc.gridy=1;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,modl);
+		modl.addObserver(inv);
 		this.add(inv, gbc);
 		
 		gbc.gridx=1;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
+		//modl.addObserver(rec);
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
 		Memoire_Vue mem = new Memoire_Vue(null);
+		modl.addObserver(mem);
 		this.add(mem,gbc);
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		Atelier_Vue Av = new Atelier_Vue(ctrl,modl,inv);
+		modl.addObserver(Av);
 		this.add(Av,gbc);
 		
+
 		this.addWindowListener(this);
 		this.setTitle ("Table de craft Minecraft");
 		this.pack();
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 

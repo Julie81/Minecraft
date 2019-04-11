@@ -1,6 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,16 +24,16 @@ import javax.swing.SwingConstants;
 public class Inventaire_Vue extends Panel implements ActionListener,Observer,MouseListener {
 	public JitmButton tampon;
 	public JitmButton[][] inventaire;
-	//Modele modl;
 	
 	public Inventaire_Vue(Controleur c,Modele m) {
 		super();
-		//this.modl = m;
 		int ligne = 4;
 		int colonne = 10;
-		int s_icon = 30;
+		int s_icon = 40;
 		int larg = 80;// largeur d'une cellule pour les cases de l'inventaire
+		int longr = 100;
 		
+		this.setName("Inventaire");
 		this.inventaire = new JitmButton [ligne][colonne];
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -43,44 +44,44 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		gbc.gridwidth = colonne;
 		
 		for (int i=0; i<ligne; i++){
-			gbc.gridy = i*larg;
+			gbc.gridy = i*longr;
 			
 			for (int j=0; j<colonne;j++){
 
 				gbc.gridx = j*larg;
-				String sobriquet = i+""+j+"";
 				String key = ""+(i*colonne+j);
 				if ((i*colonne+j)<10){
 					key="0"+key;
 				}
-				JitmButton b = new JitmButton(m.itemList.get(key));
+				JitmButton b = new JitmButton(m.itemList.get(key));  // on creer un Bouton d'item d'ID key
 				inventaire[i][j] = b;
-				b.setPreferredSize(new Dimension(larg,larg));
+				b.setPreferredSize(new Dimension(longr,larg));
 
 				ImageIcon icon = new ImageIcon(m.itemList.get(key).path);
 				Image img = icon.getImage() ;
 				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 				icon = new ImageIcon(newimg);
 				b.setIcon(icon);
-				
+
+				//Definition de la quantite
 				b.setText(""+m.itemList.get(key).quantity);
-				b.setHorizontalTextPosition(SwingConstants.RIGHT);
-				b.setVerticalTextPosition(SwingConstants.BOTTOM);
-				b.setActionCommand(sobriquet);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a cliqu�
-				b.addActionListener(this);
-				b.addItemListener(c);
-				b.addMouseListener(this);
-				m.addObserver(this);
-				this.add(b,gbc);
+				b.setIconTextGap(5);
+				//b.setHorizontalTextPosition(SwingConstants.RIGHT);
+				//b.setVerticalTextPosition(SwingConstants.BOTTOM);
 				
+				b.setFont(new Font("Arial",Font.BOLD,10));
+				b.setActionCommand(key);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
+				b.addActionListener(this);
+				b.addActionListener(c);
+				b.addMouseListener(this);
+				this.add(b,gbc);
 			}
 		}
-
 	}
 
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0) {  // mise en valeur de l'item actuellement selectionne
 		String n = arg0.getActionCommand();
 		if (tampon != null){
 			tampon.setBackground(new JButton().getBackground());
@@ -89,23 +90,14 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'];
 		tampon.setBackground(Color.white);
 		tampon.repaint();
-		this.repaint();
 
 	}
 
-	@Override
-	public void repaint() {
-		super.repaint();
-		for (int i=0; i<4; i++){
-			for (int j=0; j<10;j++){
-				this.inventaire[i][j].setText(""+this.inventaire[i][j].it.quantity);
-			}
-		}
-	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("update Inventaire");
+		if (arg instanceof Item ) {
+			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+		}
 	}
 
 

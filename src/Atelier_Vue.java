@@ -49,6 +49,7 @@ public class Atelier_Vue extends Panel implements MouseListener,Observer{
 								Image newimg = img.getScaledInstance( larg-10, larg-10,  java.awt.Image.SCALE_SMOOTH ) ;
 								icon = new ImageIcon(newimg);
 								temp.setIcon(icon);
+								temp.it = inv.tampon.it;
 							}
 							catch(Exception ex){
 							}
@@ -63,13 +64,6 @@ public class Atelier_Vue extends Panel implements MouseListener,Observer{
 				this.add(b,gbc);
 			}
 		}
-		
-		gbc.gridx = 0;
-		gbc.gridy=larg;
-		Button b = new Button("recharger");
-		b.setBackground(Color.lightGray);
-		b.setPreferredSize(new Dimension(80,30));
-		this.add(b,gbc);
 		
 		gbc.gridx = 4*larg+20;
 		gbc.gridy=larg;
