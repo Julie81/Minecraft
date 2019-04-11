@@ -2,20 +2,23 @@ import java.awt.Canvas;
 import java.awt.Image;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Observable;
 import java.util.Set;
 
-public class Atelier_Modele extends Canvas{
+public class Atelier_Modele extends Observable{
 	
 	public Item[][] CraftTable;
 	public Image craft;
+	public Item CurrItm;
 	public int quantity;
-	public Hashtable<String,Craft> EnsembleDesCrafts;
+	public HashMap<String,Craft> EnsembleDesCrafts;
 	
 	
-	public Atelier_Modele(Hashtable<String,Craft> EnsembleDesCrafts) {
+	public Atelier_Modele(HashMap<String,Craft> EnsembleDesCrafts) {
 		super();
 		this.CraftTable = new Item[3][3];
 		int quantite = 1;
+		this.CurrItm = null; // aucun item courant selectionne
 		this.EnsembleDesCrafts = EnsembleDesCrafts;
 	}
 	
@@ -51,7 +54,6 @@ public class Atelier_Modele extends Canvas{
 			if(enoughQuantity) {
 				for (Item key : quantityNeeded.keySet()) {
 					key.quantity -= quantityNeeded.get(key)*this.quantity;
-					// renvoyer au fur et a mesure les quantite manquante
 					}
 				item.quantity += quantity;
 			}
@@ -60,14 +62,29 @@ public class Atelier_Modele extends Canvas{
 		
 	}
 	
+	public void selection(Item i) {
+		this.CurrItm = i;
+	}
 	
 	public void addQuantity() {
 		this.quantity++;
+		this.setChanged();
+		this.notifyObservers(this.quantity);
 	}
 	
 	public void reduceQuantity() {
-		if(this.quantity>=0) {
+		if(this.quantity>1) {
 			this.quantity--;
+			this.setChanged();
+			this.notifyObservers(this.quantity);
+		}
+	}
+
+	public void remplissage(int x, int y) {
+		if (this.CurrItm != null) {
+			this.CraftTable[x][y] = this.CurrItm;
+			this.setChanged();
+			this.notifyObservers(""+x+""+y+""+this.CurrItm.path);
 		}
 	}
 

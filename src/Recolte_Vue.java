@@ -33,10 +33,9 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class Recolte_Vue extends Panel implements MouseListener{
 	int larg = 60; // dimension du carre bouton
-	Controleur ctrl;
-	ArrayList<JitmButton> Ress_Rec;
+	Controleur_Rec ctrl;
 	
-	public Recolte_Vue(Controleur c, Modele m) {
+	public Recolte_Vue(Controleur_Rec c, Modele m) {
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		
@@ -82,12 +81,6 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		b.addMouseListener(this);
 		return b;
 	}
-/*
-	@Override
-	public void update(Observable o, Object arg) {
-		System.out.println("salut");
-	}
-*/
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {

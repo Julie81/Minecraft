@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 public class Minecraft extends Frame implements WindowListener,Observer{
 	
 	Modele modl;
+	Atelier_Modele atm;
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
@@ -41,7 +42,9 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		}
 		nlg.dispose();
 		this.modl = new Modele(nlg.fileNumber,nlg.New);
-		Controleur ctrl = new Controleur(modl);
+		this.atm = new Atelier_Modele(modl.craftList);
+		Controleur_Rec ctrl = new Controleur_Rec(modl);
+		Controleur_Atelier ctrlA = new Controleur_Atelier(atm);
 		this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -51,13 +54,13 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		gbc.gridy=0;
 		
 		gbc.gridy=1;
-		Inventaire_Vue inv = new Inventaire_Vue(ctrl,modl);
+		Inventaire_Vue inv = new Inventaire_Vue(ctrl,ctrlA,modl);
 		modl.addObserver(inv);
+		atm.addObserver(inv);
 		this.add(inv, gbc);
 		
 		gbc.gridx=1;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
-		//modl.addObserver(rec);
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
@@ -67,8 +70,8 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		Atelier_Vue Av = new Atelier_Vue(ctrl,modl,inv);
-		modl.addObserver(Av);
+		Atelier_Vue Av = new Atelier_Vue(ctrlA,modl,inv);
+		atm.addObserver(Av);
 		this.add(Av,gbc);
 		
 

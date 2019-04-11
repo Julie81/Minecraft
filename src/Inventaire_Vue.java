@@ -25,7 +25,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	public JitmButton tampon;
 	public JitmButton[][] inventaire;
 	
-	public Inventaire_Vue(Controleur c,Modele m) {
+	public Inventaire_Vue(Controleur_Rec c,Controleur_Atelier ctrla, Modele m) {
 		super();
 		int ligne = 4;
 		int colonne = 10;
@@ -33,7 +33,6 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		int larg = 80;// largeur d'une cellule pour les cases de l'inventaire
 		int longr = 100;
 		
-		this.setName("Inventaire");
 		this.inventaire = new JitmButton [ligne][colonne];
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -66,12 +65,11 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				//Definition de la quantite
 				b.setText(""+m.itemList.get(key).quantity);
 				b.setIconTextGap(5);
-				//b.setHorizontalTextPosition(SwingConstants.RIGHT);
-				//b.setVerticalTextPosition(SwingConstants.BOTTOM);
 				
 				b.setFont(new Font("Arial",Font.BOLD,10));
 				b.setActionCommand(key);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
 				b.addActionListener(this);
+				b.addActionListener(ctrla);
 				b.addActionListener(c);
 				b.addMouseListener(this);
 				this.add(b,gbc);

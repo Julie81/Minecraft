@@ -58,7 +58,7 @@ public class Modele extends Observable{
 		initCraftMap();
 				
 	}
-
+/*
 	public void itemStateChanged(ItemEvent e) {
 		System.out.println(e.getItem());
 		if (e.getSource() instanceof JitmButton) {
@@ -67,7 +67,7 @@ public class Modele extends Observable{
 		}
 		
 	}
-	
+	*/
 	
 	public void newGame() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("miniatures/item.txt"));
@@ -95,8 +95,6 @@ public class Modele extends Observable{
 		    writer.close();
 		}
 	}
-	
-	
 	
 	public void initItemMap() throws IOException {
 		
