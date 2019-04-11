@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -31,6 +33,9 @@ public class NewLoadGame extends Frame implements WindowListener{
 					jb = new JButton("Load Game 0"+i);
 				}
 				
+				jb.setPreferredSize(new Dimension(300,100));
+				jb.setBackground(Color.DARK_GRAY);
+				jb.setForeground(Color.WHITE);
 				jb.addActionListener(new ActionListener() {
 
 					@Override
