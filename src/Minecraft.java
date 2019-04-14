@@ -34,7 +34,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		new Minecraft();
 	}
 	
-	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
+	public JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
 		JPanel panel = new JPanel() { 
 			private static final long serialVersionUID = 1;
 			private BufferedImage buf = ImageIO.read(img);
@@ -57,7 +57,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 			}
 		}
 		nlg.dispose();
-		this.modl = new Modele(nlg.fileNumber,nlg.New);
+		this.modl = new Modele(nlg.fileName,nlg.New);
 		this.atm = new Atelier_Modele(modl.craftList);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
 		Controleur_Atelier ctrlA = new Controleur_Atelier(atm);
@@ -72,17 +72,22 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2;
-		
+		gbc.ipady=20;
+		gbc.ipadx=20;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,ctrlA,modl);
 		modl.addObserver(inv);
 		atm.addObserver(inv);
+		inv.setBackground(new Color(0,0,0,0));
 		this.add(inv, gbc);
+		
 		
 		gbc.gridx=2;
 		gbc.gridy=0;
 		gbc.fill=GridBagConstraints.VERTICAL;
 		gbc.gridheight=2;
+		gbc.ipadx=20;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
+		rec.setBackground(new Color(0,0,0,0));
 		this.add(rec,gbc);
 		
 		gbc.gridy=0;
@@ -97,10 +102,14 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		Font f = new Font("Serif", Font.PLAIN, 36); 
 		JLabel message = new JLabel("Choisissez un item ");
 		JLabel message2 = new JLabel("parmi les recettes");
-		JLabel message3 = new JLabel("pour connaître son craft...");
+		JLabel message3 = new JLabel("pour connaitre son craft...");
+		card1.setBackground(new Color(0,0,0,0));
 		message.setFont(f);
 		message2.setFont(f);
 		message3.setFont(f);
+		message.setForeground(Color.GREEN);
+		message2.setForeground(Color.GREEN);
+		message3.setForeground(Color.GREEN);
 		Box Mess = Box.createVerticalBox();
 		Mess.add(message);
 		Mess.add(message2);
@@ -108,6 +117,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		card1.add(Mess);
 		JPanel card2 = new JPanel();
 		Memoire_Vue memvue = new Memoire_Vue(null);
+		card2.setBackground(new Color(0,0,0,0));
 		modl.addObserver(memvue);
 		this.add(memoire,gbc);
 		memoire.setLayout(cl);
@@ -117,6 +127,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridx=0;
 		gbc.gridy=0;
 		Atelier_Vue Av = new Atelier_Vue(ctrlA,modl,inv);
+		Av.setBackground(new Color(0,0,0,0));
 		atm.addObserver(Av);
 		this.add(Av,gbc);
 		
@@ -132,7 +143,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		
 		super.paintComponents(g); 
 		BufferedImage backroundImage = ImageIO.read(this.getClass() .getResourceAsStream("machinarium.jpg"));
-		g.drawImage(backroundImage, 0,0, null); 
+		g.drawImage(backroundImage, 0,0,this.getWidth(),this.getHeight(), null); 
 		} 
 
 	@Override

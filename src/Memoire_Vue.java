@@ -12,8 +12,8 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class Memoire_Vue extends Panel implements MouseListener,Observer{
-	int larg=80;
+public class Memoire_Vue extends JPanel implements MouseListener,Observer{
+	int larg=60;
 	String n = null;
 	Item it = new Item(n);
 	

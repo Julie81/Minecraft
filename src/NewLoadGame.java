@@ -12,10 +12,11 @@ import javax.swing.JOptionPane;
 
 public class NewLoadGame extends Frame implements WindowListener{
 	
-	char fileNumber;
+	String fileName;
 	Boolean New;
 	Boolean choice;
 	String [] Load= {"Load Game 01", "Load Game 02", "Load Game 03"};
+	String pseudo_souhaite;
 
 	public NewLoadGame() {
 		// TODO Auto-generated constructor stub
@@ -47,7 +48,7 @@ public class NewLoadGame extends Frame implements WindowListener{
 						String button = e.getActionCommand();
 						if(button.startsWith("N")) {
 							New = true;
-							String pseudo_souhaite = JOptionPane.showInputDialog(null,
+							pseudo_souhaite = JOptionPane.showInputDialog(null,
                                     "Entrez le nom de votre partie : ",
                                     "NOM DE LA PARTIE",
                                     JOptionPane.QUESTION_MESSAGE);
@@ -56,7 +57,7 @@ public class NewLoadGame extends Frame implements WindowListener{
 						else {
 							New = false;
 						}
-						fileNumber =  button.charAt(button.length()-1);
+						fileName =  button;
 
 						choice = true;
 					}

@@ -39,10 +39,10 @@ public class Modele extends Observable{
 	HashMap<String,Craft> craftList;
 	String gamePath;
 	
-	public Modele(char fileNumber,Boolean New) throws IOException {
+	public Modele(String fileName,Boolean New) throws IOException {
 		
-		this.gamePath = "miniatures/itemID0"+fileNumber+".txt";
-		
+		this.gamePath = "miniatures/itemID"+fileName+".txt";
+		System.out.println(this.gamePath);
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer

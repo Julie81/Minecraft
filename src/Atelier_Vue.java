@@ -15,12 +15,14 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Atelier_Vue extends Panel implements ActionListener,Observer{
+public class Atelier_Vue extends JPanel implements ActionListener,Observer{
 	int larg=80;
 	int quantite=1;
 	Controleur_Atelier ctrla;
-	Label affQ;
+	JLabel affQ;
 	JButton[][] Mat;
 	
 	public Atelier_Vue(Controleur_Atelier ctrla, Modele m,Inventaire_Vue iv) {
@@ -52,11 +54,14 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer{
 		
 		gbc.gridx = 4*larg+20;
 		gbc.gridy=larg;
-		this.affQ = new Label(Integer.toString(quantite));
+		gbc.ipadx=10;
+		this.affQ = new JLabel(Integer.toString(quantite));
+		affQ.setForeground(Color.BLUE);
 		this.add(affQ,gbc);
 		
 		gbc.gridx = 4*larg;;
 		gbc.gridy=2*larg;
+		gbc.ipadx=10;
 		Button plus= new Button("+");
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);

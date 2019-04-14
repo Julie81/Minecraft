@@ -19,9 +19,10 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Inventaire_Vue extends Panel implements ActionListener,Observer,MouseListener {
+public class Inventaire_Vue extends JPanel implements ActionListener,Observer,MouseListener {
 	public JitmButton tampon;
 	public JitmButton[][] inventaire;
 	
