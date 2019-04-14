@@ -6,9 +6,11 @@ import javax.swing.JButton;
 
 public class Controleur_Atelier implements ActionListener{
 	Atelier_Modele atm;
+	Modele mdl;
 
-	public Controleur_Atelier(Atelier_Modele m) { //Toutes les parties de la vue
+	public Controleur_Atelier(Atelier_Modele m,Modele mdl) { //Toutes les parties de la vue
 		this.atm = m;
+		this.mdl = mdl;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -17,7 +19,7 @@ public class Controleur_Atelier implements ActionListener{
 					this.atm.remplissage(arg0.getActionCommand().charAt(1)-'0',arg0.getActionCommand().charAt(2)-'0'); 
 			}
 			else { // on selectionne un item de l'inventaire
-					this.atm.selection(((JitmButton) arg0.getSource()).it); // on le sauvegarde en mémoire
+					this.atm.selection(((JitmButton) arg0.getSource()).it); // on le sauvegarde en memoire
 			}
 		}
 		else {
@@ -29,7 +31,7 @@ public class Controleur_Atelier implements ActionListener{
 					this.atm.reduceQuantity();
 				}
 				if (arg0.getActionCommand()=="C") {
-					// action de craft
+					this.atm.Crafting(atm.CraftTable);
 				}
 			
 		}

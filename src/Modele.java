@@ -42,7 +42,6 @@ public class Modele extends Observable{
 	public Modele(char fileNumber,Boolean New) throws IOException {
 		
 		this.gamePath = "miniatures/itemID0"+fileNumber+".txt";
-		
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer
@@ -61,18 +60,8 @@ public class Modele extends Observable{
 		//initialisation de la BDD de craft
 		initCraftMap();
 		
-				
+		//this.affichBDDcraft();	//permet une visualisation de la BDD des crafts	
 	}
-/*
-	public void itemStateChanged(ItemEvent e) {
-		System.out.println(e.getItem());
-		if (e.getSource() instanceof JitmButton) {
-			JitmButton b = (JitmButton) e.getSource();
-			System.out.println(b.it.name);
-		}
-		
-	}
-	*/
 	
 	public void newGame() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("miniatures/item.txt"));
@@ -197,7 +186,7 @@ public void initItemLock() throws IOException {
 		    		}
 		    	}
 		    	craft = new Craft(itemList.get(itemID), items);
-		    	craft.UpperLeft();
+		    	//craft.UpperLeft();
 		    	itemList.get(itemID).setCraft(craft);
 		    	craftList.put(craftID, craft);
 		        line = reader.readLine();
@@ -207,13 +196,19 @@ public void initItemLock() throws IOException {
 		}
 	}
 	
-	public void addItemResource(Item i) {
-		this.itemList.get(i.ID).add_Resources();
+	public void addItemResource(Item i, int q) {
+		this.itemList.get(i.ID).add_Resources(q);
 		this.setChanged();
 		this.notifyObservers(i);
 		
 	}
 
+	public void delItemResource(Item i, int q) {
+		this.itemList.get(i.ID).del_Resources(q);
+		this.setChanged();
+		this.notifyObservers(i);
+		
+	}
 	public void saveGame() throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(gamePath));
 		
@@ -228,6 +223,14 @@ public void initItemLock() throws IOException {
 		} finally {
 
 		    writer.close();
+		}
+	}
+
+	public void affichBDDcraft() {
+		for (String key : this.craftList.keySet()) {
+			System.out.println(key);
+			this.craftList.get(key).afficher();
+			System.out.println("-----------------------");
 		}
 	}
 }

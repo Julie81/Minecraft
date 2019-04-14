@@ -22,7 +22,7 @@
 32;pomme_en_or.png;0
 11;echelle.png;0
 33;pomme.png;0
-12;fer.png;6
+12;fer.png;0
 34;rails.png;0
 13;ficelle.png;0
 35;sceau.png;0
@@ -35,7 +35,7 @@
 17;hache_en_fer.png;0
 39;viande.png;0
 18;houe_en_fer.png;0
-19;lait.png;10
+19;lait.png;0
 40;wagon.png;0
 20;lianes.png;0
 21;noix_de_coco.png;0

@@ -54,7 +54,7 @@ public class Craft {
 	public String getCraftUID() {
 		String ID = "";
 		for(int i=0;i<3;i++){
-			for(int j=1;j<3;j++){
+			for(int j=0;j<3;j++){
 				if(this.items[i][j] != null) {
 					ID += this.items[i][j].ID;
 				}
@@ -114,6 +114,5 @@ public class Craft {
 			System.out.println(lign);
 		}
 		System.out.println("---------------------");
-		System.out.println(this.item.name);
 	}
 }

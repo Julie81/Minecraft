@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Atelier_Vue extends Panel implements ActionListener,Observer{
-	int larg=80;
+	int larg=50;
 	int quantite=1;
 	Controleur_Atelier ctrla;
 	Label affQ;
@@ -130,7 +130,8 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer{
 				this.Mat[((String) arg).charAt(0)-'0'][((String) arg).charAt(1)-'0'].setIcon(icon);
 				
 			}
-			else {
+			if(arg instanceof Integer) {
+				System.out.println("Vue atelier");
 				this.quantite = (int) arg;
 				this.affQ.setText(""+this.quantite);
 				}

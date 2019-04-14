@@ -67,6 +67,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				b.setIconTextGap(5);
 				
 				b.setFont(new Font("Arial",Font.BOLD,10));
+				
 				b.setActionCommand(key);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
 				b.addActionListener(this);
 				b.addActionListener(ctrla);
@@ -92,9 +93,15 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
-		if (arg instanceof Item ) {
+	public void update(Observable o, Object arg) { // update lors de changement de quantite
+		if (arg instanceof Item ) { 
+			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setBackground(((Item) arg).variation);
 			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+		}
+		if (arg instanceof ArrayList) {
+			for(int i=0;i<((ArrayList<Item>) arg).size();i++) {
+				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+			}
 		}
 	}
 
@@ -107,6 +114,9 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	public void mouseEntered(MouseEvent e) {
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
+			if (t == this.tampon) {
+				t.setBackground(Color.white);
+			}
 			t.setToolTipText(t.it.name);	
 		}
 	}
@@ -114,8 +124,12 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource() instanceof JitmButton ) {
+			JitmButton t = (JitmButton) e.getSource();
+			if (t != this.tampon) {
+				t.setBackground(null);	
+			}
+		}
 	}
 
 

@@ -58,9 +58,9 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		}
 		nlg.dispose();
 		this.modl = new Modele(nlg.fileNumber,nlg.New);
-		this.atm = new Atelier_Modele(modl.craftList);
+		this.atm = new Atelier_Modele(modl.craftList,modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
-		Controleur_Atelier ctrlA = new Controleur_Atelier(atm);
+		Controleur_Atelier ctrlA = new Controleur_Atelier(atm,modl);
 		//this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -97,7 +97,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		Font f = new Font("Serif", Font.PLAIN, 36); 
 		JLabel message = new JLabel("Choisissez un item ");
 		JLabel message2 = new JLabel("parmi les recettes");
-		JLabel message3 = new JLabel("pour connaître son craft...");
+		JLabel message3 = new JLabel("pour connaitre son craft...");
 		message.setFont(f);
 		message2.setFont(f);
 		message3.setFont(f);

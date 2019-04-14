@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -7,11 +8,12 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 
 
-public class Item extends Observable{
+public class Item{
 	int quantity;
 	String path;
 	String name;
 	int generation;
+	Color variation; // couleur modelisant la variation de la quantite
 	String ID; //"nombre" entre 00 et 98 , 99 etant le manque d'item
 	Craft craft;
 	ArrayList<Item> lock;
@@ -38,10 +40,9 @@ public class Item extends Observable{
 		this.lock = new ArrayList<Item>();
 	}
 	
-	public void add_Resources(){
-		quantity ++;
-		this.setChanged();
-		this.notifyObservers(this.name);
+	public void add_Resources(int q){
+		quantity += q;
+		this.variation = Color.green;
 	}
 	
 	public void setCraft(Craft craft) {
@@ -60,5 +61,17 @@ public class Item extends Observable{
 			generation = this.craft.getMaxGeneration()+1;
 			return generation;
 		}
+	}
+
+	public void del_Resources(int q) {
+		quantity = quantity - q;
+		if (quantity == 0) {
+			System.out.println("red");
+			this.variation = Color.red;
+		}
+		else{
+			this.variation = Color.cyan;
+		}
+		//System.out.println("il ne me reste que "+this.quantity+" "+this.name);
 	}
 }

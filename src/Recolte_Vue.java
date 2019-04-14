@@ -32,7 +32,7 @@ import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class Recolte_Vue extends Panel implements MouseListener{
-	int larg = 60; // dimension du carre bouton
+	int larg = 30; // dimension du carre bouton
 	Controleur_Rec ctrl;
 	
 	public Recolte_Vue(Controleur_Rec c, Modele m) {

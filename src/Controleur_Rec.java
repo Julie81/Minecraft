@@ -17,7 +17,7 @@ public class Controleur_Rec implements ActionListener{
 		if (arg0.getSource() instanceof JitmButton){
 			if (arg0.getActionCommand()=="R") {
 				JitmButton b = (JitmButton) arg0.getSource();
-				this.modl.addItemResource(b.it);
+				this.modl.addItemResource(b.it,1);
 			}
 		}
 	}

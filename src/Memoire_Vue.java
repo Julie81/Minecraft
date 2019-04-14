@@ -41,13 +41,15 @@ public class Memoire_Vue extends Panel implements MouseListener,Observer{
 			}
 		}
 	}
-	@Override
+
+	@Override	
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() instanceof Panel) {
-			//appel controleur
+			System.out.println("Item dont on veut afficher la recette");
 		}
 		
 	}
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
