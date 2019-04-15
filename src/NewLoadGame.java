@@ -26,10 +26,12 @@ public class NewLoadGame extends Frame implements WindowListener{
 		this.choice = false;
 		this.setLayout(new GridLayout(3, 2));
 		this.addWindowListener(this);
-		this.IGN = null;
+		this.IGN = "";
 		
 		
 		JButton jb;
+		
+		//file loader
 		
 		File file = new File("miniatures/Save");
         File[] files = file.listFiles();
@@ -37,8 +39,6 @@ public class NewLoadGame extends Frame implements WindowListener{
         
         for(File f : files) {
         	String[] split = f.getName().split("_");
-        	System.out.println(f.getName());
-        	System.out.println(split[0]);
         	IDtoIGN.put(split[0], split[1].replaceAll(".txt", ""));
         }
 		
@@ -50,10 +50,11 @@ public class NewLoadGame extends Frame implements WindowListener{
 				else {
 					if(IDtoIGN.containsKey("itemID0"+i)) {
 						jb = new JButton(IDtoIGN.get("itemID0"+i));
+						jb.setName("itemID0"+i+"_"+IDtoIGN.get("itemID0"+i));
 					}
 					else {
 						jb = new JButton(Load[i-1]);
-						jb.setName("itemID0"+i+IDtoIGN.containsKey("itemID0"+i));
+						jb.setName("itemID0"+i+"_");
 					}
 					
 				}
@@ -70,18 +71,34 @@ public class NewLoadGame extends Frame implements WindowListener{
 						if(button.startsWith("N")) {
 							New = true;
 							IGN = JOptionPane.showInputDialog(null,
-                                    "Entrez le nom de votre partie : ",
-                                    "NOM DE LA PARTIE",
-                                    JOptionPane.QUESTION_MESSAGE);
+									"Entrez le nom de votre partie : ",
+	                                "NOM DE LA PARTIE",
+	                                JOptionPane.QUESTION_MESSAGE);
+							try{
+								IGN = IGN.replace('_', ' ');	// interdir l'utilisation de _
+							}catch(Exception e1){
+								IGN = "";	//utilisation du boutton annuler
+							}
 							fileName =  "Save/itemID0"+button.charAt(button.length()-1)+"_"+IGN;
 							}
+						else if(button.endsWith("_")) {
+							New = true;
+							IGN = JOptionPane.showInputDialog(null,
+									"Entrez le nom de votre partie : ",
+	                                "NOM DE LA PARTIE",
+	                                JOptionPane.QUESTION_MESSAGE);
+							try{
+								IGN = IGN.replace('_', ' ');	// interdir l'utilisation de _
+							}catch(Exception e1){
+								IGN = "";	//utilisation du boutton annuler
+							}
+							fileName =  "Save/"+button+IGN;
+						}
 						else {
 							New = false;
-							IGN = ""; //temporaire
-							fileName =  "Save/itemID0"+button;
+							IGN = " "; // L'IGN existe deja donc on autorise l'acces au document
+							fileName =  "Save/"+button;
 						}
-						//fileName =  "Save/itemID0"+button.charAt(button.length()-1)+"_"+IGN;
-
 						choice = true;
 					}
 					

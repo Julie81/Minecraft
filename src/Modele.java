@@ -47,6 +47,7 @@ public class Modele extends Observable{
 		//future modification facile a implementer
 		
 		if(New) {
+			eraseData();
 			newGame();
 		}
 
@@ -72,6 +73,20 @@ public class Modele extends Observable{
 		
 	}
 	*/
+	
+	public void eraseData() throws IOException {
+		File file = new File("miniatures/Save");
+        File[] files = file.listFiles();
+        
+        String ID = gamePath.split("_")[0];
+        
+        for(File f : files) {
+        	if(f.getPath().contains(ID)){
+        		f.delete();	//suppression des fichier utilisant le meme espace de sauvegarde
+        	}
+
+        }
+	}
 	
 	public void newGame() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("miniatures/item.txt"));

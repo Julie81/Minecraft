@@ -48,7 +48,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		super();
 		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		NewLoadGame nlg = new NewLoadGame();
-		while(!nlg.choice || nlg.IGN==null || nlg.IGN.split("_").length>2) {
+		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
@@ -56,6 +56,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 				e.printStackTrace();
 			}
 		}
+		
 		nlg.dispose();
 		this.modl = new Modele(nlg.fileName,nlg.New);
 		this.atm = new Atelier_Modele(modl.craftList);
