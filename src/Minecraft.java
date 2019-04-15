@@ -48,7 +48,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		super();
 		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		NewLoadGame nlg = new NewLoadGame();
-		while(!nlg.choice) {
+		while(!nlg.choice || nlg.IGN==null || nlg.IGN.split("_").length>2) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {

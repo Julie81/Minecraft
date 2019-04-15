@@ -41,8 +41,7 @@ public class Modele extends Observable{
 	
 	public Modele(String fileName,Boolean New) throws IOException {
 		
-		this.gamePath = "miniatures/itemID"+fileName+".txt";
-		System.out.println(this.gamePath);
+		this.gamePath = "miniatures/"+fileName+".txt";
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer
@@ -186,18 +185,16 @@ public void initItemLock() throws IOException {
 		    		for(int j=0;j<3;j++) {
 		    			if(itemsNameList[i][j].equals("null")) {
 		    				items[i][j] = null;
-		    				craftID+= "99";
 		    			}
 		    			else {
-			    			String ID = itemNametoItem.get(itemsNameList[i][j]).ID;
 				    		items[i][j] = itemNametoItem.get(itemsNameList[i][j]);
-				    		craftID += ID;
 		    			}
 
 		    		}
 		    	}
 		    	craft = new Craft(itemList.get(itemID), items);
 		    	craft.UpperLeft();
+		    	craftID = craft.getCraftUID();
 		    	itemList.get(itemID).setCraft(craft);
 		    	craftList.put(craftID, craft);
 		        line = reader.readLine();
