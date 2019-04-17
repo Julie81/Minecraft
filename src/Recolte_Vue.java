@@ -79,6 +79,7 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		b.putClientProperty("id", obj.name);
 		b.addActionListener(this.ctrl);
 		b.addMouseListener(this);
+		b.setEnabled(obj.unlock());
 		return b;
 	}
 	

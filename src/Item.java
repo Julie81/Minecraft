@@ -76,4 +76,12 @@ public class Item {
 			this.variation = Color.cyan;
 		}
 	}
+	
+	public boolean unlock() {
+		boolean lock = false;
+		for(int i=0;i<this.lock.size();i++) {
+			lock |= (this.lock.get(i).quantity==0);
+		}
+		return !lock;
+	}
 }
