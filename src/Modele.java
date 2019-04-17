@@ -233,14 +233,16 @@ public class Modele extends Observable{
 	}
 	
 	public void addItemResource(Item i, int q) {
-		this.itemList.get(i.ID).add_Resources(q);
+		//this.itemList.get(i.ID).add_Resources(q);
+		i.add_Resources(q);
 		this.setChanged();
 		this.notifyObservers(i);
 		
 	}
 
 	public void delItemResource(Item i, int q) {
-		this.itemList.get(i.ID).del_Resources(q);
+		//this.itemList.get(i.ID).del_Resources(q);
+		i.del_Resources(q);
 		this.setChanged();
 		this.notifyObservers(i);
 		

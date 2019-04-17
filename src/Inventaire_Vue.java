@@ -35,6 +35,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		int longr = 100;
 		
 		this.inventaire = new JitmButton [ligne][colonne];
+		this.setBackground(new Color(63,34,4));
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -43,41 +44,55 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		gbc.gridheight = ligne;
 		gbc.gridwidth = colonne;
 		
-		for (int i=0; i<ligne; i++){
-			gbc.gridy = i*longr;
-			
-			for (int j=0; j<colonne;j++){
-
-				gbc.gridx = j*larg;
-				String key = ""+(i*colonne+j);
-				if ((i*colonne+j)<10){
-					key="0"+key;
-				}
-				JitmButton b = new JitmButton(m.itemList.get(key));  // on creer un Bouton d'item d'ID key
-				inventaire[i][j] = b;
+		
+		int y = 0;
+		int x = 0;
+		for(Integer key : m.itemGen.keySet()) {
+			for(Item item : m.itemGen.get(key)) {
+				
+				item.x = x;
+				item.y = y;
+				
+				gbc.gridy = y*longr;
+				gbc.gridx = x*larg;
+				
+				JitmButton b = new JitmButton(item);  // on creer un Bouton d'item d'ID key
+				inventaire[y][x] = b;
 				b.setPreferredSize(new Dimension(longr,larg));
 
-				ImageIcon icon = new ImageIcon(m.itemList.get(key).path);
+				ImageIcon icon = new ImageIcon(item.path);
 				Image img = icon.getImage() ;
 				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 				icon = new ImageIcon(newimg);
 				b.setIcon(icon);
 
 				//Definition de la quantite
-				b.setText(""+m.itemList.get(key).quantity);
+				b.setText(""+item.quantity);
 				b.setIconTextGap(5);
 				
 				b.setFont(new Font("Arial",Font.BOLD,10));
 				
-				b.setActionCommand(key);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
+				String position = ""+(y*colonne+x);
+				if ((y*colonne+x)<10){
+					position="0"+position;
+				}  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
+				
+				b.setActionCommand(position);
 				b.addActionListener(this);
 				b.addActionListener(ctrla);
 				b.addActionListener(c);
 				b.addMouseListener(this);
 				b.setBackground(new Color(76,166,107));
 				this.add(b,gbc);
+				
+				x++;
+				if(x==colonne) {
+					x = 0;
+					y++;
+				}
+				
 			}
-			this.setBackground(new Color(63,34,4));
+			
 		}
 	}
 
@@ -98,13 +113,13 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	@Override
 	public void update(Observable o, Object arg) { // update lors de changement de quantite
 		if (arg instanceof Item ) { 
-			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setBackground(((Item) arg).variation);
-			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+			this.inventaire[((Item) arg).y][((Item) arg).x].setBackground(((Item) arg).variation);
+			this.inventaire[((Item) arg).y][((Item) arg).x].setText(""+((Item) arg).quantity);
 		}
 		if (arg instanceof ArrayList) {
 			for(int i=0;i<((ArrayList<Item>) arg).size();i++) {
-				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setBackground(((Item) arg).variation);
-				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+				this.inventaire[((Item) arg).y][((Item) arg).x].setBackground(((Item) arg).variation);
+				this.inventaire[((Item) arg).y][((Item) arg).x].setText(""+((Item) arg).quantity);
 			}
 		}
 	}
