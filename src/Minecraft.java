@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class Minecraft extends Frame implements WindowListener,Observer{
+public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	Modele modl;
 	Atelier_Modele atm;
@@ -40,6 +40,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 
 	public Minecraft() throws IOException {
 		super();
+		this.setBackgroundImage(this, new File("miniatures/fond_arbre.jpg"));
 		NewLoadGame nlg = new NewLoadGame();
 		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
 			try {
@@ -103,6 +104,16 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
+	
+	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
+		JPanel panel = new JPanel() { 
+			private static final long serialVersionUID = 1;
+			private BufferedImage buf = ImageIO.read(img);
+			@Override protected void paintComponent(Graphics g)
+			{ super.paintComponent(g); g.drawImage(buf, 0,0, this.getWidth(),this.getHeight(), null); }
+		};
+		frame.setContentPane(panel); 
+		return panel; }
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {

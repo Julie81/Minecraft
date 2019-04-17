@@ -41,6 +41,7 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		
+		this.setBackground(new Color(139,108,66));
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -69,6 +70,7 @@ public class Recolte_Vue extends Panel implements MouseListener{
 			Image newimg = img.getScaledInstance( dim_icon, dim_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
 			b.setIcon(icon);
+			b.setBackground(new Color(239,239,239));
 			
 			this.add(b,gbc);
 			
@@ -82,6 +84,7 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		
 		Button sauvegarde= new Button("sauvegarder");
 		sauvegarde.setPreferredSize(new Dimension(larg*2,30));
+		sauvegarde.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+3)*larg;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
@@ -90,6 +93,7 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		
 		Button partie= new Button("choisir partie");
 		partie.setPreferredSize(new Dimension(larg*2,30));
+		partie.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+4)*larg;
 		gbc.fill= GridBagConstraints.HORIZONTAL;

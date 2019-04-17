@@ -29,6 +29,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 	public Atelier_Vue(Controleur_Atelier ctrla, Modele m) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setBackground(new Color(139,108,66));
 		this.ctrla = ctrla;
 		this.Mat = new JButton[3][3];
 		
@@ -49,6 +50,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 				b.setPreferredSize(new Dimension(larg,larg));
 				b.addActionListener(ctrla);
 				b.addMouseListener(this);
+				b.setBackground(new Color(200,173,127));
 				this.add(b,gbc);
 			}
 		}
@@ -75,6 +77,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);
 		plus.setPreferredSize(new Dimension(30,30));
+		plus.setBackground(new Color(219,219,219));
 		plus.setBackground(Color.lightGray);
 		this.add(plus,gbc);
 		
@@ -82,6 +85,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.gridy=2*larg;
 		gbc.ipadx=20;
 		Button moins = new Button("-");
+		moins.setBackground(new Color(219,219,219));
 		moins.setActionCommand("-");
 		moins.addActionListener(ctrla);
 		moins.setPreferredSize(new Dimension(30,30));
@@ -93,6 +97,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		Button craft = new Button("craft");
 		craft.setActionCommand("C");
 		craft.addActionListener(ctrla);
+		craft.setBackground(new Color(219,219,219));
 		craft.setPreferredSize(new Dimension(50,30));
 		craft.setBackground(Color.lightGray);
 		this.add(craft,gbc);
