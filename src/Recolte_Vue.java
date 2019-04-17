@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -63,7 +64,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 				j=1;  // on passe a la colonne suivante
 				gbc.gridx = larg;
 			}
-			gbc.gridy=(i-j*moitie+1)*larg;
+			gbc.gridy=(i-j*moitie+2)*larg;
 			JitmButton b = Init_Icon_Recolte(m.itemNametoItem.get(rn_names[i]));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton
@@ -72,17 +73,46 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			Image newimg = img.getScaledInstance( dim_icon, dim_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
 			b.setIcon(icon);
-			b.setBackground(new Color(239,239,239));
+			b.setBackground(new Color(86,130,3));
 			ress.add(b);
 			this.add(b,gbc);
 			
 		}
+		
+		Box box_titre = Box.createVerticalBox();
+		Label titre1=new Label("Récoltez vos");
+		Label titre2=new Label("ressources");
+		Label titre3=new Label("");
+		titre1.setFont(new Font("Arial",Font.BOLD,16));
+		titre1.setForeground(Color.black);
+		box_titre.add(titre1);
+		titre2.setFont(new Font("Arial",Font.BOLD,16));
+		titre2.setForeground(Color.black);
+		box_titre.add(titre2);
+		box_titre.setPreferredSize(new Dimension (larg*2,larg));
+		gbc.gridx=0;
+		gbc.gridy=0;
+		gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=2*larg;
+		this.add(box_titre,gbc);
+		
 		Label blanc=new Label("");
 		blanc.setPreferredSize(new Dimension (larg,larg));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+2)*larg;
 		this.add(blanc,gbc);
 		
+		Label blanc2=new Label("");
+		blanc2.setPreferredSize(new Dimension (larg,10));
+		gbc.gridx=0;
+		gbc.gridy=(i-j*moitie+3)*larg+30;
+		this.add(blanc2,gbc);
+		
+		Label blanc3=new Label("");
+		blanc3.setPreferredSize(new Dimension (larg,20));
+		gbc.gridx=0;
+		gbc.gridy=larg;
+		this.add(blanc2,gbc);
 		
 		Button sauvegarde= new Button("sauvegarder");
 		sauvegarde.setPreferredSize(new Dimension(larg*2,30));
@@ -97,7 +127,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		partie.setPreferredSize(new Dimension(larg*2,30));
 		partie.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+4)*larg;
+		gbc.gridy=(i-j*moitie+3)*larg+40;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(partie,gbc);

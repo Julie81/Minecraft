@@ -1,6 +1,7 @@
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -56,10 +57,13 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		}
 		gbc.gridx = 4*larg;
 		gbc.gridy=larg-20;
-		//gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=larg;
 		gbc.gridheight=larg+20;
 		Label quant = new Label ("quantite : ");
+		quant.setFont(new Font("Arial",Font.BOLD,16));
+		quant.setForeground(Color.black);
+		
 		this.add(quant,gbc);
 		
 		
@@ -68,38 +72,43 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.ipadx=10;
 		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
+		this.affQ.setFont(new Font("Arial",Font.BOLD,16));
+		this.affQ.setForeground(Color.black);
 		this.add(affQ,gbc);
 		
 		gbc.gridx = 4*larg;;
 		gbc.gridy=2*larg;
 		gbc.ipadx=20;
 		Button plus= new Button("+");
+		plus.setFont(new Font("Arial",Font.BOLD,14));
+		plus.setForeground(Color.black);
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);
 		plus.setPreferredSize(new Dimension(30,30));
 		plus.setBackground(new Color(219,219,219));
-		plus.setBackground(Color.lightGray);
 		this.add(plus,gbc);
 		
 		gbc.gridx = 4*larg+20;;
 		gbc.gridy=2*larg;
 		gbc.ipadx=20;
 		Button moins = new Button("-");
+		moins.setFont(new Font("Arial",Font.BOLD,14));
+		moins.setForeground(Color.black);
 		moins.setBackground(new Color(219,219,219));
 		moins.setActionCommand("-");
 		moins.addActionListener(ctrla);
 		moins.setPreferredSize(new Dimension(30,30));
-		moins.setBackground(Color.lightGray);
 		this.add(moins,gbc);
 		
 		gbc.gridx = 5*larg;;
 		gbc.gridy=larg;
 		Button craft = new Button("craft");
+		craft.setFont(new Font("Arial",Font.BOLD,14));
+		craft.setForeground(Color.black);
 		craft.setActionCommand("C");
 		craft.addActionListener(ctrla);
 		craft.setBackground(new Color(219,219,219));
 		craft.setPreferredSize(new Dimension(50,30));
-		craft.setBackground(Color.lightGray);
 		this.add(craft,gbc);
 	}
 

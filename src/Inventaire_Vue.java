@@ -74,7 +74,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				b.addActionListener(ctrla);
 				b.addActionListener(c);
 				b.addMouseListener(this);
-				b.setBackground(new Color(239,239,239));
+				b.setBackground(new Color(76,166,107));
 				this.add(b,gbc);
 			}
 			this.setBackground(new Color(63,34,4));
@@ -86,7 +86,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	public void actionPerformed(ActionEvent arg0) {  // mise en valeur de l'item actuellement selectionne
 		String n = arg0.getActionCommand();
 		if (tampon != null){
-			tampon.setBackground(new Color(239,239,239));
+			tampon.setBackground(new Color(76,166,107));
 			tampon.repaint();
 		}
 		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'];
@@ -130,7 +130,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
 			if (t != this.tampon) {
-				t.setBackground(new Color(239,239,239));
+				t.setBackground(new Color(76,166,107));
 			}			
 		}
 	}
