@@ -9,7 +9,6 @@ fleche;null,pierre,null:null,baton,null:null,plume,null
 fromage;lait,lait,null:lait,lait,null:null,null,null
 hache en diamant;diamant,diamant,null:diamant,baton,null:null,baton,null
 hache en fer;fer,fer,null:fer,baton,null:null,baton,null
-houe en fer;fer,fer,null:null,baton,null:null,baton,null
 ordinateur;null,null,null:null,pomme en or,null:orange,ficelle,souris
 pelle en bois;bois,null,null:baton,null,null:baton,null,null
 piege a souris;null,null,null:null,fer,fer:bois,bois,bois

@@ -16,7 +16,6 @@ fleche.png
 fromage.png
 hache_en_diamant.png
 hache_en_fer.png
-houe_en_fer.png
 lait.png
 lianes.png
 noix_de_coco.png

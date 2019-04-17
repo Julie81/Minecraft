@@ -53,8 +53,12 @@ public class Item {
 		if(generation >= 0) {
 			return generation;
 		}
-		if(this.craft == null) {
+		
+		if(this.craft == null) { //l'item est une ressource naturelle et a donc peut etre un lock
 			generation = 0;
+			for(int i=0;i< this.lock.size();i++) {
+				generation = Math.max(generation,lock.get(i).generation()+1);
+			}
 			return generation;
 		}
 		else {
