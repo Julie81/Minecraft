@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 
 public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseListener{
-	int larg=50;
+	int larg=80;
 	int quantite=1;
 	Controleur_Atelier ctrla;
 	Label affQ;
@@ -52,16 +52,25 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 				this.add(b,gbc);
 			}
 		}
+		gbc.gridx = 4*larg;
+		gbc.gridy=larg-20;
+		//gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=larg;
+		gbc.gridheight=larg+20;
+		Label quant = new Label ("quantite : ");
+		this.add(quant,gbc);
+		
 		
 		gbc.gridx = 4*larg+20;
 		gbc.gridy=larg;
 		gbc.ipadx=10;
+		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
 		this.add(affQ,gbc);
 		
 		gbc.gridx = 4*larg;;
 		gbc.gridy=2*larg;
-		gbc.ipadx=10;
+		gbc.ipadx=20;
 		Button plus= new Button("+");
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);
@@ -71,6 +80,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		
 		gbc.gridx = 4*larg+20;;
 		gbc.gridy=2*larg;
+		gbc.ipadx=20;
 		Button moins = new Button("-");
 		moins.setActionCommand("-");
 		moins.addActionListener(ctrla);

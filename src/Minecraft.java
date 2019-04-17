@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Label;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
@@ -34,6 +35,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
+		//new EasterEgg();
 	}
 
 	public Minecraft() throws IOException {
@@ -61,7 +63,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=2;
+		gbc.gridwidth=3;
 		gbc.ipady=20;
 		gbc.ipadx=20;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,ctrlA,modl);
@@ -70,7 +72,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		this.add(inv, gbc);
 		
 		
-		gbc.gridx=2;
+		gbc.gridx=3;
 		gbc.gridy=0;
 		gbc.fill=GridBagConstraints.VERTICAL;
 		gbc.gridheight=2;
@@ -83,9 +85,16 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
+		gbc.ipadx=30;
 		Atelier_Vue Av = new Atelier_Vue(ctrlA,modl);
 		atm.addObserver(Av);
 		this.add(Av,gbc);
+		
+		gbc.gridx=2;
+		gbc.gridy=0;
+		gbc.ipady=50;
+		Message_Memoire_Vue mmem = new Message_Memoire_Vue();
+		this.add(mmem,gbc);
 		
 
 		this.addWindowListener(this);

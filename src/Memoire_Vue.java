@@ -13,12 +13,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class Memoire_Vue extends Panel implements MouseListener{
-	int larg=60;
+	int larg=80;
 	String n = null;
 	//Item it = new Item(n);
 	
 	public Memoire_Vue (String name) {
 		super();
+		this.setPreferredSize(new Dimension(larg*3,larg*3));
 	}
 	public Insets getInsets() {
 		Insets normal = super.getInsets();
