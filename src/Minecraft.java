@@ -39,13 +39,14 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 	public Minecraft() throws IOException {
 		super();
 		NewLoadGame nlg = new NewLoadGame();
-		while(!nlg.choice) {
+		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		
 		nlg.dispose();
 		this.modl = new Modele(nlg.fileName,nlg.New);
 		this.atm = new Atelier_Modele(modl.craftList,modl);

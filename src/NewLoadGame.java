@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -16,7 +18,7 @@ public class NewLoadGame extends Frame implements WindowListener{
 	Boolean New;
 	Boolean choice;
 	String [] Load= {"Load Game 01", "Load Game 02", "Load Game 03"};
-	String pseudo_souhaite;
+	String IGN;
 
 	public NewLoadGame() {
 		// TODO Auto-generated constructor stub
@@ -24,9 +26,21 @@ public class NewLoadGame extends Frame implements WindowListener{
 		this.choice = false;
 		this.setLayout(new GridLayout(3, 2));
 		this.addWindowListener(this);
+		this.IGN = "";
 		
 		
 		JButton jb;
+		
+		//file loader
+		
+		File file = new File("miniatures/Save");
+        File[] files = file.listFiles();
+        HashMap<String,String> IDtoIGN = new HashMap<String,String>();
+        
+        for(File f : files) {
+        	String[] split = f.getName().split("_");
+        	IDtoIGN.put(split[0], split[1].replaceAll(".txt", ""));
+        }
 		
 		for (int i=1; i<4; i++){
 			for (int j=0; j<2;j++){
@@ -34,7 +48,15 @@ public class NewLoadGame extends Frame implements WindowListener{
 					jb = new JButton("New Game 0"+i);
 				}
 				else {
-					jb = new JButton(Load[i-1]);
+					if(IDtoIGN.containsKey("itemID0"+i)) {
+						jb = new JButton(IDtoIGN.get("itemID0"+i));
+						jb.setName("itemID0"+i+"_"+IDtoIGN.get("itemID0"+i));
+					}
+					else {
+						jb = new JButton(Load[i-1]);
+						jb.setName("itemID0"+i+"_");
+					}
+					
 				}
 				
 				jb.setPreferredSize(new Dimension(300,100));
@@ -48,17 +70,35 @@ public class NewLoadGame extends Frame implements WindowListener{
 						String button = e.getActionCommand();
 						if(button.startsWith("N")) {
 							New = true;
-							pseudo_souhaite = JOptionPane.showInputDialog(null,
-                                    "Entrez le nom de votre partie : ",
-                                    "NOM DE LA PARTIE",
-                                    JOptionPane.QUESTION_MESSAGE);
-							System.out.println(pseudo_souhaite);
+							IGN = JOptionPane.showInputDialog(null,
+									"Entrez le nom de votre partie : ",
+	                                "NOM DE LA PARTIE",
+	                                JOptionPane.QUESTION_MESSAGE);
+							try{
+								IGN = IGN.replace('_', ' ');	// interdir l'utilisation de _
+							}catch(Exception e1){
+								IGN = "";	//utilisation du boutton annuler
+							}
+							fileName =  "Save/itemID0"+button.charAt(button.length()-1)+"_"+IGN;
+							}
+						else if(button.endsWith("_")) {
+							New = true;
+							IGN = JOptionPane.showInputDialog(null,
+									"Entrez le nom de votre partie : ",
+	                                "NOM DE LA PARTIE",
+	                                JOptionPane.QUESTION_MESSAGE);
+							try{
+								IGN = IGN.replace('_', ' ');	// interdir l'utilisation de _
+							}catch(Exception e1){
+								IGN = "";	//utilisation du boutton annuler
+							}
+							fileName =  "Save/"+button+IGN;
 						}
 						else {
 							New = false;
+							IGN = " "; // L'IGN existe deja donc on autorise l'acces au document
+							fileName =  "Save/"+button;
 						}
-						fileName =  button;
-
 						choice = true;
 					}
 					

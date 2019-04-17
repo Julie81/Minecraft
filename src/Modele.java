@@ -41,12 +41,13 @@ public class Modele extends Observable{
 
 	public Modele(String fileName,Boolean New) throws IOException {
 		
-		this.gamePath = "miniatures/itemID"+fileName+".txt";
+		this.gamePath = "miniatures/"+fileName+".txt";
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer
 		
 		if(New) {
+			eraseData();
 			newGame();
 		}
 
@@ -61,6 +62,20 @@ public class Modele extends Observable{
 		initCraftMap();
 		
 		//this.affichBDDcraft();	//permet une visualisation de la BDD des crafts	
+	}
+	
+	public void eraseData() throws IOException {
+		File file = new File("miniatures/Save");
+        File[] files = file.listFiles();
+        
+        String ID = gamePath.split("_")[0];
+        
+        for(File f : files) {
+        	if(f.getPath().contains(ID)){
+        		f.delete();	//suppression des fichier utilisant le meme espace de sauvegarde
+        	}
+
+        }
 	}
 	
 	public void newGame() throws IOException {
@@ -175,18 +190,16 @@ public class Modele extends Observable{
 		    		for(int j=0;j<3;j++) {
 		    			if(itemsNameList[i][j].equals("null")) {
 		    				items[i][j] = null;
-		    				craftID+= "99";
 		    			}
 		    			else {
-			    			String ID = itemNametoItem.get(itemsNameList[i][j]).ID;
 				    		items[i][j] = itemNametoItem.get(itemsNameList[i][j]);
-				    		craftID += ID;
 		    			}
 
 		    		}
 		    	}
 		    	craft = new Craft(itemList.get(itemID), items);
 		    	craft.UpperLeft();
+		    	craftID = craft.getCraftUID();
 		    	itemList.get(itemID).setCraft(craft);
 		    	craftID = craft.getCraftUID();
 		    	craftList.put(craftID, craft);

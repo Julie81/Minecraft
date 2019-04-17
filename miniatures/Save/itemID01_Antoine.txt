@@ -6,14 +6,14 @@
 24;or.png;0
 03;ble.png;0
 25;pelle_en_bois.png;0
-04;bois.png;0
+04;bois.png;1
 26;piege_a_souris.png;0
 05;canard_orange_miel.png;0
 27;pierre.png;0
 06;canne_a_sucre.png;0
 28;pioche_en_diamant.png;0
 07;casque_en_fer.png;0
-29;pioche_en_fer.png;0
+29;pioche_en_fer.png;1
 08;charbon.png;0
 09;diamant.png;0
 30;pioche_en_pierre.png;0
@@ -22,7 +22,7 @@
 32;pomme_en_or.png;0
 11;echelle.png;0
 33;pomme.png;0
-12;fer.png;0
+12;fer.png;2
 34;rails.png;0
 13;ficelle.png;0
 35;sceau.png;0
