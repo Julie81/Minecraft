@@ -1,3 +1,4 @@
+import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -14,6 +15,7 @@ import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,7 +33,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	Modele modl;
 	Atelier_Modele atm;
-	AudioClip adc;
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
@@ -79,6 +80,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridheight=2;
 		gbc.ipadx=20;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
+		atm.addObserver(rec);
 		this.add(rec,gbc);
 		
 		gbc.gridwidth=1;
