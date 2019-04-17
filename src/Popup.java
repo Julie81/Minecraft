@@ -1,3 +1,5 @@
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -5,6 +7,7 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URL;
 
 import javax.swing.JLabel;
 
@@ -13,6 +16,16 @@ public class Popup{
 	
 	public Popup(int x,int y, Dimension d) {
 		pop = new Frame();
+		
+		try {
+			// Pb de son a resoudre
+			URL url = Minecraft.class.getResource("miniatures/err.wav");
+			AudioClip ac = Applet.newAudioClip(url); 
+			ac.play();
+		}
+		catch(Exception e){
+			
+		}
 		pop.setPreferredSize(new Dimension(d));
 		this.pop.setBackground(new Color(0, 10, 145));
 		pop.setLocation(x, y);

@@ -33,13 +33,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Recolte_Vue extends Panel implements MouseListener{
+public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	int larg = 50; // dimension du carre bouton
 	Controleur_Rec ctrl;
+	ArrayList<JitmButton> ress;
 	
 	public Recolte_Vue(Controleur_Rec c, Modele m) {
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
+		ress = new ArrayList<>();
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -69,7 +71,7 @@ public class Recolte_Vue extends Panel implements MouseListener{
 			Image newimg = img.getScaledInstance( dim_icon, dim_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
 			b.setIcon(icon);
-			
+			ress.add(b);
 			this.add(b,gbc);
 			
 		}
@@ -109,6 +111,12 @@ public class Recolte_Vue extends Panel implements MouseListener{
 		return b;
 	}
 	
+	private void verif_lock() {
+		for( JitmButton b : this.ress) {
+			b.setEnabled(b.it.unlock());
+		}
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -138,6 +146,14 @@ public class Recolte_Vue extends Panel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (arg=="reset") {
+			this.verif_lock();
+		}
 		
 	}
 
