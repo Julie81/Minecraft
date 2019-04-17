@@ -16,10 +16,10 @@ public class Controleur_Atelier implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() instanceof JButton) {
 			if (arg0.getActionCommand().startsWith("f", 0)) { // si on clique sur une case de la matrice de craft
-					this.atm.remplissage(arg0.getActionCommand().charAt(1)-'0',arg0.getActionCommand().charAt(2)-'0'); 
+				this.atm.remplissage(arg0.getActionCommand().charAt(1)-'0',arg0.getActionCommand().charAt(2)-'0'); 
 			}
 			else { // on selectionne un item de l'inventaire
-					this.atm.selection(((JitmButton) arg0.getSource()).it); // on le sauvegarde en memoire
+				this.atm.selection(((JitmButton) arg0.getSource()).it); // on le sauvegarde en memoire
 			}
 		}
 		else {

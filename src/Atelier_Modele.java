@@ -30,7 +30,6 @@ public class Atelier_Modele extends Observable{
 	
 	public Item ExistingCraft(Craft userTry) {
 		String UID = userTry.getCraftUID();
-		System.out.println(UID);
 		if(EnsembleDesCrafts.containsKey(UID)){
 				return EnsembleDesCrafts.get(UID).item;
 		}
@@ -40,15 +39,15 @@ public class Atelier_Modele extends Observable{
 	public void Crafting(Item[][] items) {
 		
 		Craft craft = new Craft(null,items);
-		//craft.UpperLeft();
+		craft.UpperLeft();
 
 		Item item = ExistingCraft(craft);
 		this.itemManquant = new ArrayList<Item>();
 		
 		if(item == null) {
-			// est ce bien ici ?
-			ErrorMess f = new ErrorMess("Oups...");
+			new ErrorMess("Oups...");
 			this.itemManquant.add(null);
+			this.empty_atelier();
 		}
 		else {
 			HashMap<Item,Integer> quantityNeeded = craft.quantityNeeded();
@@ -66,6 +65,10 @@ public class Atelier_Modele extends Observable{
 					this.m.delItemResource(this.m.itemList.get(key.ID),q);
 					}
 				this.m.addItemResource(item,this.quantiti);
+				this.empty_atelier();
+			}
+			else {
+				new ErrorMess(itemManquant);
 			}
 		}
 	}
@@ -74,7 +77,7 @@ public class Atelier_Modele extends Observable{
 	public void empty_atelier() {
 		this.CraftTable = new Item[3][3];
 		this.setChanged();
-		this.notifyObservers(null);
+		this.notifyObservers("reset");
 	}
 	
 	public void selection(Item i) {
@@ -97,9 +100,16 @@ public class Atelier_Modele extends Observable{
 
 	public void remplissage(int x, int y) {
 		if (this.CurrItm != null) {
-			this.CraftTable[x][y] = this.CurrItm;
-			this.setChanged();
-			this.notifyObservers(""+x+""+y+""+this.CurrItm.path);
+			if (this.CraftTable[x][y] == this.CurrItm) {
+				this.CraftTable[x][y] = null;
+				this.setChanged();
+				this.notifyObservers(""+x+""+y+""+null);
+			}
+			else {
+				this.CraftTable[x][y] = this.CurrItm;
+				this.setChanged();
+				this.notifyObservers(""+x+""+y+""+this.CurrItm.path);
+			}
 		}
 	}
 	public void low_on_res(ArrayList<Item> lit) { // fonction de test pour afficher les ressources limitantes et leur quantite

@@ -19,6 +19,7 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Inventaire_Vue extends Panel implements ActionListener,Observer,MouseListener {
@@ -100,6 +101,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		}
 		if (arg instanceof ArrayList) {
 			for(int i=0;i<((ArrayList<Item>) arg).size();i++) {
+				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setBackground(((Item) arg).variation);
 				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
 			}
 		}
@@ -121,14 +123,13 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		}
 	}
 
-
 	@Override
 	public void mouseExited(MouseEvent e) {
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
 			if (t != this.tampon) {
-				t.setBackground(null);	
-			}
+				t.setBackground(new JButton().getBackground());
+			}			
 		}
 	}
 
@@ -145,6 +146,5 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		// TODO Auto-generated method stub
 		
 	}
-	
 
 }

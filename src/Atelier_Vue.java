@@ -15,15 +15,18 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Atelier_Vue extends Panel implements ActionListener,Observer{
+
+public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseListener{
 	int larg=50;
 	int quantite=1;
 	Controleur_Atelier ctrla;
 	Label affQ;
 	JButton[][] Mat;
 	
-	public Atelier_Vue(Controleur_Atelier ctrla, Modele m,Inventaire_Vue iv) {
+	public Atelier_Vue(Controleur_Atelier ctrla, Modele m) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.ctrla = ctrla;
@@ -44,19 +47,21 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer{
 				b.setActionCommand("f"+i+""+j);
 				this.Mat[i][j] = b;
 				b.setPreferredSize(new Dimension(larg,larg));
-				//b.addMouseListener(this);
 				b.addActionListener(ctrla);
+				b.addMouseListener(this);
 				this.add(b,gbc);
 			}
 		}
 		
 		gbc.gridx = 4*larg+20;
 		gbc.gridy=larg;
+		gbc.ipadx=10;
 		this.affQ = new Label(Integer.toString(quantite));
 		this.add(affQ,gbc);
 		
 		gbc.gridx = 4*larg;;
 		gbc.gridy=2*larg;
+		gbc.ipadx=10;
 		Button plus= new Button("+");
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);
@@ -82,56 +87,23 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer{
 		craft.setBackground(Color.lightGray);
 		this.add(craft,gbc);
 	}
-/*
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getButton()== MouseEvent.BUTTON3) {
-			 if (e.getSource() instanceof JButton) {
-				 JButton b = (JButton) e.getSource();
-				 System.out.println("on efface");
-				 b.setIcon(null);;
-			 }
-		}
-		
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-*/
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof Atelier_Modele) {
 			if(arg instanceof String){
-				ImageIcon icon = new ImageIcon(((String) arg).substring(2));
-				Image img = icon.getImage();
-				Image newimg = img.getScaledInstance( larg-10, larg-10,  java.awt.Image.SCALE_SMOOTH ) ;
-				icon = new ImageIcon(newimg);
-				this.Mat[((String) arg).charAt(0)-'0'][((String) arg).charAt(1)-'0'].setIcon(icon);
-				
+				if ((String) arg == "reset") {
+					this.newAt();
+				}
+				else {
+					ImageIcon icon = new ImageIcon(((String) arg).substring(2));
+					Image img = icon.getImage();
+					Image newimg = img.getScaledInstance( larg-10, larg-10,  java.awt.Image.SCALE_SMOOTH ) ;
+					icon = new ImageIcon(newimg);
+					this.Mat[((String) arg).charAt(0)-'0'][((String) arg).charAt(1)-'0'].setIcon(icon);
+				}
 			}
 			if(arg instanceof Integer) {
-				System.out.println("Vue atelier");
 				this.quantite = (int) arg;
 				this.affQ.setText(""+this.quantite);
 				}
@@ -139,8 +111,42 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer{
 		
 	}
 
+	private void newAt() {  // efface tout les materiaux de la table de craft de l'atelier
+		for(int i=0;i<this.Mat.length;i++) {
+			for(int j=0;j<this.Mat.length;j++) {
+				this.Mat[i][j].setIcon(null);
+			}
+		}
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}

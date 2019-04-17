@@ -8,7 +8,7 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 
 
-public class Item{
+public class Item {
 	int quantity;
 	String path;
 	String name;
@@ -66,12 +66,10 @@ public class Item{
 	public void del_Resources(int q) {
 		quantity = quantity - q;
 		if (quantity == 0) {
-			System.out.println("red");
 			this.variation = Color.red;
 		}
 		else{
 			this.variation = Color.cyan;
 		}
-		//System.out.println("il ne me reste que "+this.quantity+" "+this.name);
 	}
 }

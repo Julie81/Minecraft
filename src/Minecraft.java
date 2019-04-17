@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,43 +26,31 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class Minecraft extends JFrame implements WindowListener,Observer{
+public class Minecraft extends Frame implements WindowListener,Observer{
 	
 	Modele modl;
 	Atelier_Modele atm;
+	AudioClip adc;
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
 	}
-	
-	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
-		JPanel panel = new JPanel() { 
-			private static final long serialVersionUID = 1;
-			private BufferedImage buf = ImageIO.read(img);
-			@Override protected void paintComponent(Graphics g)
-			{ super.paintComponent(g); g.drawImage(buf, 0,0, null); }
-		};
-		frame.setContentPane(panel); 
-		return panel; }
-	
+
 	public Minecraft() throws IOException {
 		super();
-		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		NewLoadGame nlg = new NewLoadGame();
 		while(!nlg.choice) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		nlg.dispose();
-		this.modl = new Modele(nlg.fileNumber,nlg.New);
+		this.modl = new Modele(nlg.fileName,nlg.New);
 		this.atm = new Atelier_Modele(modl.craftList,modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
 		Controleur_Atelier ctrlA = new Controleur_Atelier(atm,modl);
-		//this.add(new JLabel(new ImageIcon("miniatures/fond_ecran.jpg")));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
@@ -72,51 +61,28 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2;
-		
+		gbc.ipady=20;
+		gbc.ipadx=20;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,ctrlA,modl);
 		modl.addObserver(inv);
 		atm.addObserver(inv);
 		this.add(inv, gbc);
 		
+		
 		gbc.gridx=2;
 		gbc.gridy=0;
 		gbc.fill=GridBagConstraints.VERTICAL;
 		gbc.gridheight=2;
+		gbc.ipadx=20;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
 		this.add(rec,gbc);
 		
-		gbc.gridy=0;
-		gbc.gridx=1;
 		gbc.gridwidth=1;
 		gbc.gridheight=1;
-		CardLayout cl = new CardLayout();
-		JPanel memoire= new JPanel();
-		String[] listContent = {"Messsage","Matrice"};
-		int indice = 0;
-		JPanel card1= new JPanel();
-		Font f = new Font("Serif", Font.PLAIN, 36); 
-		JLabel message = new JLabel("Choisissez un item ");
-		JLabel message2 = new JLabel("parmi les recettes");
-		JLabel message3 = new JLabel("pour connaitre son craft...");
-		message.setFont(f);
-		message2.setFont(f);
-		message3.setFont(f);
-		Box Mess = Box.createVerticalBox();
-		Mess.add(message);
-		Mess.add(message2);
-		Mess.add(message3);
-		card1.add(Mess);
-		JPanel card2 = new JPanel();
-		Memoire_Vue memvue = new Memoire_Vue(null);
-		modl.addObserver(memvue);
-		this.add(memoire,gbc);
-		memoire.setLayout(cl);
-		memoire.add(card1, listContent[0]);
-	    memoire.add(card2, listContent[1]);
 		
 		gbc.gridx=0;
 		gbc.gridy=0;
-		Atelier_Vue Av = new Atelier_Vue(ctrlA,modl,inv);
+		Atelier_Vue Av = new Atelier_Vue(ctrlA,modl);
 		atm.addObserver(Av);
 		this.add(Av,gbc);
 		
@@ -127,13 +93,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
-
-	protected void paintComponent(Graphics g) throws IOException { 
-		
-		super.paintComponents(g); 
-		BufferedImage backroundImage = ImageIO.read(this.getClass() .getResourceAsStream("machinarium.jpg"));
-		g.drawImage(backroundImage, 0,0, null); 
-		} 
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -152,7 +111,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		try {
 			modl.saveGame();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.exit(0);

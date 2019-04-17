@@ -38,10 +38,10 @@ public class Modele extends Observable{
 	HashMap<String,Item> itemNametoItem;
 	HashMap<String,Craft> craftList;
 	String gamePath;
-	
-	public Modele(char fileNumber,Boolean New) throws IOException {
+
+	public Modele(String fileName,Boolean New) throws IOException {
 		
-		this.gamePath = "miniatures/itemID0"+fileNumber+".txt";
+		this.gamePath = "miniatures/itemID"+fileName+".txt";
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer
@@ -126,7 +126,7 @@ public class Modele extends Observable{
 		}
 	}
 	
-public void initItemLock() throws IOException {
+	public void initItemLock() throws IOException {
 		
 		BufferedReader reader = new BufferedReader(new FileReader("miniatures/itemLock.txt"));
 		
@@ -186,8 +186,9 @@ public void initItemLock() throws IOException {
 		    		}
 		    	}
 		    	craft = new Craft(itemList.get(itemID), items);
-		    	//craft.UpperLeft();
+		    	craft.UpperLeft();
 		    	itemList.get(itemID).setCraft(craft);
+		    	craftID = craft.getCraftUID();
 		    	craftList.put(craftID, craft);
 		        line = reader.readLine();
 		    }
@@ -209,6 +210,7 @@ public void initItemLock() throws IOException {
 		this.notifyObservers(i);
 		
 	}
+	
 	public void saveGame() throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(gamePath));
 		

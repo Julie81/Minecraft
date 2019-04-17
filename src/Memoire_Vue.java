@@ -12,21 +12,13 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class Memoire_Vue extends Panel implements MouseListener,Observer{
-	int larg=80;
+public class Memoire_Vue extends Panel implements MouseListener{
+	int larg=60;
 	String n = null;
-	Item it = new Item(n);
+	//Item it = new Item(n);
 	
 	public Memoire_Vue (String name) {
 		super();
-		this.n = name;
-		Panel p = new Panel();
-		p.addMouseListener(this);
-		p.setBackground(Color.darkGray);
-		p.setPreferredSize(new Dimension(larg,larg));
-		p.getInsets();
-		this.add(p);
-		this.add(new Panel());
 	}
 	public Insets getInsets() {
 		Insets normal = super.getInsets();
@@ -68,11 +60,6 @@ public class Memoire_Vue extends Panel implements MouseListener,Observer{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		
 		
 	}
 	
