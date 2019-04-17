@@ -88,47 +88,10 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 					x = 0;
 					y++;
 				}
-				
+				b.setBackground(new Color(63,34,4));
 			}
-			
 			
 		}
-		/*
-		
-		for (int i=0; i<ligne; i++){
-			gbc.gridy = i*longr;
-			
-			for (int j=0; j<colonne;j++){
-
-				gbc.gridx = j*larg;
-				String key = ""+(i*colonne+j);
-				if ((i*colonne+j)<10){
-					key="0"+key;
-				}
-				JitmButton b = new JitmButton(m.itemList.get(key));  // on creer un Bouton d'item d'ID key
-				inventaire[i][j] = b;
-				b.setPreferredSize(new Dimension(longr,larg));
-
-				ImageIcon icon = new ImageIcon(m.itemList.get(key).path);
-				Image img = icon.getImage() ;
-				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
-				icon = new ImageIcon(newimg);
-				b.setIcon(icon);
-
-				//Definition de la quantite
-				b.setText(""+m.itemList.get(key).quantity);
-				b.setIconTextGap(5);
-				
-				b.setFont(new Font("Arial",Font.BOLD,10));
-				
-				b.setActionCommand(key);  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
-				b.addActionListener(this);
-				b.addActionListener(ctrla);
-				b.addActionListener(c);
-				b.addMouseListener(this);
-				this.add(b,gbc);
-			}
-		}//*/
 	}
 
 
@@ -136,7 +99,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	public void actionPerformed(ActionEvent arg0) {  // mise en valeur de l'item actuellement selectionne
 		String n = arg0.getActionCommand();
 		if (tampon != null){
-			tampon.setBackground(new JButton().getBackground());
+			tampon.setBackground(new Color(239,239,239));
 			tampon.repaint();
 		}
 		tampon = this.inventaire[n.charAt(0)-'0'][n.charAt(1)-'0'];
@@ -180,7 +143,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
 			if (t != this.tampon) {
-				t.setBackground(new JButton().getBackground());
+				t.setBackground(new Color(239,239,239));
 			}			
 		}
 	}

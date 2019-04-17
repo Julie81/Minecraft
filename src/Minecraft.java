@@ -1,3 +1,4 @@
+import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -14,6 +15,7 @@ import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,11 +29,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class Minecraft extends Frame implements WindowListener,Observer{
+public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	Modele modl;
 	Atelier_Modele atm;
-	AudioClip adc;
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
@@ -40,6 +41,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 
 	public Minecraft() throws IOException {
 		super();
+		this.setBackgroundImage(this, new File("miniatures/fond_arbre.jpg"));
 		NewLoadGame nlg = new NewLoadGame();
 		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
 			try {
@@ -78,6 +80,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		gbc.gridheight=2;
 		gbc.ipadx=20;
 		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
+		atm.addObserver(rec);
 		this.add(rec,gbc);
 		
 		gbc.gridwidth=1;
@@ -103,6 +106,16 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
+	
+	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
+		JPanel panel = new JPanel() { 
+			private static final long serialVersionUID = 1;
+			private BufferedImage buf = ImageIO.read(img);
+			@Override protected void paintComponent(Graphics g)
+			{ super.paintComponent(g); g.drawImage(buf, 0,0, this.getWidth(),this.getHeight(), null); }
+		};
+		frame.setContentPane(panel); 
+		return panel; }
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
