@@ -6,7 +6,7 @@
 24;or.png;0
 03;ble.png;0
 25;pelle_en_bois.png;0
-04;bois.png;2
+04;bois.png;0
 26;piege_a_souris.png;0
 05;canard_orange_miel.png;0
 27;pierre.png;0

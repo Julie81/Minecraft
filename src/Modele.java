@@ -30,6 +30,7 @@ import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 
 public class Modele extends Observable{
@@ -69,7 +70,6 @@ public class Modele extends Observable{
         File[] files = file.listFiles();
         
         String ID = gamePath.split("_")[0];
-        
         for(File f : files) {
         	if(f.getPath().contains(ID)){
         		f.delete();	//suppression des fichier utilisant le meme espace de sauvegarde

@@ -34,6 +34,7 @@ public class Minecraft extends Frame implements WindowListener,Observer{
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
+		//new EasterEgg();
 	}
 
 	public Minecraft() throws IOException {
