@@ -19,6 +19,7 @@ public class NewLoadGame extends Frame implements WindowListener{
 	Boolean choice;
 	String [] Load= {"Load Game 01", "Load Game 02", "Load Game 03"};
 	String IGN;
+	String OSseparator;
 
 	public NewLoadGame() {
 		// TODO Auto-generated constructor stub
@@ -33,8 +34,13 @@ public class NewLoadGame extends Frame implements WindowListener{
 		
 		//file loader
 		
-		File file = new File("miniatures/Save");
-        File[] files = file.listFiles();
+		File file = null;
+		this.OSseparator = file.separator;
+		
+		
+		file = new File("miniatures"+OSseparator+"Save");
+		
+		File[] files = file.listFiles();
         HashMap<String,String> IDtoIGN = new HashMap<String,String>();
         
         for(File f : files) {
@@ -79,7 +85,7 @@ public class NewLoadGame extends Frame implements WindowListener{
 							}catch(Exception e1){
 								IGN = "";	//utilisation du boutton annuler
 							}
-							fileName =  "Save/itemID0"+button.charAt(button.length()-1)+"_"+IGN;
+							fileName =  "Save"+OSseparator+"itemID0"+button.charAt(button.length()-1)+"_"+IGN;
 							}
 						else if(button.endsWith("_")) {
 							New = true;
@@ -92,12 +98,12 @@ public class NewLoadGame extends Frame implements WindowListener{
 							}catch(Exception e1){
 								IGN = "";	//utilisation du boutton annuler
 							}
-							fileName =  "Save/"+button+IGN;
+							fileName =  "Save"+OSseparator+button+IGN;
 						}
 						else {
 							New = false;
 							IGN = " "; // L'IGN existe deja donc on autorise l'acces au document
-							fileName =  "Save/"+button;
+							fileName =  "Save"+OSseparator+button;
 						}
 						choice = true;
 					}

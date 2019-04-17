@@ -39,10 +39,14 @@ public class Modele extends Observable{
 	HashMap<String,Craft> craftList;
 	HashMap<Integer,ArrayList<Item>> itemGen;
 	String gamePath;
+	String OSseparator;
 
 	public Modele(String fileName,Boolean New) throws IOException {
 		
-		this.gamePath = "miniatures/"+fileName+".txt";
+		File file = null;
+		this.OSseparator = file.separator;
+		
+		this.gamePath = "miniatures"+OSseparator+fileName+".txt";
 		//item.txt obtenu a partir de ls RC/ > item.txt
 		//Creation du fichier itemID.txt a partir du fichier item.txt
 		//future modification facile a implementer
@@ -70,7 +74,7 @@ public class Modele extends Observable{
 	}
 	
 	public void eraseData() throws IOException {
-		File file = new File("miniatures/Save");
+		File file = new File("miniatures"+OSseparator+"Save");
         File[] files = file.listFiles();
         
         String ID = gamePath.split("_")[0];
@@ -84,7 +88,7 @@ public class Modele extends Observable{
 	}
 	
 	public void newGame() throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader("miniatures/item.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("miniatures"+OSseparator+"item.txt"));
 		BufferedWriter writer = new BufferedWriter(new FileWriter(gamePath));
 		
 		try {
@@ -134,7 +138,7 @@ public class Modele extends Observable{
 		    	String itemPath = split[1];
 		    	String itemName = itemPath.replace("_"," ").replace(".png","");
 		    	
-		    	item = new Item("miniatures/RC/"+itemPath, itemName, ID);
+		    	item = new Item("miniatures"+OSseparator+"RC"+OSseparator+itemPath, itemName, ID);
 		    	item.quantity = Integer.parseInt(split[2]);
 		    	itemList.put(ID, item);
 		    	itemNametoItem.put(itemName, item);
@@ -148,7 +152,7 @@ public class Modele extends Observable{
 	
 	public void initItemLock() throws IOException {
 		
-		BufferedReader reader = new BufferedReader(new FileReader("miniatures/itemLock.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("miniatures"+OSseparator+"itemLock.txt"));
 		
 		try {
 			Item item;
@@ -172,7 +176,7 @@ public class Modele extends Observable{
 	public void initCraftMap() throws IOException {
 		this.craftList = new HashMap<String,Craft>();
 		
-		BufferedReader reader = new BufferedReader(new FileReader("miniatures/Craft.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("miniatures"+OSseparator+"Craft.txt"));
 		
 		try {
 		    String line = reader.readLine();
