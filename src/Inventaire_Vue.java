@@ -43,6 +43,58 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		gbc.gridheight = ligne;
 		gbc.gridwidth = colonne;
 		
+		
+		int y = 0;
+		int x = 0;
+		for(Integer key : m.itemGen.keySet()) {
+			for(Item item : m.itemGen.get(key)) {
+				
+				item.x = x;
+				item.y = y;
+				
+				gbc.gridy = y*longr;
+				gbc.gridx = x*larg;
+				
+				JitmButton b = new JitmButton(item);  // on creer un Bouton d'item d'ID key
+				inventaire[y][x] = b;
+				b.setPreferredSize(new Dimension(longr,larg));
+
+				ImageIcon icon = new ImageIcon(item.path);
+				Image img = icon.getImage() ;
+				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
+				icon = new ImageIcon(newimg);
+				b.setIcon(icon);
+
+				//Definition de la quantite
+				b.setText(""+item.quantity);
+				b.setIconTextGap(5);
+				
+				b.setFont(new Font("Arial",Font.BOLD,10));
+				
+				String position = ""+(y*colonne+x);
+				if ((y*colonne+x)<10){
+					position="0"+position;
+				}  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
+				
+				b.setActionCommand(position);
+				b.addActionListener(this);
+				b.addActionListener(ctrla);
+				b.addActionListener(c);
+				b.addMouseListener(this);
+				this.add(b,gbc);
+				
+				x++;
+				if(x==colonne) {
+					x = 0;
+					y++;
+				}
+				
+			}
+			
+			
+		}
+		/*
+		
 		for (int i=0; i<ligne; i++){
 			gbc.gridy = i*longr;
 			
@@ -76,7 +128,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				b.addMouseListener(this);
 				this.add(b,gbc);
 			}
-		}
+		}//*/
 	}
 
 
@@ -96,13 +148,13 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	@Override
 	public void update(Observable o, Object arg) { // update lors de changement de quantite
 		if (arg instanceof Item ) { 
-			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setBackground(((Item) arg).variation);
-			this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+			this.inventaire[((Item) arg).y][((Item) arg).x].setBackground(((Item) arg).variation);
+			this.inventaire[((Item) arg).y][((Item) arg).x].setText(""+((Item) arg).quantity);
 		}
 		if (arg instanceof ArrayList) {
 			for(int i=0;i<((ArrayList<Item>) arg).size();i++) {
-				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setBackground(((Item) arg).variation);
-				this.inventaire[((Item) arg).ID.charAt(0)-'0'][((Item) arg).ID.charAt(1)-'0'].setText(""+((Item) arg).quantity);
+				this.inventaire[((Item) arg).y][((Item) arg).x].setBackground(((Item) arg).variation);
+				this.inventaire[((Item) arg).y][((Item) arg).x].setText(""+((Item) arg).quantity);
 			}
 		}
 	}

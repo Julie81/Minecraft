@@ -15,6 +15,8 @@ public class Item {
 	int generation;
 	Color variation; // couleur modelisant la variation de la quantite
 	String ID; //"nombre" entre 00 et 98 , 99 etant le manque d'item
+	int x;
+	int y;
 	Craft craft;
 	ArrayList<Item> lock;
 	
