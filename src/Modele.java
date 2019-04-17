@@ -37,6 +37,7 @@ public class Modele extends Observable{
 	HashMap<String,Item> itemList;
 	HashMap<String,Item> itemNametoItem;
 	HashMap<String,Craft> craftList;
+	HashMap<Integer,ArrayList<Item>> itemGen;
 	String gamePath;
 
 	public Modele(String fileName,Boolean New) throws IOException {
@@ -60,6 +61,10 @@ public class Modele extends Observable{
 		
 		//initialisation de la BDD de craft
 		initCraftMap();
+		
+		//initialisation d'un tri des item celon leur generation
+		initItemGen();
+		
 		
 		//this.affichBDDcraft();	//permet une visualisation de la BDD des crafts	
 	}
@@ -207,6 +212,19 @@ public class Modele extends Observable{
 		    }
 		} finally {
 		    reader.close();
+		}
+	}
+	
+	public void initItemGen() {
+		
+		this.itemGen = new HashMap<Integer,ArrayList<Item>>();
+		
+		for(String key : itemList.keySet()) {
+			int generation = itemList.get(key).generation();
+			if(!(itemGen.containsKey(generation))) {
+				itemGen.put(generation, new ArrayList<Item>());
+			}
+			itemGen.get(generation).add(itemList.get(key));
 		}
 	}
 	
