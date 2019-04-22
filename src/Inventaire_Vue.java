@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class Inventaire_Vue extends Panel implements ActionListener,Observer,MouseListener {
 	public JitmButton tampon;
@@ -41,6 +44,23 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		Label titre = new Label (" Inventaire ");
+		titre.setFont(new Font("Arial",Font.BOLD,18));
+		titre.setForeground(Color.white);
+		this.add(titre,gbc);
+		
+		gbc.gridx = larg;
+		gbc.gridy = 0;
+		gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=larg*9;
+		gbc.gridheight=longr;
+		Label blanc = new Label (" ");
+		blanc.setBackground(new Color(76,166,107));
+		blanc.setPreferredSize(new Dimension(larg*8,30));
+		this.add(blanc,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		gbc.gridheight = ligne;
 		gbc.gridwidth = colonne;
 		
@@ -53,7 +73,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				item.x = x;
 				item.y = y;
 				
-				gbc.gridy = y*longr;
+				gbc.gridy = (y+1)*longr;
 				gbc.gridx = x*larg;
 				
 				JitmButton b = new JitmButton(item);  // on creer un Bouton d'item d'ID key
@@ -83,6 +103,8 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				b.addActionListener(c);
 				b.addMouseListener(this);
 				b.setBackground(new Color(76,166,107));
+				Border bord = new LineBorder(new Color(63,34,4), 1);
+				b.setBorder(bord);
 				this.add(b,gbc);
 				
 				x++;

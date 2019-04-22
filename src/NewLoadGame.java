@@ -2,7 +2,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class NewLoadGame extends Frame implements WindowListener{
+public class NewLoadGame extends JFrame implements WindowListener{
 	
 	String fileName;
 	Boolean New;
@@ -28,11 +30,15 @@ public class NewLoadGame extends Frame implements WindowListener{
 	String IGN;
 	String OSseparator;
 
-	public NewLoadGame() {
+	public NewLoadGame() throws IOException {
 		// TODO Auto-generated constructor stub
 		super();
+		this.setBackgroundImage(this, new File("miniatures/fond_minecraft.jpg"));
 		this.choice = false;
-		this.setLayout(new GridLayout(3, 2));
+		this.setLayout(new GridLayout(5, 4));
+		GridBagConstraints gbc = new GridBagConstraints();
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setPreferredSize(dimension);
 		this.addWindowListener(this);
 		this.IGN = "";
 		
@@ -72,7 +78,7 @@ public class NewLoadGame extends Frame implements WindowListener{
 					
 				}
 				
-				jb.setPreferredSize(new Dimension(300,100));
+				jb.setPreferredSize(new Dimension(20,50));
 				jb.setBackground(Color.DARK_GRAY);
 				jb.setForeground(Color.WHITE);
 				jb.addActionListener(new ActionListener() {
@@ -118,15 +124,32 @@ public class NewLoadGame extends Frame implements WindowListener{
 					
 				});
 				jb.setActionCommand(jb.getName());
-				this.add(jb);
+				gbc.gridx=(i+1)*100;
+				gbc.gridy=(j+1)*300;
+				//this.add(jb,gbc);
 			}
 		}
+		Label blanc=new Label("");
+		blanc.setPreferredSize(new Dimension (900,900));
+		gbc.gridx=0;
+		gbc.gridy=0;
+		//this.add(blanc,gbc);
 		
 		this.pack();
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
 	}
+	
+	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
+		JPanel panel = new JPanel() { 
+			private static final long serialVersionUID = 1;
+			private BufferedImage buf = ImageIO.read(img);
+			@Override protected void paintComponent(Graphics g)
+			{ super.paintComponent(g); g.drawImage(buf, 0,0, this.getWidth(),this.getHeight(), null); }
+		};
+		frame.setContentPane(panel); 
+		return panel; }
 	
 	@Override
 	public void windowActivated(WindowEvent e) {

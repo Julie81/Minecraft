@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 
 public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseListener{
@@ -40,11 +42,11 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.gridwidth = 7;
 		
 		for (int i=0; i<3; i++){
-			gbc.gridy = i*larg;
+			gbc.gridy = (i+1)*larg;
 			
 			for (int j=0; j<3;j++){
 
-				gbc.gridx = (j+1)*larg;
+				gbc.gridx = j*larg;
 				JButton b = new JButton();
 				b.setActionCommand("f"+i+""+j);
 				this.Mat[i][j] = b;
@@ -52,35 +54,61 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 				b.addActionListener(ctrla);
 				b.addMouseListener(this);
 				b.setBackground(new Color(200,173,127));
+				//Border bord = new LineBorder(new Color(139,108,66), 1);
+				Border bord = new LineBorder(Color.black, 1);
+				b.setBorder(bord);
 				this.add(b,gbc);
 			}
 		}
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=larg*3;
+		Label atelier = new Label (" Craftez vos ressources : ");
+		atelier.setFont(new Font("Arial",Font.BOLD,18));
+		atelier.setForeground(Color.white);
+		this.add(atelier,gbc);
+		
+		Label blanc2=new Label("");
+		blanc2.setPreferredSize(new Dimension (larg,5));
+		gbc.gridx=0;
+		gbc.gridy=30;
+		this.add(blanc2,gbc);
+		
+		
 		gbc.gridx = 4*larg;
-		gbc.gridy=larg-20;
+		gbc.gridy=2*larg-20;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=larg;
 		gbc.gridheight=larg+20;
-		Label quant = new Label ("quantite : ");
-		quant.setFont(new Font("Arial",Font.BOLD,16));
+		Label quant = new Label ("     	     Quantite : ");
+		quant.setFont(new Font("Arial",Font.BOLD,14));
 		quant.setForeground(Color.black);
-		
 		this.add(quant,gbc);
 		
 		
 		gbc.gridx = 4*larg+20;
-		gbc.gridy=larg;
+		gbc.gridy=2*larg;
 		gbc.ipadx=10;
 		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
-		this.affQ.setFont(new Font("Arial",Font.BOLD,16));
+		this.affQ.setFont(new Font("Arial",Font.BOLD,12));
 		this.affQ.setForeground(Color.black);
 		this.add(affQ,gbc);
 		
-		gbc.gridx = 4*larg;;
+		Label blanc=new Label("");
+		blanc.setPreferredSize(new Dimension (10,20));
+		gbc.gridx=4*larg;
 		gbc.gridy=2*larg;
+		this.add(blanc,gbc);
+		
+		
+		gbc.gridx = 4*larg+15;;
+		gbc.gridy=3*larg;
 		gbc.ipadx=20;
 		Button plus= new Button("+");
-		plus.setFont(new Font("Arial",Font.BOLD,14));
+		plus.setFont(new Font("Arial",Font.BOLD,12));
 		plus.setForeground(Color.black);
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);
@@ -89,7 +117,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		this.add(plus,gbc);
 		
 		gbc.gridx = 4*larg+20;;
-		gbc.gridy=2*larg;
+		gbc.gridy=3*larg;
 		gbc.ipadx=20;
 		Button moins = new Button("-");
 		moins.setFont(new Font("Arial",Font.BOLD,14));
@@ -101,9 +129,9 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		this.add(moins,gbc);
 		
 		gbc.gridx = 5*larg;;
-		gbc.gridy=larg;
+		gbc.gridy=2*larg;
 		Button craft = new Button("craft");
-		craft.setFont(new Font("Arial",Font.BOLD,14));
+		craft.setFont(new Font("Arial",Font.BOLD,12));
 		craft.setForeground(Color.black);
 		craft.setActionCommand("C");
 		craft.addActionListener(ctrla);

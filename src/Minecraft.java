@@ -41,7 +41,9 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 
 	public Minecraft() throws IOException {
 		super();
-		this.setBackgroundImage(this, new File("miniatures/fond_arbre.jpg"));
+		this.setBackgroundImage(this, new File("miniatures/fond_bois.jpg"));
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setPreferredSize(dimension);
 		NewLoadGame nlg = new NewLoadGame();
 		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
 			try {

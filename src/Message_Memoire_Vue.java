@@ -2,6 +2,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Label;
+import java.awt.Panel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -19,8 +20,8 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 		JLabel message2 = new JLabel("la recette d'un craft ...");
 		message1.setFont(new Font("Arial",Font.BOLD,36));
 		message2.setFont(new Font("Arial",Font.BOLD,36));
-		message1.setForeground(Color.black);
-		message2.setForeground(Color.black);
+		message1.setForeground(Color.white);
+		message2.setForeground(Color.white);
 		this.setBackground(new Color(107,87,49));
 		Box box_texte = Box.createVerticalBox();
 		box_texte.add(message1);
@@ -40,7 +41,9 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getSource() instanceof JPanel) {
+			System.out.println("Item dont on veut afficher la recette");
+		}
 	}
 
 	@Override

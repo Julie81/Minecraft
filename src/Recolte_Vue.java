@@ -33,6 +33,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	int larg = 50; // dimension du carre bouton
@@ -74,20 +76,22 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			icon = new ImageIcon(newimg);
 			b.setIcon(icon);
 			b.setBackground(new Color(86,130,3));
+			Border bord = new LineBorder(Color.black, 1);
+			b.setBorder(bord);
 			ress.add(b);
 			this.add(b,gbc);
 			
 		}
 		
 		Box box_titre = Box.createVerticalBox();
-		Label titre1=new Label("Récoltez vos");
+		Label titre1=new Label("Recoltez vos");
 		Label titre2=new Label("ressources");
 		Label titre3=new Label("");
 		titre1.setFont(new Font("Arial",Font.BOLD,16));
-		titre1.setForeground(Color.black);
+		titre1.setForeground(Color.white);
 		box_titre.add(titre1);
 		titre2.setFont(new Font("Arial",Font.BOLD,16));
-		titre2.setForeground(Color.black);
+		titre2.setForeground(Color.white);
 		box_titre.add(titre2);
 		box_titre.setPreferredSize(new Dimension (larg*2,larg));
 		gbc.gridx=0;
@@ -97,13 +101,13 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		this.add(box_titre,gbc);
 		
 		Label blanc=new Label("");
-		blanc.setPreferredSize(new Dimension (larg,larg));
+		blanc.setPreferredSize(new Dimension (larg,20));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+2)*larg;
 		this.add(blanc,gbc);
 		
 		Label blanc2=new Label("");
-		blanc2.setPreferredSize(new Dimension (larg,10));
+		blanc2.setPreferredSize(new Dimension (larg,5));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+3)*larg+30;
 		this.add(blanc2,gbc);
@@ -112,9 +116,11 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		blanc3.setPreferredSize(new Dimension (larg,20));
 		gbc.gridx=0;
 		gbc.gridy=larg;
-		this.add(blanc2,gbc);
+		this.add(blanc3,gbc);
 		
 		Button sauvegarde= new Button("sauvegarder");
+		sauvegarde.setFont(new Font("Arial",Font.BOLD,12));
+		sauvegarde.setForeground(Color.black);
 		sauvegarde.setPreferredSize(new Dimension(larg*2,30));
 		sauvegarde.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
@@ -124,6 +130,8 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		this.add(sauvegarde,gbc);
 		
 		Button partie= new Button("choisir partie");
+		partie.setFont(new Font("Arial",Font.BOLD,12));
+		partie.setForeground(Color.black);
 		partie.setPreferredSize(new Dimension(larg*2,30));
 		partie.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
