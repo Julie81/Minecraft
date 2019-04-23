@@ -35,8 +35,7 @@ public class NewLoadGame extends JFrame implements WindowListener{
 		super();
 		this.setBackgroundImage(this, new File("miniatures/fond_minecraft.jpg"));
 		this.choice = false;
-		this.setLayout(new GridLayout(5, 4));
-		GridBagConstraints gbc = new GridBagConstraints();
+		this.setLayout(null);
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(dimension);
 		this.addWindowListener(this);
@@ -78,9 +77,8 @@ public class NewLoadGame extends JFrame implements WindowListener{
 					
 				}
 				
-				jb.setPreferredSize(new Dimension(20,50));
-				jb.setBackground(Color.DARK_GRAY);
-				jb.setForeground(Color.WHITE);
+				jb.setBackground(new Color (169,169,169));
+				jb.setForeground(new Color (139,69,19));
 				jb.addActionListener(new ActionListener() {
 
 					@Override
@@ -123,17 +121,12 @@ public class NewLoadGame extends JFrame implements WindowListener{
 					
 					
 				});
+				jb.setBounds(300*j+430, 100*i+200, 200, 50);
 				jb.setActionCommand(jb.getName());
-				gbc.gridx=(i+1)*100;
-				gbc.gridy=(j+1)*300;
-				this.add(jb,gbc);
+				this.add(jb);
+				
 			}
 		}
-		Label blanc=new Label("");
-		blanc.setPreferredSize(new Dimension (900,900));
-		gbc.gridx=0;
-		gbc.gridy=0;
-		//this.add(blanc,gbc);
 		
 		this.pack();
 		this.setVisible(true);

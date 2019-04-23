@@ -41,7 +41,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 
 	public Minecraft() throws IOException {
 		super();
-		this.setBackgroundImage(this, new File("miniatures/fond_bois.jpg"));
+		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(dimension);
 		NewLoadGame nlg = new NewLoadGame();
