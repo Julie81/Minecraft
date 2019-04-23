@@ -126,7 +126,7 @@ public class NewLoadGame extends JFrame implements WindowListener{
 				jb.setActionCommand(jb.getName());
 				gbc.gridx=(i+1)*100;
 				gbc.gridy=(j+1)*300;
-				//this.add(jb,gbc);
+				this.add(jb,gbc);
 			}
 		}
 		Label blanc=new Label("");
