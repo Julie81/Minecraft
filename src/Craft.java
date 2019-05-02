@@ -31,7 +31,9 @@ public class Craft {
 					if(quantityNeeded.containsKey(item)) {
 						quantityNeeded.put(item, quantityNeeded.get(item)+1);
 					}
-					quantityNeeded.putIfAbsent(item,1);
+					else {
+						quantityNeeded.put(item,1);
+					}
 				}
 			}
 		}
