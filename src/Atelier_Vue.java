@@ -83,7 +83,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.gridwidth=larg;
 		gbc.gridheight=larg+20;
 		Label quant = new Label ("     	     Quantite : ");
-		quant.setFont(new Font("Arial",Font.BOLD,14));
+		quant.setFont(new Font("Arial",Font.BOLD,16));
 		quant.setForeground(Color.black);
 		this.add(quant,gbc);
 		
@@ -93,7 +93,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.ipadx=10;
 		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
-		this.affQ.setFont(new Font("Arial",Font.BOLD,12));
+		this.affQ.setFont(new Font("Arial",Font.BOLD,16));
 		this.affQ.setForeground(Color.black);
 		this.add(affQ,gbc);
 		

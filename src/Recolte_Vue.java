@@ -36,12 +36,14 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class Recolte_Vue extends Panel implements MouseListener,Observer{
+public class Recolte_Vue extends Panel implements MouseListener,ActionListener,Observer{
 	int larg = 50; // dimension du carre bouton
 	Controleur_Rec ctrl;
 	ArrayList<JitmButton> ress;
+	Modele modl;
 	
 	public Recolte_Vue(Controleur_Rec c, Modele m) {
+		modl=m;
 		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		ress = new ArrayList<>();
@@ -66,7 +68,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 				j=1;  // on passe a la colonne suivante
 				gbc.gridx = larg;
 			}
-			gbc.gridy=(i-j*moitie+2)*larg;
+			gbc.gridy=(i-j*moitie+2)*larg+60;
 			JitmButton b = Init_Icon_Recolte(m.itemNametoItem.get(rn_names[i]));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton
@@ -83,6 +85,13 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			
 		}
 		
+		gbc.gridx=larg;
+		gbc.gridy=0;
+		JButton aide= new JButton(new ImageIcon("miniatures/aide/manuel_aide.jpg"));
+		aide.setPreferredSize(new Dimension(50,60));
+		this.add(aide,gbc);
+		aide.addActionListener(this);
+		
 		Box box_titre = Box.createVerticalBox();
 		Label titre1=new Label("Recoltez vos");
 		Label titre2=new Label("ressources");
@@ -95,7 +104,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		box_titre.add(titre2);
 		box_titre.setPreferredSize(new Dimension (larg*2,larg));
 		gbc.gridx=0;
-		gbc.gridy=0;
+		gbc.gridy=70;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(box_titre,gbc);
@@ -103,20 +112,32 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		Label blanc=new Label("");
 		blanc.setPreferredSize(new Dimension (larg,20));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+2)*larg;
+		gbc.gridy=(i-j*moitie+2)*larg+60;
 		this.add(blanc,gbc);
 		
 		Label blanc2=new Label("");
 		blanc2.setPreferredSize(new Dimension (larg,5));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+30;
+		gbc.gridy=(i-j*moitie+3)*larg+90;
 		this.add(blanc2,gbc);
 		
 		Label blanc3=new Label("");
 		blanc3.setPreferredSize(new Dimension (larg,20));
 		gbc.gridx=0;
-		gbc.gridy=larg;
+		gbc.gridy=larg+60;
 		this.add(blanc3,gbc);
+		
+		Label blanc4=new Label("");
+		blanc4.setPreferredSize(new Dimension (larg,5));
+		gbc.gridx=0;
+		gbc.gridy=(i-j*moitie+3)*larg+130;
+		this.add(blanc4,gbc);
+		
+		Label blanc5=new Label("");
+		blanc5.setPreferredSize(new Dimension (larg,5));
+		gbc.gridx=0;
+		gbc.gridy=60;
+		this.add(blanc5,gbc);
 		
 		Button sauvegarde= new Button("sauvegarder");
 		sauvegarde.setFont(new Font("Arial",Font.BOLD,12));
@@ -124,7 +145,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		sauvegarde.setPreferredSize(new Dimension(larg*2,30));
 		sauvegarde.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg;
+		gbc.gridy=(i-j*moitie+3)*larg+60;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(sauvegarde,gbc);
@@ -135,10 +156,22 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		partie.setPreferredSize(new Dimension(larg*2,30));
 		partie.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+40;
+		gbc.gridy=(i-j*moitie+3)*larg+100;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(partie,gbc);
+		
+		Button quitter= new Button("quitter");
+		quitter.setFont(new Font("Arial",Font.BOLD,12));
+		quitter.setForeground(Color.black);
+		quitter.setPreferredSize(new Dimension(larg*2,30));
+		quitter.setBackground(new Color(219,219,219));
+		gbc.gridx=0;
+		gbc.gridy=(i-j*moitie+3)*larg+140;
+		gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=2*larg;
+		this.add(quitter,gbc);
+		quitter.addActionListener(this);
 	}
 	
 	private JitmButton Init_Icon_Recolte(Item obj) {
@@ -197,6 +230,28 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			this.verif_lock();
 		}
 		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String button = e.getActionCommand();
+		if(button=="quitter") {
+			try {
+				modl.saveGame();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			System.exit(0);
+		}
+		else {
+			try {
+				new Manuel_Vue();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }

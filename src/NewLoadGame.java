@@ -33,11 +33,11 @@ public class NewLoadGame extends JFrame implements WindowListener{
 	public NewLoadGame() throws IOException {
 		// TODO Auto-generated constructor stub
 		super();
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setUndecorated(true);
 		this.setBackgroundImage(this, new File("miniatures/fond_minecraft.jpg"));
 		this.choice = false;
 		this.setLayout(null);
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(dimension);
 		this.addWindowListener(this);
 		this.IGN = "";
 		
