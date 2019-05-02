@@ -6,11 +6,13 @@ import javax.swing.JButton;
 
 public class Controleur_Atelier implements ActionListener{
 	Atelier_Modele atm;
+	Message_Memoire_Vue mmv;
 	Modele mdl;
 
-	public Controleur_Atelier(Atelier_Modele m,Modele mdl) { //Toutes les parties de la vue
+	public Controleur_Atelier(Atelier_Modele m,Modele mdl, Message_Memoire_Vue mmv) { //Toutes les parties de la vue
 		this.atm = m;
 		this.mdl = mdl;
+		this.mmv = mmv;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -20,6 +22,7 @@ public class Controleur_Atelier implements ActionListener{
 			}
 			else { // on selectionne un item de l'inventaire
 				this.atm.selection(((JitmButton) arg0.getSource()).it); // on le sauvegarde en memoire
+				this.mmv.mv.selection(((JitmButton) arg0.getSource()).it);
 			}
 		}
 		else {

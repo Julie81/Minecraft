@@ -31,7 +31,7 @@ public class Craft {
 					if(quantityNeeded.containsKey(item)) {
 						quantityNeeded.put(item, quantityNeeded.get(item)+1);
 					}
-					//quantityNeeded.putIfAbsent(item,1);
+					quantityNeeded.putIfAbsent(item,1);
 				}
 			}
 		}
@@ -43,7 +43,6 @@ public class Craft {
 		for(int i=0;i<3;i++){
 			for(int j=0;j<3;j++){
 				if(this.items[i][j] != null) {
-					//System.out.println(this.items[i][j].name);
 					maxGen = Math.max(maxGen,this.items[i][j].generation());
 				}
 			}

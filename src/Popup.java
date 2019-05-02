@@ -18,13 +18,14 @@ public class Popup{
 		pop = new Frame();
 		
 		try {
-			// Pb de son a resoudre
-			URL url = Minecraft.class.getResource("miniatures/err.wav");
+			/* Pb de son a resoudre
+			URL url = Popup.class.getResource("sons\\err.wav");
 			AudioClip ac = Applet.newAudioClip(url); 
 			ac.play();
+			*/
 		}
 		catch(Exception e){
-			
+			System.out.println(e);
 		}
 		pop.setPreferredSize(new Dimension(d));
 		this.pop.setBackground(new Color(0, 10, 145));

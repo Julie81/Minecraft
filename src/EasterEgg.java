@@ -21,6 +21,7 @@ public class EasterEgg implements WindowListener{
 	Timer t;
 	
 	public EasterEgg(){
+		
 		f = new Frame();
 		taille_popup = new Dimension(250, 100);
 		
@@ -33,9 +34,7 @@ public class EasterEgg implements WindowListener{
 	}
 	
 	private void Bug() {
-		long ecart = 300;
-		int mem_x = 0;
-		int mem_y = 0;
+		long ecart = 200;
 		while (true) {
 			Random rd = new Random();
 			int x = rd.nextInt(Math.abs(this.f.getWidth())-(int) taille_popup.getWidth());
@@ -44,9 +43,9 @@ public class EasterEgg implements WindowListener{
 				Thread.sleep(ecart);
 				new Popup(x,y,taille_popup);
 			} catch (InterruptedException e) {
-				System.out.println("exec");
+				System.out.println("Exception");
 			}
-			if (ecart>100) {
+			if (ecart>50) {
 				ecart = (long) (ecart * 0.95);
 			}
 		}

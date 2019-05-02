@@ -11,10 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Message_Memoire_Vue extends JPanel implements MouseListener {
+	CardLayout cl;
+	Memoire_Vue mv;
 	
 	public Message_Memoire_Vue () {
-		CardLayout cl =new CardLayout();
-		JPanel message=new JPanel();
+		
+		this.cl =new CardLayout();
+		
+		// Message : Recherchez ici la recette d'un craft
+		JPanel message = new JPanel();
 		message.setBackground(new Color(0,0,0,0));
 		JLabel message1=new JLabel("Recherchez ici ");
 		JLabel message2 = new JLabel("la recette d'un craft ...");
@@ -22,6 +27,7 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 		message2.setFont(new Font("Arial",Font.BOLD,36));
 		message1.setForeground(Color.white);
 		message2.setForeground(Color.white);
+		
 		this.setBackground(new Color(107,87,49));
 		Box box_texte = Box.createVerticalBox();
 		box_texte.add(message1);
@@ -29,12 +35,12 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 		message.add(box_texte);
 		
 		JPanel memoire = new JPanel();
-		Memoire_Vue mem = new Memoire_Vue(null);
-		memoire.add(mem);
+		this.mv = new Memoire_Vue();
+		memoire.add(this.mv);
 		
 		this.setLayout(cl);
 		this.add(message,"texte");
-		this.add(mem,"memoire");
+		this.add(mv,"memoire");
 		this.addMouseListener(this);
 	}
 
@@ -42,7 +48,7 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() instanceof JPanel) {
-			System.out.println("Item dont on veut afficher la recette");
+			this.cl.last(this);
 		}
 	}
 

@@ -57,13 +57,16 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		this.modl = new Modele(nlg.fileName,nlg.New);
 		this.atm = new Atelier_Modele(modl.craftList,modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
-		Controleur_Atelier ctrlA = new Controleur_Atelier(atm,modl);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
 		gbc.gridx=0;
 		gbc.gridy=0;
+		
+		Message_Memoire_Vue mmem = new Message_Memoire_Vue();
+		
+		Controleur_Atelier ctrlA = new Controleur_Atelier(atm,modl,mmem);
 		
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
@@ -98,7 +101,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridx=2;
 		gbc.gridy=0;
 		gbc.ipady=50;
-		Message_Memoire_Vue mmem = new Message_Memoire_Vue();
 		this.add(mmem,gbc);
 		
 
