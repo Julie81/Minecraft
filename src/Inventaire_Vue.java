@@ -42,14 +42,16 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.gridx = 0;
+		gbc.gridx = larg*4;
 		gbc.gridy = 0;
-		Label titre = new Label (" Inventaire ");
+		gbc.fill= GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth=larg*2;
+		Label titre = new Label (" INVENTAIRE ");
 		titre.setFont(new Font("Arial",Font.BOLD,18));
 		titre.setForeground(Color.white);
 		this.add(titre,gbc);
 		
-		gbc.gridx = larg;
+		/*gbc.gridx = larg;
 		gbc.gridy = 0;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=larg*9;
@@ -57,7 +59,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		Label blanc = new Label (" ");
 		blanc.setBackground(new Color(76,166,107));
 		blanc.setPreferredSize(new Dimension(larg*8,30));
-		this.add(blanc,gbc);
+		this.add(blanc,gbc);*/
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
