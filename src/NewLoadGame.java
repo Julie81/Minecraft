@@ -1,11 +1,5 @@
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -23,12 +17,11 @@ import javax.swing.JPanel;
 
 public class NewLoadGame extends JFrame implements WindowListener{
 	
-	String fileName;
-	Boolean New;
-	Boolean choice;
-	String [] Load= {"Load Game 01", "Load Game 02", "Load Game 03"};
-	String IGN;
-	String OSseparator;
+	String fileName;	// Le nom du fichier sur lequel la sauvegrade va s'effectuer
+	Boolean New;	// Boolean permettant de savoir si on commence (ou recommence) une partie
+	Boolean choice;	// Boolean permettant de savoir si l'utilisateur a fini de choisir
+	String IGN;	// In Game Name => nom d'utilisateur
+	String OSseparator;	// Separateur utilisé lors de l'arborescence de fichier d'un OS
 
 	public NewLoadGame() throws IOException {
 		// TODO Auto-generated constructor stub
@@ -44,34 +37,32 @@ public class NewLoadGame extends JFrame implements WindowListener{
 		
 		JButton jb;
 		
-		//file loader
-		
 		File file = null;
-		this.OSseparator = file.separator;
+		this.OSseparator = file.separator;	// initialise le separateur
 		
 		
-		file = new File("miniatures"+OSseparator+"Save");
+		file = new File("miniatures"+OSseparator+"Save");	// Dossier contenant toutes les sauvegardes
 		
-		File[] files = file.listFiles();
-        HashMap<String,String> IDtoIGN = new HashMap<String,String>();
+		File[] files = file.listFiles();	// Liste des sauvegarde
+        HashMap<String,String> IDtoIGN = new HashMap<String,String>();	// HashMap qui associe a un numero de partie un identifiant
         
         for(File f : files) {
-        	String[] split = f.getName().split("_");
-        	IDtoIGN.put(split[0], split[1].replaceAll(".txt", ""));
+        	String[] split = f.getName().split("_");	// le "_" est utiliser ici pour separer le numero de partie de l'IGN
+        	IDtoIGN.put(split[0], split[1].replaceAll(".txt", ""));	// on enleve l'extension ".txt" de fichier a l'IGN
         }
 		
 		for (int i=1; i<4; i++){
 			for (int j=0; j<2;j++){
 				if(j==0) {
-					jb = new JButton("New Game 0"+i);
+					jb = new JButton("New Game 0"+i);	// creation des boutons New Game 0X a gauche
 				}
 				else {
 					if(IDtoIGN.containsKey("itemID0"+i)) {
-						jb = new JButton(IDtoIGN.get("itemID0"+i));
+						jb = new JButton(IDtoIGN.get("itemID0"+i));	// creation des boutons Load Game ayant le nom de l'utilisateur
 						jb.setName("itemID0"+i+"_"+IDtoIGN.get("itemID0"+i));
 					}
 					else {
-						jb = new JButton(Load[i-1]);
+						jb = new JButton("Load Game 0"+i);	// creation des boutons Load Game 0X
 						jb.setName("itemID0"+i+"_");
 					}
 					
@@ -85,27 +76,27 @@ public class NewLoadGame extends JFrame implements WindowListener{
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						String button = e.getActionCommand();
-						if(button.startsWith("N")) {
-							New = true;
+						if(button.startsWith("N")) {	// le boutton est don un New Game 0X
+							New = true;	// on est bien sur une nouvelle partie
 							IGN = JOptionPane.showInputDialog(null,
 									"Entrez le nom de votre partie : ",
 	                                "NOM DE LA PARTIE",
 	                                JOptionPane.QUESTION_MESSAGE);
 							try{
-								IGN = IGN.replace('_', ' ');	// interdir l'utilisation de _
+								IGN = IGN.replace('_', ' ');	// transforme les "_" en " " pour garder un seul "_" en tant que separateur
 							}catch(Exception e1){
 								IGN = "";	//utilisation du boutton annuler
 							}
 							fileName =  "Save"+OSseparator+"itemID0"+button.charAt(button.length()-1)+"_"+IGN;
 							}
-						else if(button.endsWith("_")) {
+						else if(button.endsWith("_")) {	// si l'utilisateur charge une partie vide il creer une nouvelle partie
 							New = true;
 							IGN = JOptionPane.showInputDialog(null,
 									"Entrez le nom de votre partie : ",
 	                                "NOM DE LA PARTIE",
 	                                JOptionPane.QUESTION_MESSAGE);
 							try{
-								IGN = IGN.replace('_', ' ');	// interdir l'utilisation de _
+								IGN = IGN.replace('_', ' ');	// transforme les "_" en " " pour garder un seul "_" en tant que separateur
 							}catch(Exception e1){
 								IGN = "";	//utilisation du boutton annuler
 							}
@@ -134,7 +125,7 @@ public class NewLoadGame extends JFrame implements WindowListener{
 		
 	}
 	
-	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { 
+	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { //ajoute un fond d'ecran
 		JPanel panel = new JPanel() { 
 			private static final long serialVersionUID = 1;
 			private BufferedImage buf = ImageIO.read(img);

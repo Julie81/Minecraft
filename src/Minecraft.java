@@ -1,31 +1,16 @@
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Label;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -43,7 +28,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setUndecorated(true);
-		NewLoadGame nlg = new NewLoadGame();
+		NewLoadGame nlg = new NewLoadGame();	// Lance le menu permettant de creer  une nouvelle partie ou d'en charger une
 		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
 			try {
 				Thread.sleep(1);
@@ -52,8 +37,8 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 			}
 		}
 		
-		nlg.dispose();
-		this.modl = new Modele(nlg.fileName,nlg.New);
+		nlg.dispose();	//fermeture de la fenetre de lancement de partie
+		this.modl = new Modele(nlg.fileName,nlg.New);	//Creer un modele qui sera sauvegarder sur le fichier fileName
 		this.atm = new Atelier_Modele(modl.craftList,modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
 		
@@ -134,13 +119,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 
 	@Override
 	public void windowClosing(WindowEvent arg0){
-		/*
-		try {
-			modl.saveGame();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 		System.exit(0);
 		
 	}
