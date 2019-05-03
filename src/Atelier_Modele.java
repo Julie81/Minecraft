@@ -59,6 +59,9 @@ public class Atelier_Modele extends Observable{
 				}
 			}
 			if(enoughQuantity) {
+				if(this.m.craftList.get(craft.getCraftUID()).item == null){
+					new EasterEgg();
+				}
 				for (Item key : quantityNeeded.keySet()) {
 					int q = quantityNeeded.get(key)*this.quantiti;
 					this.m.delItemResource(this.m.itemList.get(key.ID),q);
@@ -116,7 +119,7 @@ public class Atelier_Modele extends Observable{
 			System.out.println(lit.get(i).name);
 			System.out.println("----->"+lit.get(i).quantity);
 		}
-		System.out.println("Fin des ressources problématiques");
+		System.out.println("Fin des ressources problï¿½matiques");
 	}
 
 }

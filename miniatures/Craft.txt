@@ -4,6 +4,7 @@ baton;null,null,null:null,bois,null:null,bois,null
 canard orange miel;null,null,null:orange,sucre,orange:viande,viande,viande
 casque en fer;fer,fer,fer:fer,null,fer:null,null,null
 echelle;baton,null,baton:baton,baton,baton:baton,null,baton
+EasterEgg;eau,eau,eau:eau,ordinateur,eau:eau,eau,eau
 ficelle;null,lianes,null:null,lianes,null:null,lianes,null
 fleche;null,pierre,null:null,baton,null:null,plume,null
 fromage;lait,lait,null:lait,lait,null:null,null,null

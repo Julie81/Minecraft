@@ -158,7 +158,7 @@ public class Modele extends Observable{
 		    while (line != null) {
 		    	String[] split = line.split(";");
 		    	
-		    	String itemCrafted = split[0]; // nom de l'item produit par le craft		    	
+		    	String itemCrafted = split[0]; // nom de l'item produit par le craft
 		    	
 		    	String[] itemsName = split[1].split(":");
 		    	String[][] itemsNameList = {itemsName[0].split(","),itemsName[1].split(","),itemsName[2].split(",")}; 
@@ -181,9 +181,15 @@ public class Modele extends Observable{
 
 		    		}
 		    	}
-		    	craft = new Craft(itemNametoItem.get(itemCrafted), items);
-		    	craft.UpperLeft();	// nomralisation du craft en haut a gauche
-		    	itemNametoItem.get(itemCrafted).setCraft(craft);	//assignation du craft a l'item produit
+		    	if(itemCrafted.equals("EasterEgg")){
+		    		craft = new Craft(null, items);
+		    	}
+		    	else{
+			    	craft = new Craft(itemNametoItem.get(itemCrafted), items);
+			    	craft.UpperLeft();	// normalisation du craft en haut a gauche
+			    	itemNametoItem.get(itemCrafted).setCraft(craft);	//assignation du craft a l'item produit
+		    	}
+
 		    	craftID = craft.getCraftUID();
 		    	craftList.put(craftID, craft);
 		        line = reader.readLine();
