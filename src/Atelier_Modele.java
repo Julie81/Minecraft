@@ -64,6 +64,9 @@ public class Atelier_Modele extends Observable{
 				new ErrorMess(itemManquant); // Il manque des items on informe aussi l'utilisateur de ce probleme
 			}
 		}
+		this.quantiti = 1; // on remet la quantite de creation a 1 a chaque tentative de craft
+		this.setChanged();
+		this.notifyObservers(this.quantiti);
 	}
 	
 	
