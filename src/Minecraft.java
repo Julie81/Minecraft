@@ -39,7 +39,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		
 		nlg.dispose();	//fermeture de la fenetre de lancement de partie
 		this.modl = new Modele(nlg.fileName,nlg.New);	//Creer un modele qui sera sauvegarder sur le fichier fileName
-		this.atm = new Atelier_Modele(modl.craftList,modl);
+		this.atm = new Atelier_Modele(modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -50,7 +50,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		
 		Message_Memoire_Vue mmem = new Message_Memoire_Vue();
 		
-		Controleur_Atelier ctrlA = new Controleur_Atelier(atm,modl,mmem);
+		Controleur_Atelier ctrlA = new Controleur_Atelier(atm,mmem);
 		
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
