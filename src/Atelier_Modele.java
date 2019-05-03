@@ -38,7 +38,7 @@ public class Atelier_Modele extends Observable{
 		Item item = ExistingCraft(craft); // item correspondant apres recherche dans la BDD
 		this.itemManquant = new ArrayList<Item>(); // instancie une liste vide des items manquants
 		
-		if(item == null) { // Message d'erreur pour informer l'utilisateur que son craft n'a pad d'association
+		if(!EnsembleDesCrafts.containsKey(craft.getCraftUID())) { // Message d'erreur pour informer l'utilisateur que son craft n'a pad d'association
 			new ErrorMess("Oups...");
 			this.itemManquant.add(null);
 			this.empty_atelier(); // on repart de 0 ( atelier vide )
@@ -54,7 +54,7 @@ public class Atelier_Modele extends Observable{
 			}
 
 			if(enoughQuantity) { // les quantites sont respectees
-				if(this.m.craftList.get(craft.getCraftUID()).item == null){
+				if(this.m.craftList.get(craft.getCraftUID()).item == null){ // EasterEgg
 					new EasterEgg();
 				}
 				else{
