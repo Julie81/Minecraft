@@ -52,13 +52,19 @@ public class Atelier_Modele extends Observable{
 					this.itemManquant.add(key); // ajout des items manquants a la liste itemManquant
 				}
 			}
+
 			if(enoughQuantity) { // les quantites sont respectees
-				for (Item key : quantityNeeded.keySet()) { // on vide l'inventaire des ressources/items utilisees
-					int q = quantityNeeded.get(key)*this.quantiti; // produit de l'occurence et de la quantite de creation
-					this.m.delItemResource(this.m.itemList.get(key.ID),q);
-					}
-				this.m.addItemResource(item,this.quantiti); // on ajoute la quantite de creation a l'item cree
-				this.empty_atelier(); // on vide l'atelier
+				if(this.m.craftList.get(craft.getCraftUID()).item == null){
+					new EasterEgg();
+				}
+				else{
+					for (Item key : quantityNeeded.keySet()) { // on vide l'inventaire des ressources/items utilisees
+						int q = quantityNeeded.get(key)*this.quantiti; // produit de l'occurence et de la quantite de creation
+						this.m.delItemResource(this.m.itemList.get(key.ID),q);
+						}
+					this.m.addItemResource(item,this.quantiti); // on ajoute la quantite de creation a l'item cree
+					this.empty_atelier(); // on vide l'atelier
+				}
 			}
 			else {
 				new ErrorMess(itemManquant); // Il manque des items on informe aussi l'utilisateur de ce probleme
@@ -119,7 +125,7 @@ public class Atelier_Modele extends Observable{
 			System.out.println(lit.get(i).name);
 			System.out.println("----->"+lit.get(i).quantity);
 		}
-		System.out.println("Fin des ressources problématiques");
+		System.out.println("Fin des ressources problï¿½matiques");
 	}
 
 }
