@@ -36,7 +36,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class Recolte_Vue extends Panel implements MouseListener,ActionListener,Observer{
+public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	int larg = 50; // dimension du carre bouton
 	Controleur_Rec ctrl;
 	ArrayList<JitmButton> ress;
@@ -44,7 +44,7 @@ public class Recolte_Vue extends Panel implements MouseListener,ActionListener,O
 	
 	public Recolte_Vue(Controleur_Rec c, Modele m) {
 		modl=m;
-		String[] rn_names = {"pierre","bois","eau","plume","or","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","souris","canne a sucre"};  // rn pour ressources naturelles
+		String[] rn_names = {"pierre","bois","eau","plume","souris","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","or","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		ress = new ArrayList<>();
 		
@@ -85,13 +85,25 @@ public class Recolte_Vue extends Panel implements MouseListener,ActionListener,O
 			
 		}
 		
-		gbc.gridx=larg;
+		gbc.gridx=0;
 		gbc.gridy=0;
 		JButton aide= new JButton(new ImageIcon("miniatures/aide/manuel_aide.jpg"));
 		aide.setPreferredSize(new Dimension(50,60));
 		this.add(aide,gbc);
-		aide.addActionListener(this);
+		aide.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new Manuel_Vue();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		
+		gbc.gridx=larg;
 		Box box_titre = Box.createVerticalBox();
 		Label titre1=new Label("Recoltez vos");
 		Label titre2=new Label("ressources");
@@ -139,29 +151,43 @@ public class Recolte_Vue extends Panel implements MouseListener,ActionListener,O
 		gbc.gridy=60;
 		this.add(blanc5,gbc);
 		
-		Button sauvegarde= new Button("sauvegarder");
+		Button sauvegarde= new Button("Sauvegarder");
 		sauvegarde.setFont(new Font("Arial",Font.BOLD,12));
 		sauvegarde.setForeground(Color.black);
 		sauvegarde.setPreferredSize(new Dimension(larg*2,30));
 		sauvegarde.setBackground(new Color(219,219,219));
+		sauvegarde.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					modl.saveGame();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+3)*larg+60;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(sauvegarde,gbc);
 		
-		Button partie= new Button("choisir partie");
+		Button partie= new Button("Choisir partie");
 		partie.setFont(new Font("Arial",Font.BOLD,12));
 		partie.setForeground(Color.black);
 		partie.setPreferredSize(new Dimension(larg*2,30));
 		partie.setBackground(new Color(219,219,219));
+		// partie.addActionListener(new ActionListener() {}); Complique donc a voir
+		
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+3)*larg+100;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(partie,gbc);
 		
-		Button quitter= new Button("quitter");
+		Button quitter= new Button("Quitter");
 		quitter.setFont(new Font("Arial",Font.BOLD,12));
 		quitter.setForeground(Color.black);
 		quitter.setPreferredSize(new Dimension(larg*2,30));
@@ -171,7 +197,14 @@ public class Recolte_Vue extends Panel implements MouseListener,ActionListener,O
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(quitter,gbc);
-		quitter.addActionListener(this);
+		quitter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+		});
 	}
 	
 	private JitmButton Init_Icon_Recolte(Item obj) {
@@ -230,28 +263,6 @@ public class Recolte_Vue extends Panel implements MouseListener,ActionListener,O
 			this.verif_lock();
 		}
 		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		String button = e.getActionCommand();
-		if(button=="quitter") {
-			try {
-				modl.saveGame();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-			System.exit(0);
-		}
-		else {
-			try {
-				new Manuel_Vue();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
 	}
 
 }

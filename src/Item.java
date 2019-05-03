@@ -9,27 +9,16 @@ import javax.imageio.ImageIO;
 
 
 public class Item {
-	int quantity;
-	String path;
-	String name;
+	int quantity; // sa quantite
+	String path; // chemin local de l'image le representant
+	String name; // nom de l'item
 	int generation;
 	Color variation; // couleur modelisant la variation de la quantite
-	String ID; //"nombre" entre 00 et 98 , 99 etant le manque d'item
-	int x;
-	int y;
-	Craft craft;
-	ArrayList<Item> lock;
-	
-	public Item(String n){ //test rapide sans image
-		name = n;
-	}
-	
-	public Item(String imagePath,String name) throws IOException{ //methode sans UID pour faire des test
-		this.name = name;
-		quantity = 0;
-		this.path = imagePath;
-		generation = 0;
-	}
+	String ID; //"nombre" entre 00 et 98 ; 99 => item vide
+	int x; // position colonne dans l'inventaire
+	int y; // position ligne dans l'inventaire
+	Craft craft; // recette associe
+	ArrayList<Item> lock; // liste item necessaire pour debloquer cet item
 	
 	public Item(String imagePath,String name,String ID) throws IOException{
 		this.name = name;

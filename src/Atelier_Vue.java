@@ -16,6 +16,7 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -84,7 +85,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.gridheight=larg+20;
 		Label quant = new Label ("     	     Quantite : ");
 		quant.setFont(new Font("Arial",Font.BOLD,16));
-		quant.setForeground(Color.black);
+		quant.setForeground(Color.white);
 		this.add(quant,gbc);
 		
 		
@@ -94,7 +95,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
 		this.affQ.setFont(new Font("Arial",Font.BOLD,16));
-		this.affQ.setForeground(Color.black);
+		this.affQ.setForeground(Color.white);
 		this.add(affQ,gbc);
 		
 		Label blanc=new Label("");
@@ -124,13 +125,14 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		moins.setForeground(Color.black);
 		moins.setBackground(new Color(219,219,219));
 		moins.setActionCommand("-");
+		moins.addMouseListener(this);
 		moins.addActionListener(ctrla);
 		moins.setPreferredSize(new Dimension(30,30));
 		this.add(moins,gbc);
 		
 		gbc.gridx = 5*larg;;
 		gbc.gridy=2*larg;
-		Button craft = new Button("craft");
+		Button craft = new Button("Crafter");
 		craft.setFont(new Font("Arial",Font.BOLD,12));
 		craft.setForeground(Color.black);
 		craft.setActionCommand("C");
@@ -181,7 +183,11 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		if (arg0.getSource() instanceof Button ) {
+			Button b = (Button) arg0.getSource();
+			if (b.getActionCommand() == "-") {
+			}
+		}
 		
 	}
 

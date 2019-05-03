@@ -36,7 +36,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();
-		//new EasterEgg();
 	}
 
 	public Minecraft() throws IOException {
@@ -135,11 +134,13 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 
 	@Override
 	public void windowClosing(WindowEvent arg0){
+		/*
 		try {
 			modl.saveGame();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 		System.exit(0);
 		
 	}

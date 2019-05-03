@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,20 +18,19 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
-public class ErrorMess extends Frame implements WindowListener,ActionListener{
-	int hauteur = 100;
-	int longueur = 300;
+public class ErrorMess extends Frame implements WindowListener{
 	
 	public ErrorMess(String mess) {
 		super();
 		this.setTitle(mess);
-		JButton b = new JButton();
-		b.setBackground(Color.lightGray);
-		b.setVisible(true);
-		b.setText("It seems the item you're trying to build only exists in your head... Sorry");
-		b.addActionListener(this);
-		this.add(b);
+		Label m = new Label("L'objet que vous essayez de créer n'existe pas.");
+		m.setBackground(new Color(139,108,66));
+		m.setVisible(true);
+		m.setFont(new Font("Arial",Font.BOLD,16));
+		m.setForeground(Color.white);
+		this.add(m);
 		this.addWindowListener(this);
 		this.setVisible(true);
 		this.setResizable(false);
@@ -41,34 +42,32 @@ public class ErrorMess extends Frame implements WindowListener,ActionListener{
 		super();
 		this.setTitle("Not wealthy enough...");
 		this.setVisible(true);
+		this.setBackground(new Color(139,108,66));
 		this.addWindowListener(this);
 		
 		//Layout
 		GridBagLayout gd = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(gd);
-		gbc.gridx = 1; // on met tout les items dans la meme colonne
 		
-		JButton b = new JButton();
-		b.setPreferredSize(new Dimension(500, 100));
-		b.setBackground(Color.lightGray);
-		b.setVisible(true);
-		b.addActionListener(this);
-		String mess = "Action impossible : Les ressources suivantes ne sont pas en quantité suffisante.";
-		b.setText(mess);
-		gd.setConstraints(b, gbc);
-		this.add(b);
+		Label m = new Label("Action impossible : Les ressources suivantes ne sont pas en quantité suffisante.");
+		m.setBackground(new Color(139,108,66));
+		m.setVisible(true);
+		m.setFont(new Font("Arial",Font.BOLD,16));
+		m.setForeground(Color.white);
+		gd.setConstraints(m, gbc);
+		this.add(m);
 		
 		for(int i=0;i<itemManquant.size();i++){
-			JButton p = new JButton();
+			JLabel p = new JLabel();
 			ImageIcon icon = new ImageIcon(itemManquant.get(i).path);
 			Image img = icon.getImage();
 			Image newimg = img.getScaledInstance( 90, 90,  java.awt.Image.SCALE_SMOOTH ) ;
 			icon = new ImageIcon(newimg);
-			p.getActionCommand();
-			p.addActionListener(this);
 			p.setIcon(icon);
+			p.setBackground(null);
 			p.setVisible(true);
+			p.setOpaque(true);
 			gd.setConstraints(p, gbc);
 			this.add(p);
 		}
@@ -116,12 +115,6 @@ public class ErrorMess extends Frame implements WindowListener,ActionListener{
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		this.dispose();
 		
 	}
 }

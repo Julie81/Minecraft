@@ -11,19 +11,18 @@ import java.util.Set;
 public class Atelier_Modele extends Observable{
 	
 	public Item[][] CraftTable; // matrice de l'atelier
-	public Image craft; // image de l'item que l'on craft
 	public Item CurrItm; // item courant en memoire
-	public int quantiti = 1; // quantite que l'on veut faire 
+	public int quantiti = 1; // initialisation quantite a 1 
 	public HashMap<String,Craft> EnsembleDesCrafts;  // BDD des crafts
 	ArrayList<Item> itemManquant;  // liste des items limitant des crafts
 	Modele m;
 	
-	public Atelier_Modele(HashMap<String,Craft> EnsembleDesCrafts, Modele m) {
+	public Atelier_Modele(HashMap<String,Craft> edf, Modele m) {
 		super();
-		this.CraftTable = new Item[3][3];
+		this.CraftTable = new Item[3][3]; //Matrice initialise vide
 		this.m = m;
 		this.CurrItm = null; // aucun item courant selectionne
-		this.EnsembleDesCrafts = EnsembleDesCrafts;
+		this.EnsembleDesCrafts = edf;
 	}
 	
 	

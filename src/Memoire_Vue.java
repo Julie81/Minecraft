@@ -23,7 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Memoire_Vue extends Panel implements MouseListener{
-	int larg=80;
+	int larg = 80;
 	Item currItem = null;
 	
 	public Memoire_Vue() {
