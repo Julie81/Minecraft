@@ -33,6 +33,13 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	Modele modl;
 	Atelier_Modele atm;
+	static int larg=80;
+	static int espace_haut=20;
+	static int espace_larg=10;
+	static int taille_bouton=30;
+	static Color fond = new Color (139,108,66);
+    static Color fond_bouton = new Color (219,219,219);
+	
 	
 	public static void main(String[] args) throws IOException {
 		new Minecraft();

@@ -48,13 +48,12 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		this.ctrl = c;
 		ress = new ArrayList<>();
 		
-		this.setBackground(new Color(139,108,66));
+		this.setBackground(Minecraft.fond);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		int moitie = 8;
-		int dim_icon = larg - 10;
-		//this.setPreferredSize(new Dimension(2*larg+10,moitie*larg+10));
+		int dim_icon = larg - Minecraft.espace_larg;
 		
 		gbc.gridx=0;
 		gbc.gridy=2;

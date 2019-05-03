@@ -31,37 +31,42 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 	JButton[][] Mat;
 	
 	public Atelier_Vue(Controleur_Atelier ctrla, Modele m) {
+		//initialisation du Layout
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setBackground(new Color(139,108,66));
-		this.ctrla = ctrla;
-		this.Mat = new JButton[3][3];
-		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
 		gbc.gridheight = 5;
 		gbc.gridwidth = 7;
 		
+		//couleur de fond de l'atelier
+		this.setBackground(Minecraft.fond);
+		this.ctrla = ctrla;
+		this.Mat = new JButton[3][3];
+		
+		//initialisation de la grille de craft
 		for (int i=0; i<3; i++){
-			gbc.gridy = (i+1)*larg;
+			//placement selon l'axe des ordonnees
+			gbc.gridy = (i+1)*Minecraft.larg;
 			
 			for (int j=0; j<3;j++){
 
-				gbc.gridx = j*larg;
+				//placement selon l'axe des abscisses
+				gbc.gridx = j*Minecraft.larg;
+				
+				//creation des boutons
 				JButton b = new JButton();
 				b.setActionCommand("f"+i+""+j);
 				this.Mat[i][j] = b;
-				b.setPreferredSize(new Dimension(larg,larg));
+				b.setPreferredSize(new Dimension(Minecraft.larg,Minecraft.larg));
 				b.addActionListener(ctrla);
 				b.addMouseListener(this);
 				b.setBackground(new Color(200,173,127));
-				//Border bord = new LineBorder(new Color(139,108,66), 1);
 				Border bord = new LineBorder(Color.black, 1);
 				b.setBorder(bord);
 				this.add(b,gbc);
 			}
 		}
 		
+		//creation et placement du titre
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
@@ -71,78 +76,76 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		atelier.setForeground(Color.white);
 		this.add(atelier,gbc);
 		
-		Label blanc2=new Label("");
-		blanc2.setPreferredSize(new Dimension (larg,5));
-		gbc.gridx=0;
-		gbc.gridy=30;
-		this.add(blanc2,gbc);
-		
-		
-		gbc.gridx = 4*larg;
-		gbc.gridy=2*larg-20;
+		//creation et placement de la legende quantite
+		gbc.gridx = 4*Minecraft.larg;
+		gbc.gridy=2*Minecraft.larg-20;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=larg;
-		gbc.gridheight=larg+20;
+		gbc.gridwidth=Minecraft.larg;
+		gbc.gridheight=Minecraft.larg+20;
 		Label quant = new Label ("     	     Quantite : ");
 		quant.setFont(new Font("Arial",Font.BOLD,16));
 		quant.setForeground(Color.white);
 		this.add(quant,gbc);
 		
-		
-		gbc.gridx = 4*larg+20;
-		gbc.gridy=2*larg;
-		gbc.ipadx=10;
+		//creation et placement de la quantite
+		gbc.gridx = 4*larg+Minecraft.espace_haut;
+		gbc.gridy=2*Minecraft.larg;
+		gbc.ipadx=Minecraft.espace_larg;
 		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
 		this.affQ.setFont(new Font("Arial",Font.BOLD,16));
 		this.affQ.setForeground(Color.white);
 		this.add(affQ,gbc);
 		
+		//ajout d'un espace entre le tableau et le bouton plus
 		Label blanc=new Label("");
 		blanc.setPreferredSize(new Dimension (10,20));
-		gbc.gridx=4*larg;
-		gbc.gridy=2*larg;
+		gbc.gridx=4*Minecraft.larg;
+		gbc.gridy=2*Minecraft.larg;
 		this.add(blanc,gbc);
 		
-		
-		gbc.gridx = 4*larg+15;;
-		gbc.gridy=3*larg;
-		gbc.ipadx=20;
+		//creation et placement du bouton plus
+		gbc.gridx = 4*Minecraft.larg+Minecraft.espace_haut-5;;
+		gbc.gridy=3*Minecraft.larg;
+		gbc.ipadx=Minecraft.espace_haut;
 		Button plus= new Button("+");
 		plus.setFont(new Font("Arial",Font.BOLD,12));
 		plus.setForeground(Color.black);
 		plus.setActionCommand("+");
 		plus.addActionListener(ctrla);
-		plus.setPreferredSize(new Dimension(30,30));
-		plus.setBackground(new Color(219,219,219));
+		plus.setPreferredSize(new Dimension(Minecraft.taille_bouton,Minecraft.taille_bouton));
+		plus.setBackground(Minecraft.fond_bouton);
 		this.add(plus,gbc);
 		
-		gbc.gridx = 4*larg+20;;
-		gbc.gridy=3*larg;
-		gbc.ipadx=20;
+		//creation et placement du bouton moins
+		gbc.gridx = 4*Minecraft.larg+Minecraft.espace_haut;;
+		gbc.gridy=3*Minecraft.larg;
+		gbc.ipadx=Minecraft.espace_haut;
 		Button moins = new Button("-");
 		moins.setFont(new Font("Arial",Font.BOLD,14));
 		moins.setForeground(Color.black);
-		moins.setBackground(new Color(219,219,219));
+		moins.setBackground(Minecraft.fond_bouton);
 		moins.setActionCommand("-");
 		moins.addMouseListener(this);
 		moins.addActionListener(ctrla);
-		moins.setPreferredSize(new Dimension(30,30));
+		moins.setPreferredSize(new Dimension(Minecraft.taille_bouton,Minecraft.taille_bouton));
 		this.add(moins,gbc);
 		
-		gbc.gridx = 5*larg;;
-		gbc.gridy=2*larg;
+		//creation et placement du bouton craft
+		gbc.gridx = 5*Minecraft.larg;;
+		gbc.gridy=2*Minecraft.larg;
 		Button craft = new Button("Crafter");
 		craft.setFont(new Font("Arial",Font.BOLD,12));
 		craft.setForeground(Color.black);
 		craft.setActionCommand("C");
 		craft.addActionListener(ctrla);
-		craft.setBackground(new Color(219,219,219));
-		craft.setPreferredSize(new Dimension(50,30));
+		craft.setBackground(Minecraft.fond_bouton);
+		craft.setPreferredSize(new Dimension(Minecraft.taille_bouton*2,Minecraft.taille_bouton));
 		this.add(craft,gbc);
 	}
 
 	@Override
+	//mise a jour de la vue
 	public void update(Observable o, Object arg) {
 		if (o instanceof Atelier_Modele) {
 			if(arg instanceof String){

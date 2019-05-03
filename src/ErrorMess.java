@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -55,9 +56,11 @@ public class ErrorMess extends Frame implements WindowListener{
 		m.setVisible(true);
 		m.setFont(new Font("Arial",Font.BOLD,16));
 		m.setForeground(Color.white);
-		gd.setConstraints(m, gbc);
-		this.add(m);
+		gbc.gridx=0;
+		gbc.gridy=0;
+		this.add(m,gbc);
 		
+		Box objets = Box.createHorizontalBox();
 		for(int i=0;i<itemManquant.size();i++){
 			JLabel p = new JLabel();
 			ImageIcon icon = new ImageIcon(itemManquant.get(i).path);
@@ -68,9 +71,10 @@ public class ErrorMess extends Frame implements WindowListener{
 			p.setBackground(null);
 			p.setVisible(true);
 			p.setOpaque(true);
-			gd.setConstraints(p, gbc);
-			this.add(p);
+			objets.add(p);
 		}
+		gbc.gridy=1;
+		this.add(objets,gbc);
 		this.setResizable(false);
 		this.pack();
 		this.setLocationRelativeTo(null);

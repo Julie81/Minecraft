@@ -163,10 +163,8 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		Box explication5 = Box.createVerticalBox();
 		explication5.add(new JLabel ("Vous pouvez a tout moment sauvegarder votre partie "));
 		explication5.add(new JLabel ("(bouton sauvegarder), choisir une autre partie"));
-		explication5.add(new JLabel ("(bouton choisir partie). Votre partie sera alors "));
-		explication5.add(new JLabel ("sauvegarder avant d'afficher l'écran titre."));
+		explication5.add(new JLabel ("(bouton choisir partie)."));
 		explication5.add(new JLabel (" Vous pouvez quitter votre partie (bouton quitter)."));
-		explication5.add(new JLabel ("Votre partie sera sauvegarder avant de quitter."));
 		gbc5.gridx=1;
 		gbc5.gridy=1;
 		gbc5.ipadx=40;
