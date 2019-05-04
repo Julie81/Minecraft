@@ -3,14 +3,14 @@ bateau;null,null,null:bois,null,bois:bois,bois,bois
 baton;null,null,null:null,bois,null:null,bois,null
 magret de canard rotis au miel et a l orange;null,null,null:orange,sucre,orange:viande,viande,viande
 echelle;baton,null,baton:baton,baton,baton:baton,null,baton
-EasterEgg;eau,eau,eau:eau,ordinateur,eau:eau,eau,eau
+EasterEgg;eau,eau,eau:eau,mac book,eau:eau,eau,eau
 epee en fer;null,fer,null:null,fer,null:null,baton,null
 ficelle;null,lianes,null:null,lianes,null:null,lianes,null
 fleche;null,pierre,null:null,baton,null:null,plume,null
 fromage;lait,lait,null:lait,lait,null:null,null,null
 hache en fer;fer,fer,null:fer,baton,null:null,baton,null
 livre;null,null,null:papier,papier,null:papier,cuir,null
-ordinateur;null,null,null:null,pomme en or,null:orange,ficelle,souris
+mac book;null,null,null:ficelle,pomme en or,ficelle:orange,livre,souris
 papier;null,canne a sucre,null:null,canne a sucre,null:null,canne a sucre,null
 piege a souris;null,null,null:null,fer,fer:bois,bois,bois
 pioche en diamant;diamant,diamant,diamant:null,baton,null:null,baton,null
