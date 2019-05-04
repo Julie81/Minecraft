@@ -82,12 +82,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridwidth=1;
 		gbc.gridheight=1;
 		
-		gbc.gridx=3;
-		gbc.gridy=2;
-		gbc.ipadx=20;
-		Partie_Vue s = new Partie_Vue(modl);
-		this.add(s,gbc);
-		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		gbc.ipadx=30;

@@ -121,7 +121,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		this.add(box_titre,gbc);
 		
 		Label blanc=new Label("");
-		blanc.setPreferredSize(new Dimension (larg,40));
+		blanc.setPreferredSize(new Dimension (larg,20));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+2)*larg+60;
 		this.add(blanc,gbc);
@@ -139,13 +139,13 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		this.add(blanc3,gbc);
 		
 		Label blanc4=new Label("");
-		blanc4.setPreferredSize(new Dimension (larg,10));
+		blanc4.setPreferredSize(new Dimension (larg,5));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+3)*larg+130;
 		this.add(blanc4,gbc);
 		
 		Label blanc5=new Label("");
-		blanc5.setPreferredSize(new Dimension (larg,20));
+		blanc5.setPreferredSize(new Dimension (larg,5));
 		gbc.gridx=0;
 		gbc.gridy=60;
 		this.add(blanc5,gbc);

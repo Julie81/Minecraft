@@ -1,5 +1,9 @@
+import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -118,6 +122,19 @@ public class NewLoadGame extends JFrame implements WindowListener{
 				
 			}
 		}
+		
+		JButton quitter= new JButton("Quitter");
+		quitter.setBackground(new Color (169,169,169));
+		quitter.setForeground(new Color (139,69,19));
+		quitter.setBounds(150+430, 100*4+200, 200, 50);
+		this.add(quitter);
+		quitter.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+		});
 		
 		this.pack();
 		this.setVisible(true);
