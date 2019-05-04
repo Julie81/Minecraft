@@ -61,7 +61,9 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=3;
+		gbc.gridwidth=2;
+		//gbc.fill=GridBagConstraints.VERTICAL;
+		//gbc.gridheight=2;
 		gbc.ipady=20;
 		gbc.ipadx=20;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,ctrlA,modl);
@@ -69,7 +71,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		atm.addObserver(inv);
 		this.add(inv, gbc);
 		
-		
+		gbc.gridwidth=1;
 		gbc.gridx=3;
 		gbc.gridy=0;
 		gbc.fill=GridBagConstraints.VERTICAL;
@@ -82,6 +84,12 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridwidth=1;
 		gbc.gridheight=1;
 		
+		gbc.gridx=3;
+		gbc.gridy=2;
+		gbc.ipadx=20;
+		Sauvegarde_Vue s = new Sauvegarde_Vue(modl);
+		this.add(s,gbc);
+		
 		gbc.gridx=0;
 		gbc.gridy=0;
 		gbc.ipadx=30;
@@ -89,7 +97,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		atm.addObserver(Av);
 		this.add(Av,gbc);
 		
-		gbc.gridx=2;
+		gbc.gridx=1;
 		gbc.gridy=0;
 		gbc.ipady=50;
 		this.add(mmem,gbc);
