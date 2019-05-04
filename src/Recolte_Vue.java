@@ -42,7 +42,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	ArrayList<JitmButton> ress;
 	Modele modl;
 	
-	public Recolte_Vue(Controleur_Rec c, Modele m) {
+	public Recolte_Vue(Controleur_Rec c,Controleur_Game ctrlg, Modele m) {
 		modl=m;
 		String[] rn_names = {"pierre","bois","eau","plume","souris","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","or","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
@@ -186,23 +186,18 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		gbc.gridwidth=2*larg;
 		this.add(partie,gbc);
 		*/
-		Button quitter= new Button("Menu Principal");
-		quitter.setFont(new Font("Arial",Font.BOLD,12));
-		quitter.setForeground(Color.black);
-		quitter.setPreferredSize(new Dimension(larg*2,30));
-		quitter.setBackground(new Color(219,219,219));
+		Button mp= new Button("Menu Principal");
+		mp.setFont(new Font("Arial",Font.BOLD,12));
+		mp.setForeground(Color.black);
+		mp.setPreferredSize(new Dimension(larg*2,30));
+		mp.setBackground(new Color(219,219,219));
 		gbc.gridx=0;
 		gbc.gridy=(i-j*moitie+3)*larg+140;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
-		this.add(quitter,gbc);
-		quitter.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		this.add(mp,gbc);
+		mp.setActionCommand("endgame");
+		mp.addActionListener(ctrlg);
 	}
 	
 	private JitmButton Init_Icon_Recolte(Item obj) {

@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
+@SuppressWarnings("serial")
 public class Minecraft extends JFrame implements WindowListener,Observer{
 	
 	Modele modl;
@@ -24,31 +25,16 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 	static int taille_bouton=30;
 	static Color fond = new Color (139,108,66);
     static Color fond_bouton = new Color (219,219,219);
-	
-	
-	public static void main(String[] args) throws IOException {
-		new Minecraft();
-	}
 
-	public Minecraft() throws IOException {
+	public Minecraft(NewLoadGame nlg) throws IOException {
 		super();
 		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setUndecorated(true);
-		NewLoadGame nlg = new NewLoadGame();	// Lance le menu permettant de creer  une nouvelle partie ou d'en charger une
-		while(!nlg.choice || nlg.IGN.equals("")) {	//on reste sur la premiere frame de choix tant que l'utilisateur n'a pas fait son choix ou bien que son IGN est vide
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		nlg.dispose();	//fermeture de la fenetre de lancement de partie
-		this.modl = new Modele(nlg.fileName,nlg.New);	//Creer un modele qui sera sauvegarder sur le fichier fileName
+		this.modl = new Modele(nlg.fileName,nlg.New);//Creer un modele qui sera sauvegarder sur le fichier fileName
 		this.atm = new Atelier_Modele(modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
-		
+		Controleur_Game ctrlg = new Controleur_Game(this);
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
@@ -75,7 +61,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.fill=GridBagConstraints.VERTICAL;
 		gbc.gridheight=2;
 		gbc.ipadx=20;
-		Recolte_Vue rec = new Recolte_Vue(ctrl,modl);
+		Recolte_Vue rec = new Recolte_Vue(ctrl,ctrlg,modl);
 		atm.addObserver(rec);
 		this.add(rec,gbc);
 		

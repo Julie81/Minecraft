@@ -254,4 +254,10 @@ public class Modele extends Observable{
 			System.out.println("-----------------------");
 		}
 	}
+
+	public void endgame() {
+		this.setChanged();
+		this.notifyObservers("endgame");
+		
+	}
 }

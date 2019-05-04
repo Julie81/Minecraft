@@ -185,13 +185,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		if (arg0.getSource() instanceof Button ) {
-			Button b = (Button) arg0.getSource();
-			if (b.getActionCommand() == "-") {
-			}
-		}
-		
+	public void mouseEntered(MouseEvent arg0) {	
 	}
 
 	@Override
