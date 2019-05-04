@@ -44,7 +44,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	
 	public Recolte_Vue(Controleur_Rec c, Modele m) {
 		modl=m;
-		String[] rn_names = {"pierre","bois","eau","plume","souris","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","or","canne a sucre"};  // rn pour ressources naturelles
+		String[] rn_names = {"pierre","bois","eau","plume","viande","fer","diamant","pomme","orange","lait","lianes","noix de coco","cuir","charbon","or","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		ress = new ArrayList<>();
 		
