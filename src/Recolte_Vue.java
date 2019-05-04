@@ -173,7 +173,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		gbc.gridwidth=2*larg;
 		this.add(sauvegarde,gbc);
 		
-		Button partie= new Button("Choisir partie");
+		/*Button partie= new Button("Choisir partie");
 		partie.setFont(new Font("Arial",Font.BOLD,12));
 		partie.setForeground(Color.black);
 		partie.setPreferredSize(new Dimension(larg*2,30));
@@ -185,7 +185,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2*larg;
 		this.add(partie,gbc);
-		
+		*/
 		Button quitter= new Button("Quitter");
 		quitter.setFont(new Font("Arial",Font.BOLD,12));
 		quitter.setForeground(Color.black);
