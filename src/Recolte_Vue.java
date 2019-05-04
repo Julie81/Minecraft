@@ -44,9 +44,19 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	
 	public Recolte_Vue(Controleur_Rec c,Controleur_Game ctrlg, Modele m) {
 		modl=m;
-		String[] rn_names = {"pierre","bois","eau","plume","souris","fer","diamant","pomme","orange","lait","lianes","noix de coco","ble","charbon","or","canne a sucre"};  // rn pour ressources naturelles
+		String[] rn_names = {"pierre","bois","eau","plume","viande","fer","diamant","pomme","orange","lait","lianes","noix de coco","cuir","charbon","or","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		ress = new ArrayList<>();
+		
+		// tri
+		int v;
+	    for (int u = 1; u < rn_names.length; u++) {
+	    	Item en_cours = modl.itemNametoItem.get(rn_names[u]);
+			for (v = u; v > 0 &&  modl.itemNametoItem.get(rn_names[v-1]).generation > en_cours.generation; v--) {
+	            rn_names[v] = rn_names[v-1];
+	            }
+			rn_names[v] = en_cours.name;
+	    }
 		
 		this.setBackground(Minecraft.fond);
 		this.setLayout(new GridBagLayout());
