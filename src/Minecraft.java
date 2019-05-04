@@ -62,8 +62,6 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridy=1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=2;
-		//gbc.fill=GridBagConstraints.VERTICAL;
-		//gbc.gridheight=2;
 		gbc.ipady=20;
 		gbc.ipadx=20;
 		Inventaire_Vue inv = new Inventaire_Vue(ctrl,ctrlA,modl);
@@ -87,7 +85,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		gbc.gridx=3;
 		gbc.gridy=2;
 		gbc.ipadx=20;
-		Sauvegarde_Vue s = new Sauvegarde_Vue(modl);
+		Partie_Vue s = new Partie_Vue(modl);
 		this.add(s,gbc);
 		
 		gbc.gridx=0;
