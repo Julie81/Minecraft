@@ -19,13 +19,11 @@ import java.util.TimerTask;
 public class EasterEgg {
 	Frame f;
 	Dimension taille_popup;
-	boolean autho;
 	
 	public EasterEgg(){
 		
 		f = new Frame();
 		taille_popup = new Dimension(250, 100);
-		autho = false;
 		
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
@@ -37,9 +35,10 @@ public class EasterEgg {
 
 	private void Bug() { // Iteration des popups
 		ArrayList<Popup> garbage = new ArrayList<>();
-		long ecart = 500;
-		while (!autho) {
-			System.out.println(autho);
+		int nbr = 0;
+		long ecart = 50;
+		while (nbr<80) {
+			nbr++;
 			Random rd = new Random();
 			int x = rd.nextInt(Math.abs(this.f.getWidth())-(int) taille_popup.getWidth());
 			int y = rd.nextInt(Math.abs(this.f.getHeight())-(int) taille_popup.getHeight());
@@ -48,23 +47,14 @@ public class EasterEgg {
 			} catch (InterruptedException e) {
 				System.out.println("Exception");
 			}
-			if (ecart>300) {
-				ecart = (long) (ecart * 0.95);
-			}
 			garbage.add(new Popup(x,y,taille_popup));
-			garbage.get(garbage.size()-1).addWindowListener(new java.awt.event.WindowAdapter() 
-				
-				{ public void windowClosing(WindowEvent arg0) {
-					System.out.println("closing");
-					autho = true;
-				}
-			});
 		
 		}
-		for(Popup pp: garbage) {
-			pp.dispose();
+		for(Popup p: garbage) {
+			p.dispose();
 		}
 		garbage.clear();
+		System.exit(0);
 	}
 	
 }

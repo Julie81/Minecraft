@@ -186,7 +186,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		gbc.gridwidth=2*larg;
 		this.add(partie,gbc);
 		*/
-		Button quitter= new Button("Quitter");
+		Button quitter= new Button("Menu Principal");
 		quitter.setFont(new Font("Arial",Font.BOLD,12));
 		quitter.setForeground(Color.black);
 		quitter.setPreferredSize(new Dimension(larg*2,30));
@@ -201,7 +201,6 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
-				
 			}
 		});
 	}
