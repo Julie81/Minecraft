@@ -16,7 +16,7 @@ public class Jeu { // Lancement application quelque peu sale donc potentiellemen
 				}
 			}
 			m = new Minecraft(nlg); // on charge la partie correspodante
-			nlg.setVisible(false); // on cache le menu principal
+			nlg.dispose();	//on a plus besoin de la fenetre de lancement de partie
 			while(m.isDisplayable()) { // tant que la fenetre de Minecraft est ouverte
 				try {
 					Thread.sleep(1/10);
@@ -24,7 +24,7 @@ public class Jeu { // Lancement application quelque peu sale donc potentiellemen
 					e.printStackTrace();
 				}
 			}
-			nlg.setVisible(true); // inutile théoriquement mais permet une transition plus soft entre les deux fenetres
+			m.dispose();	//on va revenir sur la fenetre de lancement de partie et donc on a plus besoin de Minecraft
 			}
 		}
 	}
