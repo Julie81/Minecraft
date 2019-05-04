@@ -11,19 +11,21 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class EasterEgg implements WindowListener{
+public class EasterEgg {
 	Frame f;
 	Dimension taille_popup;
-	Timer t;
+	boolean autho;
 	
 	public EasterEgg(){
 		
 		f = new Frame();
 		taille_popup = new Dimension(250, 100);
+		autho = false;
 		
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
@@ -32,66 +34,37 @@ public class EasterEgg implements WindowListener{
 		f.setSize(width, height);
 		Bug();
 	}
-	
-	private void Bug() {
-		long ecart = 200;
-		while (true) {
+
+	private void Bug() { // Iteration des popups
+		ArrayList<Popup> garbage = new ArrayList<>();
+		long ecart = 500;
+		while (!autho) {
+			System.out.println(autho);
 			Random rd = new Random();
 			int x = rd.nextInt(Math.abs(this.f.getWidth())-(int) taille_popup.getWidth());
 			int y = rd.nextInt(Math.abs(this.f.getHeight())-(int) taille_popup.getHeight());
 			try {
 				Thread.sleep(ecart);
-				new Popup(x,y,taille_popup);
 			} catch (InterruptedException e) {
 				System.out.println("Exception");
 			}
-			if (ecart>50) {
+			if (ecart>300) {
 				ecart = (long) (ecart * 0.95);
 			}
+			garbage.add(new Popup(x,y,taille_popup));
+			garbage.get(garbage.size()-1).addWindowListener(new java.awt.event.WindowAdapter() 
+				
+				{ public void windowClosing(WindowEvent arg0) {
+					System.out.println("closing");
+					autho = true;
+				}
+			});
+		
 		}
-	}
-	
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		f.dispose();
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+		for(Popup pp: garbage) {
+			pp.dispose();
+		}
+		garbage.clear();
 	}
 	
 }

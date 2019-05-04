@@ -70,7 +70,7 @@ public class Craft { // recette d'un item
 		int cptUpper = 0; // nombre de ligne analyse
 		
 		//Upper
-		while(items[0] == emptyLine && cptUpper<2){ // cptUpper est le variant qui fait sortir de la boucle 
+		while(items[0][0] == null && items[0][1] == null && items[0][2] == null && cptUpper<2){ // cptUpper est le variant qui fait sortir de la boucle 
 			// on decale tout vers le haut
 			items[0] = items[1];
 			items[1] = items[2];
