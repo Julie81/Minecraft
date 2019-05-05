@@ -111,7 +111,7 @@ public class Memoire_Vue extends Panel implements MouseListener{
 
 	@Override	
 	public void mouseClicked(MouseEvent e) {
-		this.repaint();
+			this.repaint();
 	}
 	
 	@Override

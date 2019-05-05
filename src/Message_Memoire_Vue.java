@@ -14,7 +14,7 @@ public class Message_Memoire_Vue extends JPanel {
 	
 	public Message_Memoire_Vue () {
 		
-		this.cl =new CardLayout();
+		this.cl = new CardLayout();
 		
 		// Message : Recherchez ici la recette d'un craft
 		JPanel message = new JPanel();
@@ -43,7 +43,9 @@ public class Message_Memoire_Vue extends JPanel {
 				new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {
 						if (e.getSource() instanceof JPanel) {
-							cl.last((JPanel) e.getSource() ); // quand on clique on swap le cardlayout vers la memoire
+							if (mv.currItem!=null) {
+								cl.last((JPanel) e.getSource() ); // quand on clique on swap le cardlayout vers la memoire
+							}
 						}
 					}
 				});
