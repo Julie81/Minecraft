@@ -37,13 +37,13 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 public class Recolte_Vue extends Panel implements MouseListener,Observer{
-	int larg = 50; // dimension du carre bouton
 	Controleur_Rec ctrl;
 	ArrayList<JitmButton> ress;
 	Modele modl;
 	
-	public Recolte_Vue(Controleur_Rec c,Controleur_Game ctrlg, Modele m) {
+	public Recolte_Vue(Controleur_Rec c, Controleur_Game ctrlg, Modele m) {
 		modl=m;
+		//liste des items de recolte
 		String[] rn_names = {"pierre","bois","eau","plume","viande","fer","diamant","pomme","orange","lait","lianes","noix de coco","cuir","charbon","or","canne a sucre"};  // rn pour ressources naturelles
 		this.ctrl = c;
 		ress = new ArrayList<>();
@@ -63,7 +63,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		int moitie = 8;
-		int dim_icon = larg - Minecraft.espace_larg;
+		int dim_icon = (Minecraft.longr)/2 - Minecraft.espace2;
 		
 		gbc.gridx=0;
 		gbc.gridy=2;
@@ -75,9 +75,9 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 		for(i=0; i<rn_names.length; i++) {  // Creation de tout les boutons en parcourant les listes
 			if (i==moitie){  // quand on a parcouru la moitie des items
 				j=1;  // on passe a la colonne suivante
-				gbc.gridx = larg;
+				gbc.gridx = (Minecraft.longr)/2;
 			}
-			gbc.gridy=(i-j*moitie+2)*larg+60;
+			gbc.gridy=(i-j*moitie+2)*(Minecraft.longr)/2+2*Minecraft.taille_bouton;
 			JitmButton b = Init_Icon_Recolte(m.itemNametoItem.get(rn_names[i]));
 			
 			// Transformation de l'image pour l'adapter a la taille du Bouton
@@ -94,15 +94,17 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			
 		}
 		
+		//ajout et positionnement du bouton d'aide
 		gbc.gridx=0;
 		gbc.gridy=0;
 		JButton aide= new JButton(new ImageIcon("miniatures/aide/manuel_aide.jpg"));
-		aide.setPreferredSize(new Dimension(50,60));
+		aide.setPreferredSize(new Dimension((Minecraft.longr)/2,2*Minecraft.taille_bouton));
 		this.add(aide,gbc);
 		aide.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//ouverture du manuel
 				try {
 					new Manuel_Vue();
 				} catch (IOException e1) {
@@ -112,63 +114,51 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 			}
 		});
 		
-		gbc.gridx=larg;
+		//ajout et positionnement du titre
+		gbc.gridx=(Minecraft.longr)/2;
 		Box box_titre = Box.createVerticalBox();
 		Label titre1=new Label("Recoltez vos");
 		Label titre2=new Label("ressources");
-		Label titre3=new Label("");
 		titre1.setFont(new Font("Arial",Font.BOLD,16));
 		titre1.setForeground(Color.white);
 		box_titre.add(titre1);
 		titre2.setFont(new Font("Arial",Font.BOLD,16));
 		titre2.setForeground(Color.white);
 		box_titre.add(titre2);
-		box_titre.setPreferredSize(new Dimension (larg*2,larg));
+		box_titre.setPreferredSize(new Dimension ((Minecraft.longr)/2*2,(Minecraft.longr)/2));
 		gbc.gridx=0;
 		gbc.gridy=70;
+		gbc.ipady=Minecraft.espace1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=2*larg;
+		gbc.gridwidth=Minecraft.longr;
 		this.add(box_titre,gbc);
 		
+		//ajout d'un espace avant le bouton sauvegarde
 		Label blanc=new Label("");
-		blanc.setPreferredSize(new Dimension (larg,20));
+		blanc.setPreferredSize(new Dimension ((Minecraft.longr)/2,Minecraft.espace2));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+2)*larg+60;
+		gbc.gridy=(i-j*moitie+2)*(Minecraft.longr)/2+2*Minecraft.taille_bouton;
 		this.add(blanc,gbc);
 		
+		//ajout d'un espace entre les boutons sauvegarde et menu principal
 		Label blanc2=new Label("");
-		blanc2.setPreferredSize(new Dimension (larg,5));
+		blanc2.setPreferredSize(new Dimension ((Minecraft.longr)/2,5));
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+90;
+		gbc.gridy=(i-j*moitie+3)*(Minecraft.longr)/2+90;
 		this.add(blanc2,gbc);
 		
-		Label blanc3=new Label("");
-		blanc3.setPreferredSize(new Dimension (larg,20));
-		gbc.gridx=0;
-		gbc.gridy=larg+60;
-		this.add(blanc3,gbc);
-		
-		Label blanc4=new Label("");
-		blanc4.setPreferredSize(new Dimension (larg,5));
-		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+130;
-		this.add(blanc4,gbc);
-		
-		Label blanc5=new Label("");
-		blanc5.setPreferredSize(new Dimension (larg,5));
-		gbc.gridx=0;
-		gbc.gridy=60;
-		this.add(blanc5,gbc);
-		
+		//ajout du bouton sauvegarde
 		Button sauvegarde= new Button("Sauvegarder");
+		//police de sauvegarde
 		sauvegarde.setFont(new Font("Arial",Font.BOLD,12));
 		sauvegarde.setForeground(Color.black);
-		sauvegarde.setPreferredSize(new Dimension(larg*2,30));
-		sauvegarde.setBackground(new Color(219,219,219));
+		sauvegarde.setPreferredSize(new Dimension(Minecraft.longr,20));
+		sauvegarde.setBackground(Minecraft.fond_bouton);
 		sauvegarde.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//sauvegarde
 				try {
 					modl.saveGame();
 				} catch (IOException e1) {
@@ -177,34 +167,24 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 				
 			}
 		});
+		//positionnement du bouton
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+60;
+		gbc.gridy=(i-j*moitie+3)*(Minecraft.longr)/2+2*Minecraft.taille_bouton;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=2*larg;
+		gbc.gridwidth=Minecraft.longr;
 		this.add(sauvegarde,gbc);
 		
-		/*Button partie= new Button("Choisir partie");
-		partie.setFont(new Font("Arial",Font.BOLD,12));
-		partie.setForeground(Color.black);
-		partie.setPreferredSize(new Dimension(larg*2,30));
-		partie.setBackground(new Color(219,219,219));
-		// partie.addActionListener(new ActionListener() {}); Complique donc a voir
-		
-		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+100;
-		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=2*larg;
-		this.add(partie,gbc);
-		*/
+		//ajout et positionnement du bouton menu principal
 		Button mp= new Button("Menu Principal");
+		//police de menu principal
 		mp.setFont(new Font("Arial",Font.BOLD,12));
 		mp.setForeground(Color.black);
-		mp.setPreferredSize(new Dimension(larg*2,30));
-		mp.setBackground(new Color(219,219,219));
+		mp.setPreferredSize(new Dimension(Minecraft.longr,20));
+		mp.setBackground(Minecraft.fond_bouton);
 		gbc.gridx=0;
-		gbc.gridy=(i-j*moitie+3)*larg+140;
+		gbc.gridy=(i-j*moitie+3)*(Minecraft.longr)/2+Minecraft.longr;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=2*larg;
+		gbc.gridwidth=Minecraft.longr;
 		this.add(mp,gbc);
 		mp.setActionCommand("endgame");
 		mp.addActionListener(ctrlg);
@@ -213,7 +193,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	private JitmButton Init_Icon_Recolte(Item obj) {
 		// Creer un bouton avec l'image icon
 		JitmButton b = new JitmButton(obj);
-		b.setPreferredSize(new Dimension(larg,larg));
+		b.setPreferredSize(new Dimension((Minecraft.longr)/2,(Minecraft.longr)/2));
 		b.setActionCommand("R");
 		b.putClientProperty("id", obj.name);
 		b.addActionListener(this.ctrl);
@@ -223,6 +203,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 	}
 	
 	private void verif_lock() {
+		//debloquer une ressource
 		for( JitmButton b : this.ress) {
 			b.setEnabled(b.it.unlock());
 		}
@@ -262,6 +243,7 @@ public class Recolte_Vue extends Panel implements MouseListener,Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
+		//modification des verrous
 		if (arg=="reset") {
 			this.verif_lock();
 		}
