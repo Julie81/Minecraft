@@ -138,8 +138,6 @@ public class NewLoadGame extends JFrame implements WindowListener{
 		
 		this.pack();
 		this.setVisible(true);
-		//this.setLocationRelativeTo(null);
-		
 	}
 	
 	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException { //ajoute un fond d'ecran

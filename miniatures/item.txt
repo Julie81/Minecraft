@@ -17,10 +17,10 @@ hache_en_fer.png
 lait.png
 lianes.png
 livre.png
+mac_book.png
 magret_de_canard_rotis_au_miel_et_a_l_orange.png
 noix_de_coco.png
 orange.png
-ordinateur.png
 or.png
 papier.png
 piege_a_souris.png
