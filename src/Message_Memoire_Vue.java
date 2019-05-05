@@ -1,16 +1,14 @@
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Label;
-import java.awt.Panel;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Message_Memoire_Vue extends JPanel implements MouseListener {
+@SuppressWarnings("serial")
+public class Message_Memoire_Vue extends JPanel {
 	CardLayout cl;
 	Memoire_Vue mv;
 	
@@ -21,7 +19,7 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 		// Message : Recherchez ici la recette d'un craft
 		JPanel message = new JPanel();
 		message.setBackground(new Color(0,0,0,0));
-		JLabel message1=new JLabel("Recherchez ici ");
+		JLabel message1 = new JLabel("Recherchez ici ");
 		JLabel message2 = new JLabel("la recette d'un craft ...");
 		message1.setFont(new Font("Arial",Font.BOLD,36));
 		message2.setFont(new Font("Arial",Font.BOLD,36));
@@ -41,39 +39,14 @@ public class Message_Memoire_Vue extends JPanel implements MouseListener {
 		this.setLayout(cl);
 		this.add(message,"texte");
 		this.add(mv,"memoire");
-		this.addMouseListener(this);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() instanceof JPanel) {
-			this.cl.last(this);
-		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		this.addMouseListener(
+				new MouseAdapter() {
+					public void mouseClicked(MouseEvent e) {
+						if (e.getSource() instanceof JPanel) {
+							cl.last((JPanel) e.getSource() ); // quand on clique on swap le cardlayout vers la memoire
+						}
+					}
+				});
 	}
 
 }

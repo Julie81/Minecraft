@@ -138,7 +138,7 @@ public class NewLoadGame extends JFrame implements WindowListener{
 		
 		this.pack();
 		this.setVisible(true);
-		this.setLocationRelativeTo(null);
+		//this.setLocationRelativeTo(null);
 		
 	}
 	
