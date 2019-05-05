@@ -13,7 +13,7 @@ public class Message_Memoire_Vue extends JPanel {
 	Memoire_Vue mv;
 	
 	public Message_Memoire_Vue () {
-		
+		//nouveau cardLayout
 		this.cl =new CardLayout();
 		
 		// Message : Recherchez ici la recette d'un craft
@@ -21,22 +21,27 @@ public class Message_Memoire_Vue extends JPanel {
 		message.setBackground(new Color(0,0,0,0));
 		JLabel message1 = new JLabel("Recherchez ici ");
 		JLabel message2 = new JLabel("la recette d'un craft ...");
+		//police du message
 		message1.setFont(new Font("Arial",Font.BOLD,36));
 		message2.setFont(new Font("Arial",Font.BOLD,36));
 		message1.setForeground(Color.white);
 		message2.setForeground(Color.white);
 		
+		//ajout du message
 		this.setBackground(new Color(107,87,49));
 		Box box_texte = Box.createVerticalBox();
 		box_texte.add(message1);
 		box_texte.add(message2);
 		message.add(box_texte);
 		
+		//ajout de la memoire
 		JPanel memoire = new JPanel();
 		this.mv = new Memoire_Vue();
 		memoire.add(this.mv);
 		
+		//ajout du Layout
 		this.setLayout(cl);
+		//ajout des panels
 		this.add(message,"texte");
 		this.add(mv,"memoire");
 		this.addMouseListener(

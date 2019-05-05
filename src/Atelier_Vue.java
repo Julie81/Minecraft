@@ -89,20 +89,20 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		
 		//creation et placement de la legende quantite
 		gbc.gridx = (grille+1)*Minecraft.larg;
-		gbc.gridy=2*Minecraft.larg-Minecraft.espace_haut;
+		gbc.gridy=2*Minecraft.larg-Minecraft.espace1;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=Minecraft.larg;
 		//la quantite s'etend sur la hauteur de 70 (Minecraft.larg+20)
-		gbc.gridheight=Minecraft.larg+Minecraft.espace_haut;
+		gbc.gridheight=Minecraft.larg+Minecraft.espace1;
 		Label quant = new Label ("     	     Quantite : ");
 		quant.setFont(new Font("Arial",Font.BOLD,16));
 		quant.setForeground(Color.white);
 		this.add(quant,gbc);
 		
 		//creation et placement de la quantite
-		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace_haut;
+		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace1;
 		gbc.gridy=2*Minecraft.larg;
-		gbc.ipadx=Minecraft.espace_larg;
+		gbc.ipadx=Minecraft.espace2;
 		gbc.gridwidth=1;
 		this.affQ = new Label(Integer.toString(quantite));
 		this.affQ.setFont(new Font("Arial",Font.BOLD,16));
@@ -111,16 +111,16 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		
 		//ajout d'un espace entre le tableau et le bouton plus
 		Label blanc=new Label("");
-		blanc.setPreferredSize(new Dimension (Minecraft.espace_larg,Minecraft.espace_haut));
+		blanc.setPreferredSize(new Dimension (Minecraft.espace2,Minecraft.espace1));
 		gbc.gridx=(grille+1)*Minecraft.larg;
 		gbc.gridy=2*Minecraft.larg;
 		this.add(blanc,gbc);
 		
 		//creation et placement du bouton plus
-		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace_haut-5;;
+		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace1-5;;
 		gbc.gridy=grille*Minecraft.larg;
 		//le bouton plus est espace en largeur de 10 (Minecraft.espace_haut)
-		gbc.ipadx=Minecraft.espace_haut;
+		gbc.ipadx=Minecraft.espace1;
 		Button plus= new Button("+");
 		plus.setFont(new Font("Arial",Font.BOLD,12));
 		plus.setForeground(Color.black);
@@ -131,9 +131,9 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		this.add(plus,gbc);
 		
 		//creation et placement du bouton moins
-		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace_haut;;
+		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace1;;
 		gbc.gridy=grille*Minecraft.larg;
-		gbc.ipadx=Minecraft.espace_haut;
+		gbc.ipadx=Minecraft.espace1;
 		Button moins = new Button("-");
 		moins.setFont(new Font("Arial",Font.BOLD,14));
 		moins.setForeground(Color.black);
@@ -170,7 +170,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 					ImageIcon icon = new ImageIcon(((String) arg).substring(2));
 					Image img = icon.getImage();
 					//placement de l'image dans la case
-					Image newimg = img.getScaledInstance( Minecraft.larg-Minecraft.espace_larg, Minecraft.larg-Minecraft.espace_larg,  java.awt.Image.SCALE_SMOOTH ) ;
+					Image newimg = img.getScaledInstance( Minecraft.larg-Minecraft.espace2, Minecraft.larg-Minecraft.espace2,  java.awt.Image.SCALE_SMOOTH ) ;
 					icon = new ImageIcon(newimg);
 					//ajout de l'image dans la grille
 					this.Mat[((String) arg).charAt(0)-'0'][((String) arg).charAt(1)-'0'].setIcon(icon);

@@ -34,39 +34,29 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		int ligne = 4;
 		int colonne = 10;
 		int s_icon = 40;
-		int larg = 80;// largeur d'une cellule pour les cases de l'inventaire
-		int longr = 100;
 		
 		this.inventaire = new JitmButton [ligne][colonne];
+		//couleur du fond
 		this.setBackground(new Color(63,34,4));
+		//ajout du Layout
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.gridx = larg*4;
+		//ajout et placement du titre
+		gbc.gridx = Minecraft.larg*ligne;
 		gbc.gridy = 0;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=larg*2;
+		gbc.gridwidth=Minecraft.larg*(ligne/2);
 		Label titre = new Label (" INVENTAIRE ");
 		titre.setFont(new Font("Arial",Font.BOLD,18));
 		titre.setForeground(Color.white);
 		this.add(titre,gbc);
 		
-		/*gbc.gridx = larg;
-		gbc.gridy = 0;
-		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=larg*9;
-		gbc.gridheight=longr;
-		Label blanc = new Label (" ");
-		blanc.setBackground(new Color(76,166,107));
-		blanc.setPreferredSize(new Dimension(larg*8,30));
-		this.add(blanc,gbc);*/
-		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
+		//on ajuste la taille des cases
 		gbc.gridheight = ligne;
 		gbc.gridwidth = colonne;
 		
-		
+		//on parcourt les items
 		int y = 0;
 		int x = 0;
 		for(Integer key : m.itemGen.keySet()) {
@@ -75,23 +65,27 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 				item.x = x;
 				item.y = y;
 				
-				gbc.gridy = (y+1)*longr;
-				gbc.gridx = x*larg;
+				//placement de l'item
+				gbc.gridy = (y+1)*Minecraft.longr;
+				gbc.gridx = x*Minecraft.larg;
 				
 				JitmButton b = new JitmButton(item);  // on creer un Bouton d'item d'ID key
 				inventaire[y][x] = b;
-				b.setPreferredSize(new Dimension(longr,larg));
+				b.setPreferredSize(new Dimension(Minecraft.longr,Minecraft.larg));
 
+				//on recupere l'image de l'item
 				ImageIcon icon = new ImageIcon(item.path);
 				Image img = icon.getImage() ;
 				Image newimg = img.getScaledInstance( s_icon, s_icon,  java.awt.Image.SCALE_SMOOTH ) ;
 				icon = new ImageIcon(newimg);
+				//on ajoute l'image au bouton
 				b.setIcon(icon);
 
 				//Definition de la quantite
 				b.setText(""+item.quantity);
 				b.setIconTextGap(5);
 				
+				//police de la quantite
 				b.setFont(new Font("Arial",Font.BOLD,10));
 				
 				String position = ""+(y*colonne+x);
@@ -99,14 +93,17 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 					position="0"+position;
 				}  // Il y aura ici en fait un string caracterisant l'item sur lequel on a clique
 				
+				//ajout des actions sur le bouton
 				b.setActionCommand(position);
 				b.addActionListener(this);
 				b.addActionListener(ctrla);
 				b.addActionListener(c);
 				b.addMouseListener(this);
+				//modification du bord et du fond du bouton
 				b.setBackground(new Color(76,166,107));
 				Border bord = new LineBorder(new Color(63,34,4), 1);
 				b.setBorder(bord);
+				//ajout du bouton a l'inventaire
 				this.add(b,gbc);
 				
 				x++;
@@ -154,7 +151,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	}
 	
 	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent e) { //recuperation de l'item qu'on a selectionne et mise en valeur de cet item
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
 			if (t == this.tampon) {
@@ -165,7 +162,7 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited(MouseEvent e) {//retourne a la couleur initiale du bouton
 		if (e.getSource() instanceof JitmButton ) {
 			JitmButton t = (JitmButton) e.getSource();
 			if (t != this.tampon) {
