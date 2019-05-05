@@ -24,7 +24,7 @@ import javax.swing.border.LineBorder;
 
 
 public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseListener{
-	int larg=80;
+	int grille=3;
 	int quantite=1;
 	Controleur_Atelier ctrla;
 	Label affQ;
@@ -39,15 +39,17 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		
 		//couleur de fond de l'atelier
 		this.setBackground(Minecraft.fond);
+		//controleur de l'atelier
 		this.ctrla = ctrla;
-		this.Mat = new JButton[3][3];
+		//matrice de boutons
+		this.Mat = new JButton[grille][grille];
 		
 		//initialisation de la grille de craft
-		for (int i=0; i<3; i++){
+		for (int i=0; i<grille; i++){
 			//placement selon l'axe des ordonnees
 			gbc.gridy = (i+1)*Minecraft.larg;
 			
-			for (int j=0; j<3;j++){
+			for (int j=0; j<grille;j++){
 
 				//placement selon l'axe des abscisses
 				gbc.gridx = j*Minecraft.larg;
@@ -56,12 +58,16 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 				JButton b = new JButton();
 				b.setActionCommand("f"+i+""+j);
 				this.Mat[i][j] = b;
+				//dimension du bouton
 				b.setPreferredSize(new Dimension(Minecraft.larg,Minecraft.larg));
+				//ajout des actions sur le bouton
 				b.addActionListener(ctrla);
 				b.addMouseListener(this);
+				//couleur de fond et contour du bouton
 				b.setBackground(new Color(200,173,127));
 				Border bord = new LineBorder(Color.black, 1);
 				b.setBorder(bord);
+				//ajout du bouton a l'atelier
 				this.add(b,gbc);
 			}
 		}
@@ -69,26 +75,32 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		//creation et placement du titre
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		//titre etendue sur plusieurs cases dans la longueur
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=larg*3;
+		//titre prend trois cases sur la longueur
+		gbc.gridwidth=Minecraft.larg*grille;
 		Label atelier = new Label (" Craftez vos ressources : ");
+		//police du titre
 		atelier.setFont(new Font("Arial",Font.BOLD,18));
+		//coleur du titre
 		atelier.setForeground(Color.white);
+		//ajout du titre a l'atelier
 		this.add(atelier,gbc);
 		
 		//creation et placement de la legende quantite
-		gbc.gridx = 4*Minecraft.larg;
-		gbc.gridy=2*Minecraft.larg-20;
+		gbc.gridx = (grille+1)*Minecraft.larg;
+		gbc.gridy=2*Minecraft.larg-Minecraft.espace_haut;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth=Minecraft.larg;
-		gbc.gridheight=Minecraft.larg+20;
+		//la quantite s'etend sur la hauteur de 70 (Minecraft.larg+20)
+		gbc.gridheight=Minecraft.larg+Minecraft.espace_haut;
 		Label quant = new Label ("     	     Quantite : ");
 		quant.setFont(new Font("Arial",Font.BOLD,16));
 		quant.setForeground(Color.white);
 		this.add(quant,gbc);
 		
 		//creation et placement de la quantite
-		gbc.gridx = 4*larg+Minecraft.espace_haut;
+		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace_haut;
 		gbc.gridy=2*Minecraft.larg;
 		gbc.ipadx=Minecraft.espace_larg;
 		gbc.gridwidth=1;
@@ -99,14 +111,15 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		
 		//ajout d'un espace entre le tableau et le bouton plus
 		Label blanc=new Label("");
-		blanc.setPreferredSize(new Dimension (10,20));
-		gbc.gridx=4*Minecraft.larg;
+		blanc.setPreferredSize(new Dimension (Minecraft.espace_larg,Minecraft.espace_haut));
+		gbc.gridx=(grille+1)*Minecraft.larg;
 		gbc.gridy=2*Minecraft.larg;
 		this.add(blanc,gbc);
 		
 		//creation et placement du bouton plus
-		gbc.gridx = 4*Minecraft.larg+Minecraft.espace_haut-5;;
-		gbc.gridy=3*Minecraft.larg;
+		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace_haut-5;;
+		gbc.gridy=grille*Minecraft.larg;
+		//le bouton plus est espace en largeur de 10 (Minecraft.espace_haut)
 		gbc.ipadx=Minecraft.espace_haut;
 		Button plus= new Button("+");
 		plus.setFont(new Font("Arial",Font.BOLD,12));
@@ -118,8 +131,8 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		this.add(plus,gbc);
 		
 		//creation et placement du bouton moins
-		gbc.gridx = 4*Minecraft.larg+Minecraft.espace_haut;;
-		gbc.gridy=3*Minecraft.larg;
+		gbc.gridx = (grille+1)*Minecraft.larg+Minecraft.espace_haut;;
+		gbc.gridy=grille*Minecraft.larg;
 		gbc.ipadx=Minecraft.espace_haut;
 		Button moins = new Button("-");
 		moins.setFont(new Font("Arial",Font.BOLD,14));
@@ -132,7 +145,7 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		this.add(moins,gbc);
 		
 		//creation et placement du bouton craft
-		gbc.gridx = 5*Minecraft.larg;;
+		gbc.gridx = (grille+2)*Minecraft.larg;;
 		gbc.gridy=2*Minecraft.larg;
 		Button craft = new Button("Crafter");
 		craft.setFont(new Font("Arial",Font.BOLD,12));
@@ -153,14 +166,18 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 					this.newAt();
 				}
 				else {
+					//on recupere l'image a mettre dans la grille
 					ImageIcon icon = new ImageIcon(((String) arg).substring(2));
 					Image img = icon.getImage();
-					Image newimg = img.getScaledInstance( larg-10, larg-10,  java.awt.Image.SCALE_SMOOTH ) ;
+					//placement de l'image dans la case
+					Image newimg = img.getScaledInstance( Minecraft.larg-Minecraft.espace_larg, Minecraft.larg-Minecraft.espace_larg,  java.awt.Image.SCALE_SMOOTH ) ;
 					icon = new ImageIcon(newimg);
+					//ajout de l'image dans la grille
 					this.Mat[((String) arg).charAt(0)-'0'][((String) arg).charAt(1)-'0'].setIcon(icon);
 				}
 			}
 			if(arg instanceof Integer) {
+				//modification de la quantite
 				this.quantite = (int) arg;
 				this.affQ.setText(""+this.quantite);
 				}
