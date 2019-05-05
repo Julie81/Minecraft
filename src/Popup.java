@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 @SuppressWarnings("serial")
-public class Popup extends Frame implements WindowListener{
+public class Popup extends Frame{
 	
 	public Popup(int x,int y, Dimension d) {
 		super();
@@ -20,49 +20,6 @@ public class Popup extends Frame implements WindowListener{
 		this.add(lb);
 		this.setSize(d);
 		this.pack();
-		this.addWindowListener(this);
 		this.setVisible(true);
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		dispose();
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

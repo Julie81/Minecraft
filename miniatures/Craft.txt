@@ -16,7 +16,6 @@ piege a souris;null,null,null:null,fer,fer:bois,bois,bois
 pioche en diamant;diamant,diamant,diamant:null,baton,null:null,baton,null
 pioche en pierre;pierre,pierre,pierre:null,baton,null:null,baton,null
 pioche en fer;fer,fer,fer:null,baton,null:null,baton,null
-pomme;null,hache en fer,null:null,echelle,null:null,echelle,null
 pomme en or;or,or,or:or,pomme,or:or,or,or
 rails;fer,null,fer:fer,baton,fer:fer,null,fer
 sceau;null,null,null:fer,null,fer:null,fer,null

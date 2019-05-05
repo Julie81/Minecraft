@@ -24,7 +24,7 @@ public class Jeu { // Lancement application quelque peu sale donc potentiellemen
 					e.printStackTrace();
 				}
 			}
-			m.dispose();	//on va revenir sur la fenetre de lancement de partie et donc on a plus besoin de Minecraft
+			m.dispose();	// on va revenir sur la fenetre de lancement de partie et donc on a plus besoin de Minecraft
 			}
 		}
 	}
