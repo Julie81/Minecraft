@@ -31,7 +31,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		this.setBackgroundImage(this, new File("miniatures/fond_ecran.jpg"));
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setUndecorated(true);
-		this.modl = new Modele(nlg.fileName,nlg.New);//Creer un modele qui sera sauvegarder sur le fichier fileName
+		this.modl = new Modele(nlg.fileName,nlg.New,nlg.IGN);//Creer un modele qui sera sauvegarder sur le fichier fileName
 		this.atm = new Atelier_Modele(modl);
 		Controleur_Rec ctrl = new Controleur_Rec(modl);
 		Controleur_Game ctrlg = new Controleur_Game(this);

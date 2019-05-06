@@ -22,9 +22,11 @@ import javax.swing.JPanel;
 public class NewLoadGame extends JFrame implements WindowListener{
 	
 	String fileName;	// Le nom du fichier sur lequel la sauvegrade va s'effectuer
+	String fileNumber;	// Le numero de la partie
 	Boolean New;	// Boolean permettant de savoir si on commence (ou recommence) une partie
 	Boolean choice;	// Boolean permettant de savoir si l'utilisateur a fini de choisir
 	String IGN;	// In Game Name => nom d'utilisateur
+	HashMap<String,String> IDtoIGN;	// HashMap qui associe a un numero de partie un identifiant
 	String OSseparator;	// Separateur utilisé lors de l'arborescence de fichier d'un OS
 
 	public NewLoadGame() throws IOException {
@@ -48,11 +50,11 @@ public class NewLoadGame extends JFrame implements WindowListener{
 		file = new File("miniatures"+OSseparator+"Save");	// Dossier contenant toutes les sauvegardes
 		
 		File[] files = file.listFiles();	// Liste des sauvegarde
-        HashMap<String,String> IDtoIGN = new HashMap<String,String>();	// HashMap qui associe a un numero de partie un identifiant
+        IDtoIGN = new HashMap<String,String>();
         
         for(File f : files) {
-        	String[] split = f.getName().split("_");	// le "_" est utiliser ici pour separer le numero de partie de l'IGN
-        	IDtoIGN.put(split[0], split[1].replaceAll(".txt", ""));	// on enleve l'extension ".txt" de fichier a l'IGN
+        	String[] split = f.getName().split("_",2);	// le "_" est utiliser ici pour separer le numero de partie de l'IGN
+        	IDtoIGN.put(split[0], split[1].substring(0, split[1].length() -4));	// on enleve l'extension ".txt" de fichier a l'IGN
         }
 		
 		for (int i=1; i<4; i++){
@@ -61,13 +63,13 @@ public class NewLoadGame extends JFrame implements WindowListener{
 					jb = new JButton("New Game 0"+i);	// creation des boutons New Game 0X a gauche
 				}
 				else {
-					if(IDtoIGN.containsKey("itemID0"+i)) {
-						jb = new JButton(IDtoIGN.get("itemID0"+i));	// creation des boutons Load Game ayant le nom de l'utilisateur
-						jb.setName("itemID0"+i+"_"+IDtoIGN.get("itemID0"+i));
+					if(IDtoIGN.containsKey(""+i)) {
+						jb = new JButton(IDtoIGN.get(""+i));	// creation des boutons Load Game ayant le nom de l'utilisateur
+						jb.setName(""+i+"_"+IDtoIGN.get(""+i));
 					}
 					else {
 						jb = new JButton("Load Game 0"+i);	// creation des boutons Load Game 0X
-						jb.setName("itemID0"+i+"_");
+						jb.setName(""+i+"_");
 					}
 					
 				}
@@ -80,41 +82,63 @@ public class NewLoadGame extends JFrame implements WindowListener{
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						String button = e.getActionCommand();
-						if(button.startsWith("N")) {	// le boutton est don un New Game 0X
+						
+						choice = true; // l'utilisateur vient de faire un choix
+						IGN = "";
+						
+						if(button.startsWith("N")) {	// le boutton est donc un New Game 0X
 							New = true;	// on est bien sur une nouvelle partie
+							
 							IGN = JOptionPane.showInputDialog(null,
 									"Entrez le nom de votre partie : ",
 	                                "NOM DE LA PARTIE",
 	                                JOptionPane.QUESTION_MESSAGE);
-							try{
-								IGN = IGN.replace('_', ' ');	// transforme les "_" en " " pour garder un seul "_" en tant que separateur
-							}catch(Exception e1){
-								IGN = "";	//utilisation du boutton annuler
+							if(IGN == null){
+								IGN = "";	// boutton annuler
 							}
-							fileName =  "Save"+OSseparator+"itemID0"+button.charAt(button.length()-1)+"_"+IGN;
+							
+							
+							fileNumber = ""+button.charAt(button.length()-1);
+							fileName =  "Save"+OSseparator+""+fileNumber+"_"+IGN;
+							
+							for(String number : IDtoIGN.keySet()){	// On va parcourir les IGN des parties existantes
+								if(!number.equals(fileNumber)){	// On ne compare avec la meme partie car on va l'ecraser								
+									if(IDtoIGN.get(number).equals(IGN)){
+										choice = false;	// l'IGN existe deja dans une autres partie
+									}
+								}
 							}
+						}
 						else if(button.endsWith("_")) {	// si l'utilisateur charge une partie vide il creer une nouvelle partie
 							New = true;
 							IGN = JOptionPane.showInputDialog(null,
 									"Entrez le nom de votre partie : ",
 	                                "NOM DE LA PARTIE",
 	                                JOptionPane.QUESTION_MESSAGE);
-							try{
-								IGN = IGN.replace('_', ' ');	// transforme les "_" en " " pour garder un seul "_" en tant que separateur
-							}catch(Exception e1){
-								IGN = "";	//utilisation du boutton annuler
+							
+							if(IGN == null){
+								IGN = "";	// boutton annuler
 							}
+							
+							fileNumber = ""+button.charAt(button.length()-1);
 							fileName =  "Save"+OSseparator+button+IGN;
+							
+							for(String number : IDtoIGN.keySet()){	// On va parcourir les IGN des parties existantes
+								if(!number.equals(fileNumber)){	// On ne compare avec la meme partie car on va l'ecraser						
+									if(IDtoIGN.get(number).equals(IGN)){
+										choice = false;	// l'IGN existe deja dans une autres partie
+									}
+								}
+							}
 						}
 						else {
+							System.out.println("her");
 							New = false;
-							IGN = " "; // L'IGN existe deja donc on autorise l'acces au document
+							IGN = button.intern().split("_",2)[1]; // On recupere l'IGN
+							// IGN = button.getText(); // methode qui ne marche pas sur mon pc (Nathan)
 							fileName =  "Save"+OSseparator+button;
 						}
-						choice = true;
-					}
-					
-					
+					}					
 				});
 				jb.setBounds(300*j+430, 100*i+200, 200, 50);
 				jb.setActionCommand(jb.getName());

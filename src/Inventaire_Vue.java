@@ -45,8 +45,8 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		gbc.gridx = larg*4;
 		gbc.gridy = 0;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=larg*2;
-		Label titre = new Label (" INVENTAIRE ");
+		gbc.gridwidth=larg*4;
+		Label titre = new Label (" Inventaire de "+m.IGN);
 		titre.setFont(new Font("Arial",Font.BOLD,18));
 		titre.setForeground(Color.white);
 		this.add(titre,gbc);

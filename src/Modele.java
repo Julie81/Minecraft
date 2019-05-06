@@ -16,14 +16,16 @@ public class Modele extends Observable{
 	HashMap<String,Craft> craftList;	// HashMap qui a une cle (concatenation des identifiant des items la composants) associe un craft
 	HashMap<Integer,ArrayList<Item>> itemGen;	// HashMap qui "trie" les items en fonctions de leurs generations
 	String gamePath;	// Chemin d'acces du fichier de jeu
+	String IGN;	// Nom de l'utilisateur
 	String OSseparator;	// Separateur de fichier de pendant de l'OS
 
-	public Modele(String fileName,Boolean New) throws IOException {
+	public Modele(String fileName,Boolean New,String IGN) throws IOException {
 		
 		File file = null;
 		this.OSseparator = file.separator; // initialisation du separateur
 		
 		this.gamePath = "miniatures"+OSseparator+fileName+".txt";
+		this.IGN = IGN;
 		
 		if(New) {	// en cas de nouvelle partie
 			eraseData();	// on efface le fichier lui correspondant
