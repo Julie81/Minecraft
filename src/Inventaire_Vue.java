@@ -46,8 +46,10 @@ public class Inventaire_Vue extends Panel implements ActionListener,Observer,Mou
 		gbc.gridx = Minecraft.larg*ligne;
 		gbc.gridy = 0;
 		gbc.fill= GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth=Minecraft.larg*(ligne/2);
-		Label titre = new Label (" INVENTAIRE ");
+
+		gbc.gridwidth=Minecraft.larg*(ligne);
+		Label titre = new Label (" Inventaire de "+m.IGN);
+		
 		titre.setFont(new Font("Arial",Font.BOLD,18));
 		titre.setForeground(Color.white);
 		this.add(titre,gbc);

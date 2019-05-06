@@ -40,7 +40,7 @@ public class Minecraft extends JFrame implements WindowListener,Observer{
 		//mode plein ecran
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setUndecorated(true);
-		this.modl = new Modele(nlg.fileName,nlg.New);//Creer un modele qui sera sauvegarder sur le fichier fileName
+		this.modl = new Modele(nlg.fileName,nlg.New,nlg.IGN);//Creer un modele qui sera sauvegarder sur le fichier fileName
 		this.atm = new Atelier_Modele(modl);
 		
 		//initialisation du Layout
