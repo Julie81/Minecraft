@@ -61,12 +61,12 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		Box explication1 = Box.createVerticalBox();
 		//description des explications
 		explication1.add(new JLabel (""));
-		explication1.add(new JLabel ("Vous pouvez recoltez vos ressources en cliquant"));
-		explication1.add(new JLabel (" sur les objets colores."));
-		explication1.add(new JLabel ("Les objets grises sont disponibles quand vous avez debloque"));
+		explication1.add(new JLabel ("Vous pouvez récolter vos ressources en cliquant"));
+		explication1.add(new JLabel (" sur les objets colorés."));
+		explication1.add(new JLabel ("Les objets grisés sont disponibles quand vous avez débloqué"));
 		explication1.add(new JLabel ("les ressources pour aller les chercher."));
-		explication1.add(new JLabel ("Les ressources sont classes par colonne dans l'ordre des "));
-		explication1.add(new JLabel ("generations. C'est-a-dire qu'une ressource peut avoir besoin"));
+		explication1.add(new JLabel ("Les ressources sont classées par colonne dans l'ordre des "));
+		explication1.add(new JLabel ("générations. C'est-a-dire qu'une ressource peut avoir besoin"));
 		explication1.add(new JLabel ("des ressources qui se trouvent au-dessus mais jamais de celles"));
 		explication1.add(new JLabel ("en-dessous."));
 		explication1.add(new JLabel (""));
@@ -101,12 +101,12 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		explication2.add(new JLabel (" "));
 		explication2.add(new JLabel ("Choisissez dans l'inventaire et "));
 		explication2.add(new JLabel ("positionnez dans la matrice"));
-		explication2.add(new JLabel (" les differents objets que vous "));
+		explication2.add(new JLabel (" les différents objets que vous "));
 		explication2.add(new JLabel ("souhaitez pour essayer d'en"));
-		explication2.add(new JLabel (" debloquer un nouveau."));
+		explication2.add(new JLabel (" débloquer un nouveau."));
 		explication2.add(new JLabel ("Vous pouvez construire plusieurs "));
 		explication2.add(new JLabel ("objets identiques en une fois"));
-		explication2.add(new JLabel (" en modifiant la quantite : "));
+		explication2.add(new JLabel (" en modifiant la quantité : "));
 		explication2.add(new JLabel ("l'augmenter (bouton plus) ou la "));
 		explication2.add(new JLabel ("diminuer (bouton moins)"));
 		explication2.add(new JLabel ("Enfin, pour construire l'objet voulu,"));
@@ -146,8 +146,8 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		explication3.add(new JLabel ("Il y a deux messages d'erreur :"));
 		explication3.add(new JLabel (" "));
 		explication3.add(new JLabel (" "));
-		explication3.add(new JLabel ("    - l'objet dont la matrice que vous avez"));
-		explication3.add(new JLabel ("cree n'existe pas"));
+		explication3.add(new JLabel ("    - Il n'existe pas d'objet associé"));
+		explication3.add(new JLabel (" à ce craft."));
 		explication3.add(new JLabel (" "));
 		explication3.add(new JLabel (" "));
 		explication3.add(new JLabel (" "));
@@ -155,9 +155,9 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		Box explication3_2 = Box.createVerticalBox();
 		explication3_2.add(new JLabel (" "));
 		explication3_2.add(new JLabel (" "));
-		explication3_2.add(new JLabel ("    - vous n'avez pas assez de materiaux."));
-		explication3_2.add(new JLabel ("Dans ce cas, les materiaux que vous n'avez "));
-		explication3_2.add(new JLabel ("pas en assez grande quantite sont affiches."));
+		explication3_2.add(new JLabel ("    - Vous n'avez pas assez de matériaux."));
+		explication3_2.add(new JLabel ("Dans ce cas, les matériaux que vous n'avez "));
+		explication3_2.add(new JLabel ("pas en assez grande quantité sont affichés."));
 		explication3_2.add(new JLabel (" "));
 		explication3_2.add(new JLabel (" "));
 		explication3_2.add(new JLabel (" "));
@@ -207,14 +207,14 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		explication4_2.add(new JLabel ("pour connaitre la matrice"));
 	    explication4_2.add(new JLabel ("permettant de construire "));
 		explication4_2.add(new JLabel ("l'objet si ce n'est pas"));
-		explication4_2.add(new JLabel ("un objet recoltable."));
+		explication4_2.add(new JLabel ("un objet récoltable."));
 		explication4_2.add(new JLabel (" "));
 		Box explication4_3 = Box.createVerticalBox();
 		explication4_3.add(new JLabel (" "));
-		explication4_3.add(new JLabel ("Vous pouvez de la meme"));
-		explication4_3.add(new JLabel ("maniere, recherchez les elements"));
-		explication4_3.add(new JLabel ("permettant de debloquer la"));
-		explication4_3.add(new JLabel ("ressource dont vous venez de choisir."));
+		explication4_3.add(new JLabel ("Vous pouvez de la même"));
+		explication4_3.add(new JLabel ("manière, recherchez les éléments"));
+		explication4_3.add(new JLabel ("permettant de débloquer la"));
+		explication4_3.add(new JLabel ("ressource que vous venez de choisir."));
 		explication4_3.add(new JLabel (" "));
 		//ajout et placement de la premiere boite d'explications
 		gbc4.gridx=1;
@@ -265,9 +265,9 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		explication5.add(new JLabel (" "));
 		explication5.add(new JLabel (" "));
 		explication5.add(new JLabel (" "));
-		explication5.add(new JLabel ("Vous pouvez a tout moment sauvegarder votre partie "));
+		explication5.add(new JLabel ("Vous pouvez à tout moment sauvegarder votre partie "));
 		explication5.add(new JLabel ("(bouton sauvegarder)."));
-		explication5.add(new JLabel ("Vous pouvez retourner a l'ecran titre pour choisir"));
+		explication5.add(new JLabel ("Vous pouvez retourner à l'écran titre pour choisir"));
 		explication5.add(new JLabel ("une autre partie ou quitter (bouton menu principal)."));
 		explication5.add(new JLabel (" "));
 		explication5.add(new JLabel (" "));
@@ -305,7 +305,7 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		etape5.add(photo5_2,gbc5);
 		
 		//bouton suivant
-		JButton suivant = new JButton ("suivant");
+		JButton suivant = new JButton ("Suivant");
 		//police de suivant
 		suivant.setFont(new Font("Arial",Font.BOLD,12));
 		suivant.setForeground(Color.black);
@@ -321,7 +321,7 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		});
 		
 		//bouton precedent
-		JButton precedent = new JButton ("precedent");
+		JButton precedent = new JButton ("Précédent");
 		//fon de precedent
 		precedent.setFont(new Font("Arial",Font.BOLD,12));
 		precedent.setForeground(Color.black);
@@ -355,7 +355,7 @@ public class Manuel_Vue extends JFrame implements WindowListener{
 		content.add(etape4, listEtapes[3]);
 		content.add(etape5, listEtapes[4]);
 		
-		//ajout des deufferents panels
+		//ajout des differents panels
 		this.getContentPane().add(boutonPane,BorderLayout.NORTH);
 		this.getContentPane().add(content,BorderLayout.CENTER);
 		

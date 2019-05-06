@@ -1,9 +1,5 @@
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -12,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -104,12 +99,15 @@ public class NewLoadGame extends JFrame implements WindowListener{
 							
 							
 							fileNumber = ""+button.charAt(button.length()-1);
+							IGN = IGN.substring(0, 16); // Limite la taille des IGN pour ne pas deformer l'inventaire
 							fileName =  "Save"+OSseparator+""+fileNumber+"_"+IGN;
 							
 							for(String number : IDtoIGN.keySet()){	// On va parcourir les IGN des parties existantes
 								if(!number.equals(fileNumber)){	// On ne compare avec la meme partie car on va l'ecraser								
 									if(IDtoIGN.get(number).equals(IGN)){
 										choice = false;	// l'IGN existe deja dans une autres partie
+										new ErrorMess(choice);
+
 									}
 								}
 							}
@@ -126,23 +124,24 @@ public class NewLoadGame extends JFrame implements WindowListener{
 							}
 							
 							fileNumber = ""+button.charAt(button.length()-1);
+							IGN = IGN.substring(0, 16); // Limite la taille des IGN pour ne pas deformer l'inventaire
 							fileName =  "Save"+OSseparator+button+IGN;
 							
 							for(String number : IDtoIGN.keySet()){	// On va parcourir les IGN des parties existantes
-								if(!number.equals(fileNumber)){	// On ne compare avec la meme partie car on va l'ecraser						
+								if(!number.equals(fileNumber)){	// On ne compare pas avec la meme partie car on va l'ecraser
 									if(IDtoIGN.get(number).equals(IGN)){
 										choice = false;	// l'IGN existe deja dans une autres partie
+										new ErrorMess(choice);
 									}
 								}
 							}
 						}
 						else {
-							System.out.println("her");
 							New = false;
-							IGN = button.intern().split("_",2)[1]; // On recupere l'IGN
-							// IGN = button.getText(); // methode qui ne marche pas sur mon pc (Nathan)
+							IGN = ((JButton) e.getSource()).getText();
 							fileName =  "Save"+OSseparator+button;
 						}
+						
 					}					
 				});
 				//placement du bouton dans la fenetre
@@ -196,7 +195,6 @@ public class NewLoadGame extends JFrame implements WindowListener{
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
 		System.exit(0);
 	}
 

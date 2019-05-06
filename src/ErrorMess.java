@@ -14,6 +14,25 @@ import javax.swing.JLabel;
 
 public class ErrorMess extends Frame implements WindowListener{
 	
+	public ErrorMess(boolean taken) {
+		super();
+		//message d'erreur
+		Label m = new Label("Ce nom est déjà pris.");
+		m.setBackground(Minecraft.fond);
+		m.setVisible(true);
+		//police message d'erreur
+		m.setFont(new Font("Arial",Font.BOLD,16));
+		m.setForeground(Color.white);
+		//ajout du message d'erreur
+		this.add(m);
+		
+		this.addWindowListener(this);
+		this.setVisible(true);
+		this.setResizable(false);
+		this.pack();
+		this.setLocationRelativeTo(null);
+	}
+	
 	public ErrorMess(String mess) {
 		super();
 		//titre de la fenetre

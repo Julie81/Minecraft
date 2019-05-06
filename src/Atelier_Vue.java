@@ -13,17 +13,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 
-public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseListener{
+public class Atelier_Vue extends Panel implements Observer{
 	int grille=3;
 	int quantite=1;
 	Controleur_Atelier ctrla;
@@ -62,7 +58,6 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 				b.setPreferredSize(new Dimension(Minecraft.larg,Minecraft.larg));
 				//ajout des actions sur le bouton
 				b.addActionListener(ctrla);
-				b.addMouseListener(this);
 				//couleur de fond et contour du bouton
 				b.setBackground(new Color(200,173,127));
 				Border bord = new LineBorder(Color.black, 1);
@@ -139,7 +134,6 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 		moins.setForeground(Color.black);
 		moins.setBackground(Minecraft.fond_bouton);
 		moins.setActionCommand("-");
-		moins.addMouseListener(this);
 		moins.addActionListener(ctrla);
 		moins.setPreferredSize(new Dimension(Minecraft.taille_bouton,Minecraft.taille_bouton));
 		this.add(moins,gbc);
@@ -192,35 +186,4 @@ public class Atelier_Vue extends Panel implements ActionListener,Observer,MouseL
 			}
 		}
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {	
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

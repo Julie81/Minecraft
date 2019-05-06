@@ -247,7 +247,7 @@ public class Modele extends Observable{
 
 	
 	/*
-	 * Méthode utilisee lors de test
+	 * Methode utilisee lors de test
 	 */
 	public void affichBDDcraft() {	//permet d'afficher les crafts dans la console
 		for (String key : this.craftList.keySet()) {
