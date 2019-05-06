@@ -9,6 +9,7 @@ public class Controleur_Game implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//fermeture de l'ecran de jeu pour revenir a l'ecran titre
 		if (e.getActionCommand() == "endgame") {
 			mcf.setVisible(false);
 			mcf.dispose();

@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public class Jeu { // Lancement application quelque peu sale donc potentiellement e revoir
+public class Jeu { // Lancement application quelque peu sale donc potentiellement a revoir
 	static public Minecraft m;
 	static public boolean launch = true;
 	static public NewLoadGame nlg;
@@ -15,7 +15,7 @@ public class Jeu { // Lancement application quelque peu sale donc potentiellemen
 					e.printStackTrace();
 				}
 			}
-			m = new Minecraft(nlg); // on charge la partie correspodante
+			m = new Minecraft(nlg); // on charge la partie correspondante
 			nlg.dispose();	//on a plus besoin de la fenetre de lancement de partie
 			while(m.isDisplayable()) { // tant que la fenetre de Minecraft est ouverte
 				try {

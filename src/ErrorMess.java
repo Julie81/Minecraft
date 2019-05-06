@@ -25,13 +25,19 @@ public class ErrorMess extends Frame implements WindowListener{
 	
 	public ErrorMess(String mess) {
 		super();
+		//titre de la fenetre
 		this.setTitle(mess);
+		
+		//message d'erreur
 		Label m = new Label("L'objet que vous essayez de créer n'existe pas.");
-		m.setBackground(new Color(139,108,66));
+		m.setBackground(Minecraft.fond);
 		m.setVisible(true);
+		//police message d'erreur
 		m.setFont(new Font("Arial",Font.BOLD,16));
 		m.setForeground(Color.white);
+		//ajout du message d'erreur
 		this.add(m);
+		
 		this.addWindowListener(this);
 		this.setVisible(true);
 		this.setResizable(false);
@@ -41,9 +47,10 @@ public class ErrorMess extends Frame implements WindowListener{
 
 	public ErrorMess(ArrayList<Item> itemManquant) {
 		super();
+		//titre de la fenetre
 		this.setTitle("Not wealthy enough...");
 		this.setVisible(true);
-		this.setBackground(new Color(139,108,66));
+		this.setBackground(Minecraft.fond);
 		this.addWindowListener(this);
 		
 		//Layout
@@ -51,18 +58,23 @@ public class ErrorMess extends Frame implements WindowListener{
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(gd);
 		
+		//message d'erreur
 		Label m = new Label("Action impossible : Les ressources suivantes ne sont pas en quantité suffisante.");
-		m.setBackground(new Color(139,108,66));
+		m.setBackground(Minecraft.fond);
 		m.setVisible(true);
+		//police message d'erreur
 		m.setFont(new Font("Arial",Font.BOLD,16));
 		m.setForeground(Color.white);
+		//placement message d'erreur
 		gbc.gridx=0;
 		gbc.gridy=0;
 		this.add(m,gbc);
 		
+		//boite des elements manquants
 		Box objets = Box.createHorizontalBox();
 		for(int i=0;i<itemManquant.size();i++){
 			JLabel p = new JLabel();
+			//image de l'item manquant
 			ImageIcon icon = new ImageIcon(itemManquant.get(i).path);
 			Image img = icon.getImage();
 			Image newimg = img.getScaledInstance( 90, 90,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -71,8 +83,10 @@ public class ErrorMess extends Frame implements WindowListener{
 			p.setBackground(null);
 			p.setVisible(true);
 			p.setOpaque(true);
+			//ajout de l'image
 			objets.add(p);
 		}
+		//placement et ajout de la boite
 		gbc.gridy=1;
 		this.add(objets,gbc);
 		this.setResizable(false);
@@ -94,6 +108,7 @@ public class ErrorMess extends Frame implements WindowListener{
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+		//fermeture de la fenetre
 		this.dispose();
 		
 	}

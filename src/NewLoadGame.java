@@ -28,14 +28,19 @@ public class NewLoadGame extends JFrame implements WindowListener{
 	String IGN;	// In Game Name => nom d'utilisateur
 	HashMap<String,String> IDtoIGN;	// HashMap qui associe a un numero de partie un identifiant
 	String OSseparator;	// Separateur utilisé lors de l'arborescence de fichier d'un OS
+	Color fond = new Color (169,169,169);
+	Color ecriture = new Color (139,69,19);
 
 	public NewLoadGame() throws IOException {
 		// TODO Auto-generated constructor stub
 		super();
+		//fenetre en plein ecran
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setUndecorated(true);
+		//ajout de l'image de fond
 		this.setBackgroundImage(this, new File("miniatures/fond_minecraft.jpg"));
 		this.choice = false;
+		//suppression du Layout
 		this.setLayout(null);
 		this.addWindowListener(this);
 		this.IGN = "";
@@ -74,8 +79,8 @@ public class NewLoadGame extends JFrame implements WindowListener{
 					
 				}
 				
-				jb.setBackground(new Color (169,169,169));
-				jb.setForeground(new Color (139,69,19));
+				jb.setBackground(this.fond);
+				jb.setForeground(this.ecriture);
 				jb.addActionListener(new ActionListener() {
 
 					@Override
@@ -140,16 +145,20 @@ public class NewLoadGame extends JFrame implements WindowListener{
 						}
 					}					
 				});
+				//placement du bouton dans la fenetre
 				jb.setBounds(300*j+430, 100*i+200, 200, 50);
 				jb.setActionCommand(jb.getName());
+				//ajout du bouton
 				this.add(jb);
 				
 			}
 		}
 		
+		//placement et ajout du bouton quitter
 		JButton quitter= new JButton("Quitter");
-		quitter.setBackground(new Color (169,169,169));
-		quitter.setForeground(new Color (139,69,19));
+		quitter.setBackground(this.fond);
+		quitter.setForeground(this.ecriture);
+		//placement de quitter dans la fenetre
 		quitter.setBounds(150+430, 100*4+200, 200, 50);
 		this.add(quitter);
 		quitter.addActionListener(new ActionListener() {
