@@ -2,8 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Label;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 @SuppressWarnings("serial")
 public class Popup extends Frame{
