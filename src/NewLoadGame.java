@@ -99,7 +99,9 @@ public class NewLoadGame extends JFrame implements WindowListener{
 							
 							
 							fileNumber = ""+button.charAt(button.length()-1);
-							IGN = IGN.substring(0, 16); // Limite la taille des IGN pour ne pas deformer l'inventaire
+							if (IGN.length()>16) {
+								IGN = IGN.substring(0, 16); // Limite la taille des IGN pour ne pas deformer l'inventaire
+							}
 							fileName =  "Save"+OSseparator+""+fileNumber+"_"+IGN;
 							
 							for(String number : IDtoIGN.keySet()){	// On va parcourir les IGN des parties existantes
@@ -124,7 +126,9 @@ public class NewLoadGame extends JFrame implements WindowListener{
 							}
 							
 							fileNumber = ""+button.charAt(button.length()-1);
-							IGN = IGN.substring(0, 16); // Limite la taille des IGN pour ne pas deformer l'inventaire
+							if (IGN.length()>16) {
+								IGN = IGN.substring(0, 16); // Limite la taille des IGN pour ne pas deformer l'inventaire
+							}
 							fileName =  "Save"+OSseparator+button+IGN;
 							
 							for(String number : IDtoIGN.keySet()){	// On va parcourir les IGN des parties existantes
